@@ -20,4 +20,7 @@ Test if a human model made with Blender and MPFB2 can be used as digital human w
 
 https://github.com/user-attachments/assets/8bce04d2-df38-4438-85d2-9779e745b87d
 
+## Blender MPFB => Unity Import Tips
+
+...
 
