@@ -4,7 +4,7 @@
 
 ## Goal
 
-Test if a human model made with Blender and MPFB2 can be used as digital human.
+Test if a human model made with Blender and MPFB2 can be used as digital human working with LangChain.
 
 ## Architecture
 
