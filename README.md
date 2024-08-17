@@ -1,4 +1,4 @@
-# Digital Human
+# Digital Human with LangChain
 
 (Work in Progress)
 
