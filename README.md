@@ -18,9 +18,9 @@ This project uses human models made with Blender and MPFB2 to realize Digital Hu
 
 ### Libraries
 
-- MPFBs (Blender)
-- LangChain and OpenAI's API services (Python)
-- Flask (Python)
+- [MPFB2](https://static.makehumancommunity.org/mpfb.html) (Blender)
+- [LangChain](https://python.langchain.com/v0.2/docs/introduction/) and [OpenAI API](https://openai.com/index/openai-api/) (Python)
+- [Flask](https://flask.palletsprojects.com/en/3.0.x/) (Python)
 
 ## Architecture
 
