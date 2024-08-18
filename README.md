@@ -36,6 +36,8 @@ This project uses human models made with Blender and MPFB2 to realize Digital Hu
 
 Animations made on Blender works well on Unity.
 
+<img src="doc/blender_graph_editor.jpg" width=800>
+
 https://github.com/user-attachments/assets/8bce04d2-df38-4438-85d2-9779e745b87d
 
 ## Blender MPFB => Unity Import Tips
