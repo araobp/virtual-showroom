@@ -46,4 +46,10 @@ The eye shader of MPFB2 is not compatible with Unity. Apply the eyes texture fro
 
 <img src="doc/blender_settings1.jpg" width=600>
 
-<img src="doc/Eyes_diffuse.png" width=400>
+<img src="doc/Eyes_diffuse.png" width=200>
+
+### Body
+
+The body generated with MPFB2 uses Blender's Active Modifer to remove a part of the body mesh under the cloth. On Unity, it causes a problem when the character wears a cloth with a diffuse texture having an Alpha channel. Just disable the modifer before exporting the model from Blender to Unity.
+
+<img src="doc/blender_settings2.jpg" width=600>
