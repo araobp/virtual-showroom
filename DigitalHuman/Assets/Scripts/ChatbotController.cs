@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ChatbotController : MonoBehaviour
 {
@@ -15,4 +16,20 @@ public class ChatbotController : MonoBehaviour
     {
         
     }
+
+    void OnEnable()
+    {
+        Keyboard.current.onTextInput += GetKeyInput;
+    }
+
+    void OnDisable()
+    {
+        Keyboard.current.onTextInput -= GetKeyInput;
+    }
+
+    private void GetKeyInput(char obj)
+    {
+        Debug.Log(obj);
+    }
 }
+
