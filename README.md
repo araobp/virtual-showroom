@@ -80,7 +80,7 @@ Set the following options for exporting the model as FBX to Unity
 
 ## Testing Chatbot animation on Unity 
 
-I think 240-degree panorama screen is ideal for VR experiences at a showroom or an exhibition.
+I think 240-degree panorama screen is ideal for VR experiences with naked eyes at a showroom or an exhibition.
 
 The background photo image of Yokohama is a 240-degree panorama picture taken with my iPhone SE.
 
