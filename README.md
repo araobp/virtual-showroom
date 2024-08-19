@@ -32,6 +32,7 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
 - https://github.com/araobp/blender-3d/tree/main/scenes/BluesHarp
 - https://github.com/araobp/unity-ar
+- https://github.com/araobp/learning-langchain
 
 ## Architecture
 
