@@ -65,3 +65,9 @@ Select the model to be exported
 Set the following options for exporting the model as FBX to Unity
 
 <img src="doc/blender_settings4.jpg" width=600>
+
+## Testing Chatbot animation on Unity 
+
+https://github.com/user-attachments/assets/e5bd0a7d-c31c-47b7-9a3e-1e007b13221e
+
+https://github.com/user-attachments/assets/35e16adb-39e8-405c-887e-54834bb3df44
