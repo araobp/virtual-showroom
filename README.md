@@ -68,7 +68,7 @@ Set the following options for exporting the model as FBX to Unity
 
 ## Testing Chatbot animation on Unity 
 
-The background image of Yokohama is a 240-degree photo image taken with my iPhone SE.
+The background photo image of Yokohama is a 240-degree panorama picture taken with my iPhone SE.
 
 https://github.com/user-attachments/assets/e5bd0a7d-c31c-47b7-9a3e-1e007b13221e
 
