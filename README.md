@@ -24,7 +24,7 @@ This project uses human models made with Blender and MPFB2 to realize Digital Hu
 
 ### LLM
 
-This project uses "gpt-3.5-turbo" with RAG.
+This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
 ### Relevant projects (my other projects on github.com)
 
