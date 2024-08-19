@@ -623,6 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023af6dd4a0514a019cccbdc238b6e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_LadyBotAnimator: {fileID: 1696883935}
 --- !u!4 &970498581
 Transform:
   m_ObjectHideFlags: 0

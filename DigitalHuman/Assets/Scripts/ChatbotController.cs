@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class ChatbotController : MonoBehaviour
 {
+
+    [SerializeField] Animator m_LadyBotAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,11 @@ public class ChatbotController : MonoBehaviour
     private void GetKeyInput(char obj)
     {
         Debug.Log(obj);
+        switch (obj) {
+            case '1':  // SitDown
+                m_LadyBotAnimator.SetBool("sitDown", true);
+                break;
+        }
     }
 }
 
