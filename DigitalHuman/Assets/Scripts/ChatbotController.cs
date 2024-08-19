@@ -10,6 +10,7 @@ public class ChatbotController : MonoBehaviour
     [SerializeField] Camera m_Camera2;
     [SerializeField] Camera m_Camera3;
     [SerializeField] Camera m_Camera4;
+    [SerializeField] Camera m_Camera5;
 
     List<Camera> m_Cameras = new List<Camera>();
 
@@ -35,6 +36,7 @@ public class ChatbotController : MonoBehaviour
         m_Cameras.Add(m_Camera2);
         m_Cameras.Add(m_Camera3);
         m_Cameras.Add(m_Camera4);
+        m_Cameras.Add(m_Camera5);
     }
 
     // Update is called once per frame
@@ -82,6 +84,10 @@ public class ChatbotController : MonoBehaviour
             case '8':  // Camera4
                 selectCamera(m_Camera4);
                 break;
+            case '9':  // Camera5
+                selectCamera(m_Camera5);
+                break;
+
         }
     }
 }
