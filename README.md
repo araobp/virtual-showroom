@@ -1,4 +1,4 @@
-# Digital Human
+# Virtual Showroom
 
 (Work in Progress)
 
