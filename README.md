@@ -8,7 +8,9 @@ The goal is to realize a virtual showroom with Digital Human as promotional mode
 
 This project uses human models made with Blender and MPFB2 to realize Digital Human.
 
-The final output is going to be both a console app and an AR app on iOS.
+The final output will be both a console app and an AR app on iOS.
+
+The API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
 
 ## Development Environment
 
