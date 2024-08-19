@@ -22,6 +22,10 @@ This project uses human models made with Blender and MPFB2 to realize Digital Hu
 - [LangChain](https://python.langchain.com/v0.2/docs/introduction/) and [OpenAI API](https://openai.com/index/openai-api/) (Python)
 - [Flask](https://flask.palletsprojects.com/en/3.0.x/) (Python)
 
+### LLM
+
+This project uses "gpt-3.5-turbo" with RAG.
+
 ## Architecture
 
 ```
