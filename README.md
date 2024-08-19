@@ -59,7 +59,9 @@ The body generated with MPFB2 uses Blender's Active Modifer to remove a part of 
 ### Exporting the model to Unity
 
 Select the model to be exported
+
 <img src="doc/blender_settings3.jpg" width=600>
 
 Set the following options for exporting the model as FBX to Unity
+
 <img src="doc/blender_settings4.jpg" width=600>
