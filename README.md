@@ -4,9 +4,9 @@
 
 ## Goal
 
-The goal is to realize Chatbot with humanity.
+The goal is to realize Chatbot with humanity. It is a dream from 25 years ago to realize Chatbot with humanity for me.
 
-It is a dream from 25 years ago to realize Chatbot with humanity for me.
+My another dream is to realize a (real) VR theater with 240-degree images or movies. Chatbots in this project work in a (virtual) VR theater.
 
 This project uses human models made with Blender and MPFB2 to realize Digital Human.
 
