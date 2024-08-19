@@ -4,6 +4,8 @@
 
 ## Goal
 
+The goal is to realize Chatbot with humanity.
+
 It is a dream from 25 years ago to realize Chatbot with humanity for me.
 
 This project uses human models made with Blender and MPFB2 to realize Digital Human.
