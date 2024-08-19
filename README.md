@@ -81,6 +81,6 @@ Set the following options for exporting the model as FBX to Unity
 
 The background photo image of Yokohama is a 240-degree panorama picture taken with my iPhone SE.
 
-https://github.com/user-attachments/assets/e5bd0a7d-c31c-47b7-9a3e-1e007b13221e
+https://github.com/user-attachments/assets/1d187965-81df-4c1b-8d6f-106e5b35480a
 
-https://github.com/user-attachments/assets/35e16adb-39e8-405c-887e-54834bb3df44
+
