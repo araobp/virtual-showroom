@@ -26,6 +26,11 @@ This project uses human models made with Blender and MPFB2 to realize Digital Hu
 
 This project uses "gpt-3.5-turbo" with RAG.
 
+### Relevant projects (my other projects on github.com)
+
+- https://github.com/araobp/blender-3d/tree/main/scenes/BluesHarp
+- https://github.com/araobp/unity-ar
+
 ## Architecture
 
 ```
