@@ -42,6 +42,8 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
 ## Human model generated with Blender and MPFB2 (EEVEE NEXT with Ray Tracing enabled)
 
+This model is going to be a promotional model or an exhibition guide at a virtual showroom or a virtual exhibition.
+
 <img src="doc/Lady_blender.png" width=800>
 
 ## Human model imported into Unity (URP)
@@ -79,6 +81,8 @@ Set the following options for exporting the model as FBX to Unity
 <img src="doc/blender_settings4.jpg" width=600>
 
 ## Testing Chatbot animation on Unity 
+
+I think 240-degree panorama screen is ideal for VR experiences at a showroom or an exhibition.
 
 The background photo image of Yokohama is a 240-degree panorama picture taken with my iPhone SE.
 
