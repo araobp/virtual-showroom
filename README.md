@@ -1,12 +1,16 @@
-# Digital Human with LangChain
+# Virtual Showroom
 
 (Work in Progress)
 
 ## Goal
 
-It is a dream from 25 years ago to realize Chatbot with humanity for me.
+The goal is to realize a virtual showroom with Digital Human as promotional models.
 
 This project uses human models made with Blender and MPFB2 to realize Digital Human.
+
+The final output will be both a console app and an AR app on iOS.
+
+The API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
 
 ## Development Environment
 
@@ -22,6 +26,16 @@ This project uses human models made with Blender and MPFB2 to realize Digital Hu
 - [LangChain](https://python.langchain.com/v0.2/docs/introduction/) and [OpenAI API](https://openai.com/index/openai-api/) (Python)
 - [Flask](https://flask.palletsprojects.com/en/3.0.x/) (Python)
 
+### LLM
+
+This project uses "gpt-3.5-turbo" from OpenAI with RAG.
+
+### Relevant projects (my other projects on github.com)
+
+- https://github.com/araobp/blender-3d/tree/main/scenes/BluesHarp
+- https://github.com/araobp/unity-ar
+- https://github.com/araobp/learning-langchain
+
 ## Architecture
 
 ```
@@ -29,6 +43,8 @@ This project uses human models made with Blender and MPFB2 to realize Digital Hu
 ```
 
 ## Human model generated with Blender and MPFB2 (EEVEE NEXT with Ray Tracing enabled)
+
+This model is going to be a promotional model or an exhibition guide at a virtual showroom or a virtual exhibition.
 
 <img src="doc/Lady_blender.png" width=800>
 
@@ -65,3 +81,13 @@ Select the model to be exported
 Set the following options for exporting the model as FBX to Unity
 
 <img src="doc/blender_settings4.jpg" width=600>
+
+## Testing Chatbot animation on Unity 
+
+I think 240-degree panorama screen is ideal for VR experiences with naked eyes at a showroom or an exhibition.
+
+The background photo image of Yokohama Bay is a 240-degree panorama picture taken with my iPhone SE.
+
+https://github.com/user-attachments/assets/1d187965-81df-4c1b-8d6f-106e5b35480a
+
+
