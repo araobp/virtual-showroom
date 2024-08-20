@@ -6,7 +6,7 @@
 
 ## Goal
 
-The goal is to realize a virtual showroom with Digital Human as promotional models. This project uses human models made with Blender and MPFB2 to realize Digital Human. The final output will be both a console app and an AR app on iOS.
+The goal is to realize a virtual showroom with Digital Human as promotional models.
 
 ## Virtual Showroom Concept
 
