@@ -30,12 +30,6 @@ Virtual Showroom is a very cost-effective. It only requires a 240-degree panoram
 
 This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
-### Relevant projects (my other projects on github.com)
-
-- https://github.com/araobp/blender-3d/tree/main/scenes/BluesHarp
-- https://github.com/araobp/unity-ar
-- https://github.com/araobp/learning-langchain
-
 ## Architecture
 
 ```
@@ -52,4 +46,9 @@ The Flask-based API server will run on PC or Mac. I will also test if it can als
 
 => [SHOWROOM.md](./SHOWROOM.md)
 
+## Relevant projects (my other projects on github.com)
+
+- https://github.com/araobp/blender-3d/tree/main/scenes/BluesHarp
+- https://github.com/araobp/unity-ar
+- https://github.com/araobp/learning-langchain
 
