@@ -2,6 +2,8 @@
 
 (Work in Progress)
 
+https://github.com/user-attachments/assets/60e179d1-8ad3-498e-95d9-061d237fca20
+
 ## Goal
 
 The goal is to realize a virtual showroom with Digital Human as promotional models.
