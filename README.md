@@ -3,7 +3,6 @@
 (Work in Progress)
 
 <img src="doc/sample_scene.jpg" width=700>
-Sample scene on Unity
 
 ## Goal
 
