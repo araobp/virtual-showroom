@@ -44,7 +44,7 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
 ## Models
 
-==> (./MODELS.md)
+=> [MODELS.md](./MODELS.md)
 
 ## Virtual Showroom
 
