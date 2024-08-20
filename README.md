@@ -82,6 +82,12 @@ Set the following options for exporting the model as FBX to Unity
 
 <img src="doc/blender_settings4.jpg" width=600>
 
+## Screen shader made with Unity's Shader Graph
+
+I have made my original shader for swapping images on the screen.
+
+<img src="doc/unity_settings1.jpg" width=600>
+
 ## Testing Chatbot animation on Unity 
 
 I think 240-degree panorama screen is ideal for VR experiences with naked eyes at a showroom or an exhibition.
