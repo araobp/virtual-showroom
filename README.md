@@ -10,6 +10,8 @@ This project uses human models made with Blender and MPFB2 to realize Digital Hu
 
 The final output will be both a console app and an AR app on iOS.
 
+## Sample
+
 https://github.com/user-attachments/assets/60e179d1-8ad3-498e-95d9-061d237fca20
 
 ## Development Environment
