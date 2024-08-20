@@ -2,6 +2,8 @@
 
 (Work in Progress)
 
+<img src="doc/sample_scene.jpg" width=700>
+
 ## Goal
 
 The goal is to realize a virtual showroom with Digital Human as promotional models. This project uses human models made with Blender and MPFB2 to realize Digital Human. The final output will be both a console app and an AR app on iOS.
@@ -9,8 +11,6 @@ The goal is to realize a virtual showroom with Digital Human as promotional mode
 ## Virtual Showroom Concept
 
 Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday, but this project develops a **"virtual"** virtual showroom running on Unity.
-
-<img src="doc/sample_scene.jpg" width=600>
 
 ## Development Environment
 
