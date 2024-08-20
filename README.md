@@ -12,7 +12,7 @@ The final output will be both a console app and an AR app on iOS.
 
 ## Virtual Showroom Concept
 
-Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes.
+Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **real** virtual showroom someday, but this project develops a **virtual** virtual showroom running on Unity.
 
 https://github.com/user-attachments/assets/60e179d1-8ad3-498e-95d9-061d237fca20
 
