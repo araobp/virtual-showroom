@@ -1,0 +1,75 @@
+# generic files to ignore
+.*
+
+# python temp paths
+__pycache__/
+*.py[cod]
+
+# editors
+*~
+*.swp
+*.swo
+*#
+
+# Indexes for emacs, vi & others
+TAGS
+tags
+
+# QtCreator
+CMakeLists.txt.user
+
+# ms-windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# commonly used paths in blender
+/blender.bin
+/BUILD_NOTES.txt
+
+# local patches
+/*.patch
+/*.diff
+
+# in-source doc-gen
+/doc/doxygen/html/
+/doc/python_api/sphinx-in-tmp/
+/doc/python_api/sphinx-in/
+/doc/python_api/sphinx-out/
+/doc/python_api/rst/bmesh.ops.rst
+
+# in-source lib downloads
+/build_files/build_environment/downloads/
+
+# in-source buildbot signing configuration
+/build_files/buildbot/codesign/config_server.py
+
+# smoke simulation noise tile (generated)
+waveletNoiseTile.bin
+
+# testing environment
+/Testing/
+
+# Translations.
+/locale/user-config.py
+
+# External repositories.
+/scripts/addons/
+/scripts/addons_contrib/
+/tests/benchmarks/
+
+# Ignore old submodules directories.
+# Eventually need to get rid of those, but for the first time of transition
+# avoid indidents when the folders exists after bisect and developers staging
+# them by accident.
+/release/scripts/addons/
+/release/datafiles/locale/
+/release/scripts/addons_contrib/
+/source/tools/
+
+# Build files for VS and VS Code.
+/build/
+/out/
+CMakeSettings.json
+CMakePresets.json
+CMakeUserPresets.json
