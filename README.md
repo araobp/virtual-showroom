@@ -10,7 +10,7 @@ The goal is to realize a virtual showroom with Digital Human as promotional mode
 
 Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday, but this project develops a **"virtual"** virtual showroom running on Unity.
 
-<img src="doc/smaple_scene.jpeg" width=600>
+<img src="doc/smaple_scene.jpg" width=600>
 
 ## Development Environment
 
