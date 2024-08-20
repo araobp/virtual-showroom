@@ -86,8 +86,9 @@ Set the following options for exporting the model as FBX to Unity
 
 I think 240-degree panorama screen is ideal for VR experiences with naked eyes at a showroom or an exhibition.
 
-The background photo image of Yokohama Bay is a 240-degree panorama picture taken with my iPhone SE.
+The background images are 240-degree panorama pictures taken with my iPhone SE.
 
-https://github.com/user-attachments/assets/1d187965-81df-4c1b-8d6f-106e5b35480a
+https://github.com/user-attachments/assets/6fd7c8af-bfaf-4498-917b-22f88e2aa6c7
+
 
 
