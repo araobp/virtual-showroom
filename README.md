@@ -2,8 +2,6 @@
 
 (Work in Progress)
 
-https://github.com/user-attachments/assets/60e179d1-8ad3-498e-95d9-061d237fca20
-
 ## Goal
 
 The goal is to realize a virtual showroom with Digital Human as promotional models.
@@ -12,7 +10,7 @@ This project uses human models made with Blender and MPFB2 to realize Digital Hu
 
 The final output will be both a console app and an AR app on iOS.
 
-The API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
+https://github.com/user-attachments/assets/60e179d1-8ad3-498e-95d9-061d237fca20
 
 ## Development Environment
 
@@ -43,6 +41,8 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 ```
 [DigitalHuman/Unity]--- REST API ---[ChatApp/LangChain/Flask]--- REST API ---[OpenAI API Services]
 ```
+
+The Flask-based API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
 
 ## Models
 
