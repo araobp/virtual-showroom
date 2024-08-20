@@ -12,6 +12,14 @@ The goal is to realize a virtual showroom with Digital Human as promotional mode
 
 Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday, but this project develops a **"virtual"** virtual showroom running on Unity.
 
+## Architecture
+
+```
+[DigitalHuman/Unity]--- REST API ---[ChatApp/LangChain/Flask]--- REST API ---[OpenAI API Services]
+```
+
+The Flask-based API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
+
 ## Development Environment
 
 ### Tools
@@ -29,14 +37,6 @@ Virtual Showroom is a very cost-effective. It only requires a 240-degree panoram
 ### LLM
 
 This project uses "gpt-3.5-turbo" from OpenAI with RAG.
-
-## Architecture
-
-```
-[DigitalHuman/Unity]--- REST API ---[ChatApp/LangChain/Flask]--- REST API ---[OpenAI API Services]
-```
-
-The Flask-based API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
 
 ## Models
 
