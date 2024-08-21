@@ -16,9 +16,9 @@ Virtual Showroom is a very cost-effective. It only requires a 240-degree panoram
 
 I visited NISSAN GALLERY at Nissan global headquarters in Yokohama in May 2024.
 
-<img src="doc/nissan_showroom1.jpg" width=500>
+<img src="doc/nissan_showroom1.jpg" width=400>
 
-<img src="doc/nissan_showroom2.jpg" width=500>
+<img src="doc/nissan_showroom2.jpg" width=400>
 
 ## Architecture
 
