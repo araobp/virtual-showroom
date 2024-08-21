@@ -59,13 +59,17 @@ The Flask-based API server will run on PC or Mac. I will also test if it can als
 
 This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
-## Models (Blender)
+## Designing Models (Blender)
 
 => [MODELS.md](./MODELS.md)
 
-## Virtual Showroom (Unity)
+## Creating Virtual Showroom (Unity)
 
 => [SHOWROOM.md](./SHOWROOM.md)
+
+## Developing API server (LangChain/Flask/Python)
+
+=> [API_SERVER.md](./API_SERVER.md]
 
 ## Relevant projects (my other projects on github.com)
 
