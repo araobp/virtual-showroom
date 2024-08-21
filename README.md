@@ -26,7 +26,7 @@ I visited NISSAN GALLERY at Nissan global headquarters in Yokohama in May 2024. 
 
 <img src="doc/nissan_showroom2.jpg" width=400>
 
-## Architecture
+## System Architecture
 
 ```
 [DigitalHuman/Unity]--- REST API ---[ChatApp/LangChain/Flask]--- REST API ---[OpenAI API Services]
