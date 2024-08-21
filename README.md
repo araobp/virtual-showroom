@@ -2,15 +2,23 @@
 
 (Work in Progress)
 
+<img src="doc/sample_scene.jpg" width=700>
+
 ## Goal
 
-The goal is to realize a virtual showroom with Digital Human as promotional models. This project uses human models made with Blender and MPFB2 to realize Digital Human. The final output will be both a console app and an AR app on iOS.
+The goal is to realize a virtual showroom with Digital Human as promotional models.
 
 ## Virtual Showroom Concept
 
 Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday, but this project develops a **"virtual"** virtual showroom running on Unity.
 
-https://github.com/user-attachments/assets/60e179d1-8ad3-498e-95d9-061d237fca20
+## Architecture
+
+```
+[DigitalHuman/Unity]--- REST API ---[ChatApp/LangChain/Flask]--- REST API ---[OpenAI API Services]
+```
+
+The Flask-based API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
 
 ## Development Environment
 
@@ -30,26 +38,17 @@ https://github.com/user-attachments/assets/60e179d1-8ad3-498e-95d9-061d237fca20
 
 This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
-### Relevant projects (my other projects on github.com)
+## Models (Blender)
+
+=> [MODELS.md](./MODELS.md)
+
+## Virtual Showroom (Unity)
+
+=> [SHOWROOM.md](./SHOWROOM.md)
+
+## Relevant projects (my other projects on github.com)
 
 - https://github.com/araobp/blender-3d/tree/main/scenes/BluesHarp
 - https://github.com/araobp/unity-ar
 - https://github.com/araobp/learning-langchain
-
-## Architecture
-
-```
-[DigitalHuman/Unity]--- REST API ---[ChatApp/LangChain/Flask]--- REST API ---[OpenAI API Services]
-```
-
-The Flask-based API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
-
-## Models
-
-=> [MODELS.md](./MODELS.md)
-
-## Virtual Showroom
-
-=> [SHOWROOM.md](./SHOWROOM.md)
-
 
