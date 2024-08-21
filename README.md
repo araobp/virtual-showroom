@@ -16,7 +16,7 @@ Virtual Showroom is a very cost-effective. It only requires a 240-degree panoram
 
 My original design of such a virtual showroom.
 
-<img src="doc/schematic.jpg" width=600>
+<img src="doc/schematic.jpg" width=500>
 
 ## Reference Showroom
 
