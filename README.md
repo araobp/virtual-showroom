@@ -2,7 +2,7 @@
 
 (Work in Progress)
 
-<img src="doc/sample_scene.jpg" width=700>
+<img src="doc/sample_scene.jpg" width=600>
 
 ## Goal
 
