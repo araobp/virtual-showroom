@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ChatbotController : RestClient
 {
@@ -14,9 +17,21 @@ public class ChatbotController : RestClient
     [SerializeField] Camera m_Camera5;
     [SerializeField] GameObject m_Screen;
 
+    [SerializeField] Button m_ArrowLeftButton;
+    [SerializeField] Button m_ArrowRightButton;
+
+    [SerializeField] Button m_ChatToggleButton;
+    
+    [SerializeField] GameObject Panel;
+
+    [SerializeField] TMP_Text m_Text;
+
+    [SerializeField] TMP_InputField m_InputField;
+
     List<Camera> m_Cameras;
 
-    int m_Idx = 0;
+    int m_ScreenIdx = 0;
+    int m_CameraIdx = 0;
 
     List<Object> m_Pictures;
 
@@ -25,28 +40,13 @@ public class ChatbotController : RestClient
     // Flask API server base URL
     const string BASE_URL = "http://127.0.0.1:5000";
 
-    void selectCamera(Camera camera)
-    {
-        m_Cameras.ForEach(c =>
-        {
-            if (c == camera)
-            {
-                c.gameObject.SetActive(true);
-            }
-            else
-            {
-                c.gameObject.SetActive(false);
-            }
-        });
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
 
         // Camera list
-        m_Cameras = new List<Camera>(){m_Camera1, m_Camera2, m_Camera3, m_Camera4, m_Camera5};
+        m_Cameras = new List<Camera>() { m_Camera1, m_Camera2, m_Camera3, m_Camera4, m_Camera5 };
 
         // 240-degree screen panorama pictures
         var pictures = Resources.LoadAll("Panorama", typeof(Texture2D)).ToList();
@@ -54,18 +54,15 @@ public class ChatbotController : RestClient
         Texture2D tex = (Texture2D)m_Pictures[0];
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
 
+        // Operation buttons
+        m_ArrowLeftButton.onClick.AddListener(() => OnButtonClick("left"));
+        m_ArrowRightButton.onClick.AddListener(() => OnButtonClick("right"));
+
         // REST API client init
         m_EndPoint = new EndPoint();
         m_EndPoint.baseUrl = BASE_URL;
         HelloAPI();
 
-    }
-
-    // Test API server
-    void HelloAPI() {
-        Get(m_EndPoint, "/", (err, text) => {
-            Debug.Log(text);
-        });
     }
 
     // Update is called once per frame
@@ -84,25 +81,83 @@ public class ChatbotController : RestClient
         Keyboard.current.onTextInput -= GetKeyInput;
     }
 
-    public void Forward()
+    void OnButtonClick(string direction)
     {
-        m_Idx += 1;
-        if (m_Idx >= m_Pictures.Count - 1)
+        if (direction == "left")
         {
-            m_Idx = m_Pictures.Count - 1;
+            CameraBack();
         }
-        Texture2D tex = (Texture2D)m_Pictures[m_Idx];
+        else if (direction == "right")
+        {
+            CameraForward();
+        }
+    }
+
+    // Test API server
+    void HelloAPI()
+    {
+        Get(m_EndPoint, "/", (err, text) =>
+        {
+            Debug.Log(text);
+        });
+    }
+
+    void SelectCamera(Camera camera)
+    {
+        m_Cameras.ForEach(c =>
+        {
+            if (c == camera)
+            {
+                c.gameObject.SetActive(true);
+            }
+            else
+            {
+                c.gameObject.SetActive(false);
+            }
+        });
+    }
+
+    void CameraForward()
+    {
+        m_CameraIdx += 1;
+        if (m_CameraIdx >= m_Cameras.Count - 1)
+        {
+            m_CameraIdx = m_Cameras.Count - 1;
+        }
+
+        SelectCamera(m_Cameras[m_CameraIdx]);
+    }
+
+    void CameraBack()
+    {
+        m_CameraIdx -= 1;
+        if (m_CameraIdx < 0)
+        {
+            m_CameraIdx = 0;
+        }
+
+        SelectCamera(m_Cameras[m_CameraIdx]);
+    }
+
+    void ScreenForward()
+    {
+        m_ScreenIdx += 1;
+        if (m_ScreenIdx >= m_Pictures.Count - 1)
+        {
+            m_ScreenIdx = m_Pictures.Count - 1;
+        }
+        Texture2D tex = (Texture2D)m_Pictures[m_ScreenIdx];
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
     }
 
-    public void Back()
+    void ScreenBack()
     {
-        m_Idx -= 1;
-        if (m_Idx < 0)
+        m_ScreenIdx -= 1;
+        if (m_ScreenIdx < 0)
         {
-            m_Idx = 0;
+            m_ScreenIdx = 0;
         }
-        Texture2D tex = (Texture2D)m_Pictures[m_Idx];
+        Texture2D tex = (Texture2D)m_Pictures[m_ScreenIdx];
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
     }
 
@@ -123,26 +178,11 @@ public class ChatbotController : RestClient
             case '4':  // stopSpeaking
                 m_LadyBotAnimator.SetTrigger("stopSpeaking");
                 break;
-            case '5':  // Camera1
-                selectCamera(m_Camera1);
-                break;
-            case '6':  // Camera2
-                selectCamera(m_Camera2);
-                break;
-            case '7':  // Camera3
-                selectCamera(m_Camera3);
-                break;
-            case '8':  // Camera4
-                selectCamera(m_Camera4);
-                break;
-            case '9':  // Camera5
-                selectCamera(m_Camera5);
-                break;
             case 'f':
-                Forward();
+                ScreenForward();
                 break;
             case 'b':
-                Back();
+                ScreenBack();
                 break;
         }
     }
