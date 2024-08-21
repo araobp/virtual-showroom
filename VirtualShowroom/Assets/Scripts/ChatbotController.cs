@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ChatbotController : MonoBehaviour
+public class ChatbotController : RestClient
 {
 
     [SerializeField] Animator m_LadyBotAnimator;
@@ -14,11 +14,16 @@ public class ChatbotController : MonoBehaviour
     [SerializeField] Camera m_Camera5;
     [SerializeField] GameObject m_Screen;
 
-    List<Camera> m_Cameras = new List<Camera>();
+    List<Camera> m_Cameras;
 
     int m_Idx = 0;
 
-    List<Object> m_Pictures = null;
+    List<Object> m_Pictures;
+
+    EndPoint m_EndPoint;
+
+    // Flask API server base URL
+    const string BASE_URL = "http://127.0.0.1:5000";
 
     void selectCamera(Camera camera)
     {
@@ -40,16 +45,27 @@ public class ChatbotController : MonoBehaviour
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
 
-        m_Cameras.Add(m_Camera1);
-        m_Cameras.Add(m_Camera2);
-        m_Cameras.Add(m_Camera3);
-        m_Cameras.Add(m_Camera4);
-        m_Cameras.Add(m_Camera5);
+        // Camera list
+        m_Cameras = new List<Camera>(){m_Camera1, m_Camera2, m_Camera3, m_Camera4, m_Camera5};
 
+        // 240-degree screen panorama pictures
         var pictures = Resources.LoadAll("Panorama", typeof(Texture2D)).ToList();
         m_Pictures = pictures.OrderBy(x => x.name).ToList();
         Texture2D tex = (Texture2D)m_Pictures[0];
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
+
+        // REST API client init
+        m_EndPoint = new EndPoint();
+        m_EndPoint.baseUrl = BASE_URL;
+        HelloAPI();
+
+    }
+
+    // Test API server
+    void HelloAPI() {
+        Get(m_EndPoint, "/", (err, text) => {
+            Debug.Log(text);
+        });
     }
 
     // Update is called once per frame
