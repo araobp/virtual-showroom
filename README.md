@@ -12,6 +12,12 @@ The goal is to realize a virtual showroom with Digital Human as promotional mode
 
 Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday, but this project develops a **"virtual"** virtual showroom running on Unity.
 
+## Schematic
+
+My original design of such a virtual showroom.
+
+<img src="doc/schematic.jpg" width=600>
+
 ## Reference
 
 I visited NISSAN GALLERY at Nissan global headquarters in Yokohama in May 2024.
