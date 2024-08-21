@@ -22,9 +22,16 @@ My original design of such a virtual showroom.
 
 I visited NISSAN GALLERY at Nissan global headquarters in Yokohama in May 2024. This was for a driving experience in harsh environments.
 
-<img src="doc/nissan_showroom1.jpg" width=400>
-
-<img src="doc/nissan_showroom2.jpg" width=400>
+<table>
+  <tr>
+    <td>
+      <img src="doc/nissan_showroom1.jpg" width=400>      
+    </td>
+    <td>
+      <img src="doc/nissan_showroom2.jpg" width=400>
+    </td>
+  </tr>
+</table>
 
 ## System Architecture
 
