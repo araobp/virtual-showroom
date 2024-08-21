@@ -10,7 +10,7 @@ The goal is to realize a virtual showroom with Digital Human as promotional mode
 
 ## Virtual Showroom Concept
 
-Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday, but this project develops a **"virtual"** virtual showroom running on Unity in the form of an AR app or a console app.
+Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday at work, but this project develops a **"virtual"** virtual showroom running on Unity in the form of an AR app or a console app, as my hobby project.
 
 ## Schematic
 
