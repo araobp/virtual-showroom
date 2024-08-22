@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class ChatbotController : RestClient
+public class ChatbotController: MonoBehaviour
 {
 
     [SerializeField] Animator m_LadyBotAnimator;
@@ -21,7 +22,7 @@ public class ChatbotController : RestClient
     [SerializeField] Button m_ArrowRightButton;
 
     [SerializeField] Button m_ChatToggleButton;
-    
+
     [SerializeField] GameObject Panel;
 
     [SerializeField] TMP_Text m_Text;
@@ -35,10 +36,7 @@ public class ChatbotController : RestClient
 
     List<Object> m_Pictures;
 
-    EndPoint m_EndPoint;
-
-    // Flask API server base URL
-    const string BASE_URL = "http://127.0.0.1:5000";
+    ChatAPI api;
 
     // Start is called before the first frame update
     void Start()
@@ -58,11 +56,15 @@ public class ChatbotController : RestClient
         m_ArrowLeftButton.onClick.AddListener(() => OnButtonClick("left"));
         m_ArrowRightButton.onClick.AddListener(() => OnButtonClick("right"));
 
-        // REST API client init
-        m_EndPoint = new EndPoint();
-        m_EndPoint.baseUrl = BASE_URL;
-        HelloAPI();
-
+        // API
+        api = GetComponent<ChatAPI>();
+        api.Hello((err, text) => {
+            if (err) {
+                Debug.LogWarning("API server not running!");
+            } else {
+                Debug.Log(text);
+            }
+        });
     }
 
     // Update is called once per frame
@@ -91,15 +93,6 @@ public class ChatbotController : RestClient
         {
             CameraForward();
         }
-    }
-
-    // Test API server
-    void HelloAPI()
-    {
-        Get(m_EndPoint, "/", (err, text) =>
-        {
-            Debug.Log(text);
-        });
     }
 
     void SelectCamera(Camera camera)

@@ -1864,6 +1864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 970498581}
   - component: {fileID: 970498580}
+  - component: {fileID: 970498582}
   m_Layer: 0
   m_Name: Chatbot
   m_TagString: Untagged
@@ -1890,10 +1891,10 @@ MonoBehaviour:
   m_Camera4: {fileID: 287780727}
   m_Camera5: {fileID: 1698720549}
   m_Screen: {fileID: 1643591040}
-  m_ArrowLeftButton: {fileID: 0}
-  m_ArrowRightButton: {fileID: 0}
+  m_ArrowLeftButton: {fileID: 1532000302}
+  m_ArrowRightButton: {fileID: 2001271666}
   m_ChatToggleButton: {fileID: 0}
-  Panel: {fileID: 0}
+  Panel: {fileID: 1943142787}
   m_Text: {fileID: 1437991902}
   m_InputField: {fileID: 924838297}
 --- !u!4 &970498581
@@ -1911,6 +1912,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &970498582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970498579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd33c36b7a7944c4b1f3750e5f45d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1005638271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3504,10 +3517,10 @@ SceneRoots:
   - {fileID: 1642408839}
   - {fileID: 540946619}
   - {fileID: 1010967256}
-  - {fileID: 970498581}
   - {fileID: 818337976}
   - {fileID: 1419839596}
   - {fileID: 73584655}
   - {fileID: 574701156}
   - {fileID: 1612783319}
   - {fileID: 211694386}
+  - {fileID: 970498581}
