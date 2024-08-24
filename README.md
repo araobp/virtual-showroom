@@ -69,6 +69,11 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
 => [API_SERVER.md](./API_SERVER.md)
 
+## Backlog
+- Test if the API server can run on RaspberryPi
+- Develop AR-version of this app
+- Add other contents
+
 ## Relevant projects (my other projects on github.com)
 
 - https://github.com/araobp/unity-chat
