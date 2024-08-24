@@ -20,7 +20,7 @@ My original design of such a virtual showroom.
 
 ## Reference Showroom
 
-I visited NISSAN GALLERY at Nissan global headquarters in Yokohama in May 2024. This was for a driving experience in harsh environments.
+I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl/Z5GTQqjRTFXAtd3D8) in Yokohama in May 2024. This was for a driving experience in harsh environments.
 
 <table>
   <tr>
@@ -35,9 +35,7 @@ I visited NISSAN GALLERY at Nissan global headquarters in Yokohama in May 2024. 
 
 ## System Architecture
 
-```
-[DigitalHuman/Unity]--- REST API ---[ChatApp/LangChain/Flask]--- REST API ---[OpenAI API Services]
-```
+<img src="doc/architecture.jpg" width=600>
 
 The Flask-based API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
 
