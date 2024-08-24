@@ -111,16 +111,6 @@ public class ChatbotController : MonoBehaviour
 
     }
 
-    void OnEnable()
-    {
-        //Keyboard.current.onTextInput += GetKeyInput;
-    }
-
-    void OnDisable()
-    {
-        //Keyboard.current.onTextInput -= GetKeyInput;
-    }
-
     void OnButtonClick(ButtonEvent ev)
     {
         switch (ev)
@@ -246,28 +236,6 @@ public class ChatbotController : MonoBehaviour
                 m_InputField.text = "";
             }
         });
-    }
-
-    private void GetKeyInput(char obj)
-    {
-        Debug.Log(obj);
-        /*
-        switch (obj)
-        {
-            case '1':  // sitDown
-                m_LadyBotAnimator.SetTrigger("sitDown");
-                break;
-            case '2':  // standUp
-                m_LadyBotAnimator.SetTrigger("standUp");
-                break;
-            case '3':  // speak
-                m_LadyBotAnimator.SetTrigger("speak");
-                break;
-            case '4':  // stopSpeaking
-                m_LadyBotAnimator.SetTrigger("stopSpeaking");
-                break;
-        }
-        */
     }
 }
 
