@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -43,6 +44,10 @@ public class ChatbotController : MonoBehaviour
 
     ChatAPI m_Api;
 
+    const int TIME_TO_WORDS = 30;
+
+    const int TIME_TO_SITDOWN = 3;
+
     enum ButtonEvent
     {
         CAMERA_BACK,
@@ -78,7 +83,11 @@ public class ChatbotController : MonoBehaviour
 
         m_ButtonToggleChatWindow.onClick.AddListener(() => OnButtonClick(ButtonEvent.TOGGLE_CHAT_WINDOW));
 
-        // API
+        // Initializing virtual showroom set up
+        SelectCamera(m_Cameras[0]);
+        SelectContent(0);
+
+        // Initializing API
         m_Api = GetComponent<ChatAPI>();
         m_Api.Init(m_BaseUrl);
         m_Api.Hello((err, text) =>
@@ -92,6 +101,8 @@ public class ChatbotController : MonoBehaviour
                 Debug.Log(text);
             }
         });
+
+        StartCoroutine(SitDown(TIME_TO_SITDOWN));
     }
 
     // Update is called once per frame
@@ -169,6 +180,11 @@ public class ChatbotController : MonoBehaviour
         SelectCamera(m_Cameras[m_CameraIdx]);
     }
 
+    void SelectContent(int m_ScreenIdx) {
+        Texture2D tex = (Texture2D)m_Pictures[m_ScreenIdx];
+        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);        
+    }
+
     void ContentForward()
     {
         m_ScreenIdx += 1;
@@ -176,8 +192,7 @@ public class ChatbotController : MonoBehaviour
         {
             m_ScreenIdx = m_Pictures.Count - 1;
         }
-        Texture2D tex = (Texture2D)m_Pictures[m_ScreenIdx];
-        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
+        SelectContent(m_ScreenIdx);
     }
 
     void ContentBack()
@@ -187,8 +202,7 @@ public class ChatbotController : MonoBehaviour
         {
             m_ScreenIdx = 0;
         }
-        Texture2D tex = (Texture2D)m_Pictures[m_ScreenIdx];
-        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
+        SelectContent(m_ScreenIdx);
     }
 
     void ToggleChatWindow()
@@ -203,6 +217,17 @@ public class ChatbotController : MonoBehaviour
         }
     }
 
+    IEnumerator Speak(int period) {
+        m_LadyBotAnimator.SetTrigger("speak");
+        yield return new WaitForSecondsRealtime(period);
+        m_LadyBotAnimator.SetTrigger("stopSpeaking");
+    }
+
+    IEnumerator SitDown(int period) {
+        yield return new WaitForSecondsRealtime(period);
+        m_LadyBotAnimator.SetTrigger("sitDown");
+    }
+
     public void OnEndEdit(string text)
     {
         m_Api.Chat(text, (err, resp) =>
@@ -214,6 +239,8 @@ public class ChatbotController : MonoBehaviour
             else
             {
                 Debug.Log(resp.answer);
+                int period = resp.answer.Length / TIME_TO_WORDS;
+                StartCoroutine(Speak(period));
                 string qa = $"Q: {text}\nA: {resp.answer}";
                 m_Text.text = m_Text.text + "\n\n" + qa;
                 m_InputField.text = "";
