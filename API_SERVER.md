@@ -1,6 +1,6 @@
 # API Server
 
-(Work in Progress, in an early stage)
+(Work in Progress)
 
 => [Code](./python)
 
