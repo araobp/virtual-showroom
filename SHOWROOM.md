@@ -22,4 +22,4 @@ The scrollbar in the Scrollview component should automatically scroll to the bot
 
 Setting the pivot Y value to zero solves it.
 
-<img src="doc/" width=600>
+<img src="doc/scroll_to_bottom.jpg" width=600>
