@@ -35,9 +35,7 @@ I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl
 
 ## System Architecture
 
-```
-[DigitalHuman/Unity]--- REST API ---[ChatApp/LangChain/Flask]--- REST API ---[OpenAI API Services]
-```
+<img src="doc/architecture.jpg" width=600>
 
 The Flask-based API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
 
