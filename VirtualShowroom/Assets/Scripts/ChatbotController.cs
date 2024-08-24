@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 
-public class ChatbotController: MonoBehaviour
+public class ChatbotController : MonoBehaviour
 {
 
     [SerializeField] Animator m_LadyBotAnimator;
@@ -18,10 +18,13 @@ public class ChatbotController: MonoBehaviour
     [SerializeField] Camera m_Camera5;
     [SerializeField] GameObject m_Screen;
 
-    [SerializeField] Button m_ArrowLeftButton;
-    [SerializeField] Button m_ArrowRightButton;
+    [SerializeField] Button m_ButtonCameraLeft;
+    [SerializeField] Button m_ButtonCameraRight;
 
-    [SerializeField] Button m_ChatToggleButton;
+    [SerializeField] Button m_ButtonContentLeft;
+    [SerializeField] Button m_ButtonContentRight;
+
+    [SerializeField] Button m_ButtonToggleChatWindow;
 
     [SerializeField] GameObject m_ChatPanel;
 
@@ -39,6 +42,15 @@ public class ChatbotController: MonoBehaviour
     List<Object> m_Pictures;
 
     ChatAPI m_Api;
+
+    enum ButtonEvent
+    {
+        CAMERA_BACK,
+        CAMERA_FORWARD,
+        CONTENT_BACK,
+        CONTENT_FORWARD,
+        TOGGLE_CHAT_WINDOW
+    };
 
     // Start is called before the first frame update
     void Start()
@@ -58,17 +70,25 @@ public class ChatbotController: MonoBehaviour
         m_ChatPanel.SetActive(false);
 
         // Operation buttons
-        m_ArrowLeftButton.onClick.AddListener(() => OnButtonClick("left"));
-        m_ArrowRightButton.onClick.AddListener(() => OnButtonClick("right"));
-        m_ChatToggleButton.onClick.AddListener(() => OnButtonClick("toggle"));
+        m_ButtonCameraLeft.onClick.AddListener(() => OnButtonClick(ButtonEvent.CAMERA_BACK));
+        m_ButtonCameraRight.onClick.AddListener(() => OnButtonClick(ButtonEvent.CAMERA_FORWARD));
+
+        m_ButtonContentLeft.onClick.AddListener(() => OnButtonClick(ButtonEvent.CONTENT_BACK));
+        m_ButtonContentRight.onClick.AddListener(() => OnButtonClick(ButtonEvent.CONTENT_FORWARD));
+
+        m_ButtonToggleChatWindow.onClick.AddListener(() => OnButtonClick(ButtonEvent.TOGGLE_CHAT_WINDOW));
 
         // API
         m_Api = GetComponent<ChatAPI>();
         m_Api.Init(m_BaseUrl);
-        m_Api.Hello((err, text) => {
-            if (err) {
+        m_Api.Hello((err, text) =>
+        {
+            if (err)
+            {
                 Debug.LogWarning("API server not running!");
-            } else {
+            }
+            else
+            {
                 Debug.Log(text);
             }
         });
@@ -90,16 +110,23 @@ public class ChatbotController: MonoBehaviour
         //Keyboard.current.onTextInput -= GetKeyInput;
     }
 
-    void OnButtonClick(string operation)
+    void OnButtonClick(ButtonEvent ev)
     {
-        switch(operation) {
-            case "left":
+        switch (ev)
+        {
+            case ButtonEvent.CAMERA_BACK:
                 CameraBack();
                 break;
-            case "right":
+            case ButtonEvent.CAMERA_FORWARD:
                 CameraForward();
                 break;
-            case "toggle":
+            case ButtonEvent.CONTENT_BACK:
+                ContentBack();
+                break;
+            case ButtonEvent.CONTENT_FORWARD:
+                ContentForward();
+                break;
+            case ButtonEvent.TOGGLE_CHAT_WINDOW:
                 ToggleChatWindow();
                 break;
         }
@@ -142,7 +169,7 @@ public class ChatbotController: MonoBehaviour
         SelectCamera(m_Cameras[m_CameraIdx]);
     }
 
-    void ScreenForward()
+    void ContentForward()
     {
         m_ScreenIdx += 1;
         if (m_ScreenIdx >= m_Pictures.Count - 1)
@@ -153,7 +180,7 @@ public class ChatbotController: MonoBehaviour
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
     }
 
-    void ScreenBack()
+    void ContentBack()
     {
         m_ScreenIdx -= 1;
         if (m_ScreenIdx < 0)
@@ -164,19 +191,28 @@ public class ChatbotController: MonoBehaviour
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
     }
 
-    void ToggleChatWindow() {
-        if (m_ChatPanel.activeSelf) {
+    void ToggleChatWindow()
+    {
+        if (m_ChatPanel.activeSelf)
+        {
             m_ChatPanel.SetActive(false);
-        } else {
-            m_ChatPanel.SetActive(true);   
+        }
+        else
+        {
+            m_ChatPanel.SetActive(true);
         }
     }
 
-    public void OnEndEdit(string text) {
-        m_Api.Chat(text, (err, resp) => {
-            if (err) {
+    public void OnEndEdit(string text)
+    {
+        m_Api.Chat(text, (err, resp) =>
+        {
+            if (err)
+            {
                 Debug.Log("Chat failed");
-            } else {
+            }
+            else
+            {
                 Debug.Log(resp.answer);
                 string qa = $"Q: {text}\nA: {resp.answer}";
                 m_Text.text = m_Text.text + "\n\n" + qa;
@@ -202,12 +238,6 @@ public class ChatbotController: MonoBehaviour
                 break;
             case '4':  // stopSpeaking
                 m_LadyBotAnimator.SetTrigger("stopSpeaking");
-                break;
-            case 'f':
-                ScreenForward();
-                break;
-            case 'b':
-                ScreenBack();
                 break;
         }
         */
