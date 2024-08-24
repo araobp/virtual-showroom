@@ -1,6 +1,6 @@
 # Models
 
-=> [Models](Blender)
+=> [Data](./Blender)
 
 ## Human model generated with Blender and MPFB2 (EEVEE NEXT with Ray Tracing enabled)
 
