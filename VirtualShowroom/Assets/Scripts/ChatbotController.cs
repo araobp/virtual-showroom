@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -23,11 +21,13 @@ public class ChatbotController: MonoBehaviour
 
     [SerializeField] Button m_ChatToggleButton;
 
-    [SerializeField] GameObject Panel;
+    [SerializeField] GameObject m_ChatPanel;
 
     [SerializeField] TMP_Text m_Text;
 
     [SerializeField] TMP_InputField m_InputField;
+
+    [SerializeField] string m_BaseUrl;
 
     List<Camera> m_Cameras;
 
@@ -52,12 +52,17 @@ public class ChatbotController: MonoBehaviour
         Texture2D tex = (Texture2D)m_Pictures[0];
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
 
+        // Chat Window initial state
+        m_ChatPanel.SetActive(false);
+
         // Operation buttons
         m_ArrowLeftButton.onClick.AddListener(() => OnButtonClick("left"));
         m_ArrowRightButton.onClick.AddListener(() => OnButtonClick("right"));
+        m_ChatToggleButton.onClick.AddListener(() => OnButtonClick("toggle"));
 
         // API
         api = GetComponent<ChatAPI>();
+        api.Init(m_BaseUrl);
         api.Hello((err, text) => {
             if (err) {
                 Debug.LogWarning("API server not running!");
@@ -83,15 +88,18 @@ public class ChatbotController: MonoBehaviour
         Keyboard.current.onTextInput -= GetKeyInput;
     }
 
-    void OnButtonClick(string direction)
+    void OnButtonClick(string operation)
     {
-        if (direction == "left")
-        {
-            CameraBack();
-        }
-        else if (direction == "right")
-        {
-            CameraForward();
+        switch(operation) {
+            case "left":
+                CameraBack();
+                break;
+            case "right":
+                CameraForward();
+                break;
+            case "toggle":
+                ToggleChatWindow();
+                break;
         }
     }
 
@@ -152,6 +160,14 @@ public class ChatbotController: MonoBehaviour
         }
         Texture2D tex = (Texture2D)m_Pictures[m_ScreenIdx];
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
+    }
+
+    void ToggleChatWindow() {
+        if (m_ChatPanel.activeSelf) {
+            m_ChatPanel.SetActive(false);
+        } else {
+            m_ChatPanel.SetActive(true);   
+        }
     }
 
     private void GetKeyInput(char obj)

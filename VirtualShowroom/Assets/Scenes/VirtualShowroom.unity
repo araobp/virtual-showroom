@@ -1083,7 +1083,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 24}
+  m_AnchoredPosition: {x: 0, y: 22}
   m_SizeDelta: {x: 1400, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &624230423
@@ -1893,10 +1893,11 @@ MonoBehaviour:
   m_Screen: {fileID: 1643591040}
   m_ArrowLeftButton: {fileID: 1532000302}
   m_ArrowRightButton: {fileID: 2001271666}
-  m_ChatToggleButton: {fileID: 0}
-  Panel: {fileID: 1943142787}
+  m_ChatToggleButton: {fileID: 1943142789}
+  m_ChatPanel: {fileID: 624230421}
   m_Text: {fileID: 1437991902}
   m_InputField: {fileID: 924838297}
+  m_BaseUrl: http://127.0.0.1:5000
 --- !u!4 &970498581
 Transform:
   m_ObjectHideFlags: 0
