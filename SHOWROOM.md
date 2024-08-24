@@ -4,7 +4,7 @@
 
 I have made my original shader for swapping images on the screen.
 
-<img src="doc/unity_settings1.jpg" width=600>
+<img src="doc/unity_settings1.jpg" width=700>
 
 ## Testing Chatbot animation on Unity 
 
@@ -22,4 +22,4 @@ The scrollbar in the Scrollview component should automatically scroll to the bot
 
 Setting the pivot Y value to zero solves it.
 
-<img src="doc/autoscroll_to_bottom.jpg" width=600>
+<img src="doc/autoscroll_to_bottom.jpg" width=700>
