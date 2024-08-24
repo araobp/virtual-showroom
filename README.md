@@ -2,7 +2,7 @@
 
 (Work in Progress)
 
-<img src="doc/sample_scene.jpg" width=600>
+https://github.com/user-attachments/assets/e8c19b4c-bd82-468a-ae8c-60390ab8e317
 
 ## Goal
 
