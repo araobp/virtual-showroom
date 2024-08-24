@@ -1,13 +1,12 @@
+using UnityEngine;
+
 public class ChatAPI : RestClient
 {
     EndPoint m_EndPoint;
 
-    // Flask API server base URL
-    string m_BaseUrl;
-
     // Callbacks
     public delegate void HelloCallback(bool err, string text);
-    public delegate void ChatCallback(bool err, string text);
+    public delegate void ChatCallback(bool err, ChatQuery resp);
 
     // Start is called before the first frame update
     public void Init(string baseUrl)
@@ -30,7 +29,8 @@ public class ChatAPI : RestClient
     {
         Get(m_EndPoint, $"/chat?query={query}", (err, text) =>
         {
-            callback(err, text);
+            ChatQuery resp = JsonUtility.FromJson<ChatQuery>(text);
+            callback(err, resp);
         });
     }
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-import chat
+from . import chat
 
 main = Blueprint("main", __name__)
 
@@ -8,7 +8,7 @@ def hello_world():
   return "Hello, Virtual Showroom!"
 
 @main.route("/chat")
-def chat():
+def chat_query():
   query = request.args.get("query", default=None, type=str)
   resp = chat.query(query)
   return jsonify(resp)

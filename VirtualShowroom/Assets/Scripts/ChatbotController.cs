@@ -36,7 +36,7 @@ public class ChatbotController: MonoBehaviour
 
     List<Object> m_Pictures;
 
-    ChatAPI api;
+    ChatAPI m_Api;
 
     // Start is called before the first frame update
     void Start()
@@ -61,9 +61,9 @@ public class ChatbotController: MonoBehaviour
         m_ChatToggleButton.onClick.AddListener(() => OnButtonClick("toggle"));
 
         // API
-        api = GetComponent<ChatAPI>();
-        api.Init(m_BaseUrl);
-        api.Hello((err, text) => {
+        m_Api = GetComponent<ChatAPI>();
+        m_Api.Init(m_BaseUrl);
+        m_Api.Hello((err, text) => {
             if (err) {
                 Debug.LogWarning("API server not running!");
             } else {
@@ -80,12 +80,12 @@ public class ChatbotController: MonoBehaviour
 
     void OnEnable()
     {
-        Keyboard.current.onTextInput += GetKeyInput;
+        //Keyboard.current.onTextInput += GetKeyInput;
     }
 
     void OnDisable()
     {
-        Keyboard.current.onTextInput -= GetKeyInput;
+        //Keyboard.current.onTextInput -= GetKeyInput;
     }
 
     void OnButtonClick(string operation)
@@ -170,9 +170,23 @@ public class ChatbotController: MonoBehaviour
         }
     }
 
+    public void OnEndEdit(string text) {
+        m_Api.Chat(text, (err, resp) => {
+            if (err) {
+                Debug.Log("Chat failed");
+            } else {
+                Debug.Log(resp.answer);
+                string qa = $"Q: {text}\nA: {resp.answer}";
+                m_Text.text = m_Text.text + "\n\n" + qa;
+                m_InputField.text = "";
+            }
+        });
+    }
+
     private void GetKeyInput(char obj)
     {
         Debug.Log(obj);
+        /*
         switch (obj)
         {
             case '1':  // sitDown
@@ -194,6 +208,7 @@ public class ChatbotController: MonoBehaviour
                 ScreenBack();
                 break;
         }
+        */
     }
 }
 

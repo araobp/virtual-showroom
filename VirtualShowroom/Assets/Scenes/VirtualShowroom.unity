@@ -955,7 +955,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5cbb141f9365147c6b1349e89bb5a880,
         type: 3}
       propertyPath: m_Name
-      value: Chair (1)
+      value: Chair2
       objectReference: {fileID: 0}
     - target: {fileID: 1129496810705857465, guid: 5cbb141f9365147c6b1349e89bb5a880,
         type: 3}
@@ -1624,7 +1624,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 970498580}
+        m_TargetAssemblyTypeName: ChatbotController, Assembly-CSharp
+        m_MethodName: OnEndEdit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -2492,7 +2504,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ...
+  m_text: Let's chat!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3013,7 +3025,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5cbb141f9365147c6b1349e89bb5a880,
         type: 3}
       propertyPath: m_Name
-      value: Chair
+      value: Chair1
       objectReference: {fileID: 0}
     - target: {fileID: 1129496810705857465, guid: 5cbb141f9365147c6b1349e89bb5a880,
         type: 3}
