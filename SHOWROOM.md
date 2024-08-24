@@ -13,3 +13,13 @@ I think 240-degree panorama screen is ideal for VR experiences with naked eyes a
 The background images are 240-degree panorama pictures taken with my iPhone SE.
 
 https://github.com/user-attachments/assets/60e179d1-8ad3-498e-95d9-061d237fca20
+
+## Tips
+
+### Autscroll to bottom
+
+The scrollbar in the Scrollview component should automatically scroll to the bottom.
+
+Setting the pivot Y value to zero solves it.
+
+<img src="doc/" width=600>
