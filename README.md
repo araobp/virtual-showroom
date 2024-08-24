@@ -20,7 +20,7 @@ My original design of such a virtual showroom.
 
 ## Reference Showroom
 
-I visited NISSAN GALLERY at Nissan global headquarters in Yokohama in May 2024. This was for a driving experience in harsh environments.
+I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl/Z5GTQqjRTFXAtd3D8) in Yokohama in May 2024. This was for a driving experience in harsh environments.
 
 <table>
   <tr>
