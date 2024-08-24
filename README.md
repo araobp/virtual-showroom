@@ -2,7 +2,7 @@
 
 (Work in Progress)
 
-<img src="doc/sample_scene.jpg" width=600>
+https://github.com/user-attachments/assets/e8c19b4c-bd82-468a-ae8c-60390ab8e317
 
 ## Goal
 
@@ -11,12 +11,6 @@ The goal is to realize a virtual showroom with Digital Human as promotional mode
 ## Virtual Showroom Concept
 
 Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday at work, but this project develops a **"virtual"** virtual showroom running on Unity in the form of an AR app or a console app, as my hobby project.
-
-## Schematic
-
-My original design of such a virtual showroom.
-
-<img src="doc/schematic.jpg" width=500>
 
 ## Reference Showroom
 
@@ -32,6 +26,12 @@ I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl
     </td>
   </tr>
 </table>
+
+## Schematic
+
+My original design of such a virtual showroom.
+
+<img src="doc/schematic.jpg" width=500>
 
 ## System Architecture
 
