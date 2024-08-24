@@ -57,15 +57,15 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
 ## Development
 
-### Designing Models (Blender)
+### 1. Designing Models (Blender)
 
 => [MODELS.md](./MODELS.md)
 
-### Creating Virtual Showroom (Unity)
+### 2. Creating Virtual Showroom (Unity)
 
 => [SHOWROOM.md](./SHOWROOM.md)
 
-### Developing API server (LangChain/Flask/Python)
+### 3. Developing API server (LangChain/Flask/Python)
 
 => [API_SERVER.md](./API_SERVER.md)
 
