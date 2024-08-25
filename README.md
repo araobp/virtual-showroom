@@ -1,6 +1,6 @@
 # Virtual Showroom
 
-https://github.com/user-attachments/assets/e8c19b4c-bd82-468a-ae8c-60390ab8e317
+https://github.com/user-attachments/assets/0c650b74-e89c-439b-b368-da2c1851759d
 
 ## Goal
 
