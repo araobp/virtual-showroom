@@ -1,7 +1,5 @@
 # Virtual Showroom
 
-(Work in Progress)
-
 https://github.com/user-attachments/assets/e8c19b4c-bd82-468a-ae8c-60390ab8e317
 
 ## Goal
@@ -59,17 +57,23 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
 ## Development
 
-### Designing Models (Blender)
+### 1. Designing Models (Blender)
 
 => [MODELS.md](./MODELS.md)
 
-### Creating Virtual Showroom (Unity)
+### 2. Creating Virtual Showroom (Unity)
 
 => [SHOWROOM.md](./SHOWROOM.md)
 
-### Developing API server (LangChain/Flask/Python)
+### 3. Developing API server (LangChain/Flask/Python)
 
 => [API_SERVER.md](./API_SERVER.md)
+
+## Backlog
+- Test if the API server can run on RaspberryPi
+- Develop AR-version of this app
+- Add other promotional models
+- Add other contents
 
 ## Relevant projects (my other projects on github.com)
 

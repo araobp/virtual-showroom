@@ -1,7 +1,5 @@
 # API Server
 
-(Work in Progress)
-
 Note: OpenAI API subscription is required for this API server to work as a chat server.
 
 => [Code](./Python)
