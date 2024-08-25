@@ -1,6 +1,8 @@
 # generic files to ignore
 .*
 
+*.blend1
+
 # python temp paths
 __pycache__/
 *.py[cod]
