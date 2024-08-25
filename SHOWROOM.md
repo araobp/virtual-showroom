@@ -25,3 +25,9 @@ The scrollbar in the Scrollview component should automatically scroll to the bot
 Setting the pivot Y value to zero solves it.
 
 <img src="doc/autoscroll_to_bottom.jpg" width=700>
+
+### Animation loop
+
+Check "Loop Time" for "Blink" and "Speak" animations to replay them in a loop.
+
+<img src="doc/unity_settings2.jpg" width=700>
