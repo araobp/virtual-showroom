@@ -12,6 +12,8 @@ public class ChatbotController : MonoBehaviour
 {
 
     [SerializeField] Animator m_LadyBotAnimator;
+    [SerializeField] Animator m_GentlemanBotAnimator;
+
     [SerializeField] Camera m_Camera1;
     [SerializeField] Camera m_Camera2;
     [SerializeField] Camera m_Camera3;
@@ -35,6 +37,7 @@ public class ChatbotController : MonoBehaviour
 
     [SerializeField] string m_BaseUrl;
 
+    List<Animator> m_Animators;
     List<Camera> m_Cameras;
 
     int m_ScreenIdx = 0;
@@ -61,6 +64,9 @@ public class ChatbotController : MonoBehaviour
     void Start()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
+
+        // Animator List
+        m_Animators = new List<Animator>() {m_LadyBotAnimator, m_GentlemanBotAnimator};
 
         // Camera list
         m_Cameras = new List<Camera>() { m_Camera1, m_Camera2, m_Camera3, m_Camera4, m_Camera5 };
@@ -208,14 +214,19 @@ public class ChatbotController : MonoBehaviour
     }
 
     IEnumerator Speak(int period) {
-        m_LadyBotAnimator.SetTrigger("speak");
+        m_Animators.ForEach(anim => anim.SetTrigger("speak"));
         yield return new WaitForSecondsRealtime(period);
-        m_LadyBotAnimator.SetTrigger("stopSpeaking");
+        m_Animators.ForEach(anim => anim.SetTrigger("stopSpeaking"));
     }
 
     IEnumerator SitDown(int period) {
         yield return new WaitForSecondsRealtime(period);
-        m_LadyBotAnimator.SetTrigger("sitDown");
+        m_Animators.ForEach(anim => anim.SetTrigger("sitDown"));
+    }
+
+    IEnumerator StandUp(int period) {
+        yield return new WaitForSecondsRealtime(period);
+        m_Animators.ForEach(anim => anim.SetTrigger("standUp"));
     }
 
     public void OnEndEdit(string text)
