@@ -1,6 +1,6 @@
 # Virtual Showroom
 
-Uploading Untitled.mp4…
+https://github.com/user-attachments/assets/dbe9315f-09a2-4e1f-b71a-ddeff8541395
 
 ## Goal
 
