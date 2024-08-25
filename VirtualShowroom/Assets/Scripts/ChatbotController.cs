@@ -27,6 +27,11 @@ public class ChatbotController : MonoBehaviour
     [SerializeField] Button m_ButtonContentLeft;
     [SerializeField] Button m_ButtonContentRight;
 
+    [SerializeField] Button m_ButtonModelLeft;
+    [SerializeField] Button m_ButtonModelRight;
+
+    [SerializeField] List<GameObject> m_Models;
+    
     [SerializeField] Button m_ButtonToggleChatWindow;
 
     [SerializeField] GameObject m_ChatPanel;
@@ -43,6 +48,8 @@ public class ChatbotController : MonoBehaviour
     int m_ScreenIdx = 0;
     int m_CameraIdx = 0;
 
+    int m_ModelIdx = 0;
+
     List<Object> m_Pictures;
 
     ChatAPI m_Api;
@@ -50,15 +57,6 @@ public class ChatbotController : MonoBehaviour
     const int TIME_TO_WORDS = 30;
 
     const int TIME_TO_SITDOWN = 3;
-
-    enum ButtonEvent
-    {
-        CAMERA_BACK,
-        CAMERA_FORWARD,
-        CONTENT_BACK,
-        CONTENT_FORWARD,
-        TOGGLE_CHAT_WINDOW
-    };
 
     // Start is called before the first frame update
     void Start()
@@ -81,17 +79,21 @@ public class ChatbotController : MonoBehaviour
         m_ChatPanel.SetActive(false);
 
         // Operation buttons
-        m_ButtonCameraLeft.onClick.AddListener(() => OnButtonClick(ButtonEvent.CAMERA_BACK));
-        m_ButtonCameraRight.onClick.AddListener(() => OnButtonClick(ButtonEvent.CAMERA_FORWARD));
+        m_ButtonCameraLeft.onClick.AddListener(() => CameraBack());
+        m_ButtonCameraRight.onClick.AddListener(() => CameraForward());
 
-        m_ButtonContentLeft.onClick.AddListener(() => OnButtonClick(ButtonEvent.CONTENT_BACK));
-        m_ButtonContentRight.onClick.AddListener(() => OnButtonClick(ButtonEvent.CONTENT_FORWARD));
+        m_ButtonContentLeft.onClick.AddListener(() => ContentBack());
+        m_ButtonContentRight.onClick.AddListener(() => ContentForward());
 
-        m_ButtonToggleChatWindow.onClick.AddListener(() => OnButtonClick(ButtonEvent.TOGGLE_CHAT_WINDOW));
+        m_ButtonModelLeft.onClick.AddListener(() => ModelBack());
+        m_ButtonModelRight.onClick.AddListener(() => ModelForward());
+
+        m_ButtonToggleChatWindow.onClick.AddListener(() => ToggleChatWindow());
 
         // Initializing virtual showroom set up
         SelectCamera(m_Cameras[0]);
         SelectContent(0);
+        SelectModel(0);
 
         // Initializing API
         m_Api = GetComponent<ChatAPI>();
@@ -115,28 +117,6 @@ public class ChatbotController : MonoBehaviour
     void Update()
     {
 
-    }
-
-    void OnButtonClick(ButtonEvent ev)
-    {
-        switch (ev)
-        {
-            case ButtonEvent.CAMERA_BACK:
-                CameraBack();
-                break;
-            case ButtonEvent.CAMERA_FORWARD:
-                CameraForward();
-                break;
-            case ButtonEvent.CONTENT_BACK:
-                ContentBack();
-                break;
-            case ButtonEvent.CONTENT_FORWARD:
-                ContentForward();
-                break;
-            case ButtonEvent.TOGGLE_CHAT_WINDOW:
-                ToggleChatWindow();
-                break;
-        }
     }
 
     void SelectCamera(Camera camera)
@@ -176,8 +156,8 @@ public class ChatbotController : MonoBehaviour
         SelectCamera(m_Cameras[m_CameraIdx]);
     }
 
-    void SelectContent(int m_ScreenIdx) {
-        Texture2D tex = (Texture2D)m_Pictures[m_ScreenIdx];
+    void SelectContent(int idx) {
+        Texture2D tex = (Texture2D)m_Pictures[idx];
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);        
     }
 
@@ -199,6 +179,30 @@ public class ChatbotController : MonoBehaviour
             m_ScreenIdx = 0;
         }
         SelectContent(m_ScreenIdx);
+    }
+
+    void SelectModel(int idx)
+    {
+        m_Models.ForEach(model => model.SetActive(false));
+        m_Models[idx].SetActive(true);
+    }
+
+    void ModelForward(){
+        m_ModelIdx += 1;
+        if (m_ModelIdx >= m_Models.Count - 1)
+        {
+            m_ModelIdx = m_Models.Count - 1;
+        }
+        SelectModel(m_ModelIdx);
+    }
+
+    void ModelBack(){
+        m_ModelIdx -= 1;
+        if (m_ModelIdx < 0)
+        {
+            m_ModelIdx = 0;
+        }
+        SelectModel(m_ModelIdx);
     }
 
     void ToggleChatWindow()
