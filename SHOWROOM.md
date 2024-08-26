@@ -8,6 +8,14 @@ I have made my original shader for swapping images on the screen.
 
 <img src="doc/unity_settings1.jpg" width=700>
 
+## Importing 240-degree photos into Unity as Texture 2D
+
+I use my iPhone SE to caputre 240-degree panorama photos, then save them in the folder below.
+
+Let's set them to 16k resolution for better photo quality.
+
+<img src="doc/unity_settings3.jpg" width=700>
+
 ## Testing Chatbot animation on Unity 
 
 I think 240-degree panorama screen is ideal for VR experiences with naked eyes at a showroom or an exhibition.
