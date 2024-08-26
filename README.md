@@ -71,6 +71,8 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 
 => [API_SERVER.md](./API_SERVER.md)
 
+Note: I may stop developing the Flask-based API server -- I am considering to use the OpenAI's APIs from Unity app.
+
 ## Backlog
 - Test if the API server can run on RaspberryPi
 - Develop AR-version of this app
