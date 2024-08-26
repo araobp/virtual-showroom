@@ -1,7 +1,5 @@
 # Virtual Showroom
 
-https://github.com/user-attachments/assets/0c650b74-e89c-439b-b368-da2c1851759d
-
 ## Goal
 
 The goal is to realize a virtual showroom with Digital Human as promotional models.
@@ -9,6 +7,10 @@ The goal is to realize a virtual showroom with Digital Human as promotional mode
 ## Virtual Showroom Concept
 
 Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday at work, but this project develops a **"virtual"** virtual showroom running on Unity in the form of an AR app or a console app, as my hobby project.
+
+https://github.com/user-attachments/assets/a0e8d2fd-37db-4ae1-b8d4-5c2a6fb2d8be
+
+https://github.com/user-attachments/assets/91b72fe4-4f80-4af2-9d1a-4db6ef495eec
 
 ## Reference Showroom
 
