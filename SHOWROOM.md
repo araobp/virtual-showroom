@@ -46,6 +46,6 @@ Check "Loop Time" for "Blink" and "Speak" animations to replay them in a loop.
 
 The plants in the scene were generated with Meshy.AI under the CC BY 4.0 license.
 
-https://docs.meshy.ai/
-https://docs.meshy.ai/faq
+- https://docs.meshy.ai/
+- https://docs.meshy.ai/faq
 
