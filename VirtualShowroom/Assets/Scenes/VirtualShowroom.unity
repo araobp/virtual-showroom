@@ -542,7 +542,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1221353525}
   m_LocalEulerAnglesHint: {x: 4, y: 61.275, z: 0}
 --- !u!1 &211694383
 GameObject:
@@ -768,7 +768,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1221353525}
   m_LocalEulerAnglesHint: {x: 0, y: 163.986, z: 0}
 --- !u!1 &330585543
 GameObject:
@@ -861,7 +861,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1221353525}
   m_LocalEulerAnglesHint: {x: 0.812, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -1742,7 +1742,7 @@ GameObject:
   - component: {fileID: 624230424}
   - component: {fileID: 624230423}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ChatPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3318,24 +3318,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023af6dd4a0514a019cccbdc238b6e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LadyBotAnimator: {fileID: 1696883935}
-  m_GentlemanBotAnimator: {fileID: 125530439}
-  m_Camera1: {fileID: 330585545}
-  m_Camera2: {fileID: 187224928}
-  m_Camera3: {fileID: 1593376175}
-  m_Camera4: {fileID: 287780727}
-  m_Camera5: {fileID: 1698720549}
+  m_Cameras: {fileID: 1221353524}
   m_Screen: {fileID: 1643591040}
+  m_Models:
+  - {fileID: 1696883932}
+  - {fileID: 125530437}
+  - {fileID: 1034348830}
   m_ButtonCameraLeft: {fileID: 1532000302}
   m_ButtonCameraRight: {fileID: 2001271666}
   m_ButtonContentLeft: {fileID: 740868719}
   m_ButtonContentRight: {fileID: 1180420032}
   m_ButtonModelLeft: {fileID: 383936843}
   m_ButtonModelRight: {fileID: 1224295194}
-  m_Models:
-  - {fileID: 1696883932}
-  - {fileID: 125530437}
-  - {fileID: 1034348830}
   m_ButtonToggleChatWindow: {fileID: 1943142789}
   m_ChatPanel: {fileID: 624230421}
   m_Text: {fileID: 2069777233}
@@ -4068,6 +4062,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180420030}
   m_CullTransparentMesh: 1
+--- !u!1 &1221353524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1221353525}
+  m_Layer: 0
+  m_Name: Cameras
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1221353525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221353524}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 330585546}
+  - {fileID: 187224929}
+  - {fileID: 1593376178}
+  - {fileID: 287780730}
+  - {fileID: 1698720552}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1224295192
 GameObject:
   m_ObjectHideFlags: 0
@@ -5396,7 +5426,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1221353525}
   m_LocalEulerAnglesHint: {x: 6.687, y: -71.322, z: 0}
 --- !u!1 &1601078781
 GameObject:
@@ -5969,7 +5999,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1221353525}
   m_LocalEulerAnglesHint: {x: 0, y: 30.457, z: 0}
 --- !u!1 &1786534841
 GameObject:
@@ -6545,11 +6575,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 330585546}
-  - {fileID: 187224929}
-  - {fileID: 1593376178}
-  - {fileID: 287780730}
-  - {fileID: 1698720552}
+  - {fileID: 1221353525}
   - {fileID: 832575519}
   - {fileID: 1642408839}
   - {fileID: 540946619}

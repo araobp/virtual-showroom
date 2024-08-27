@@ -10,16 +10,11 @@ using Button = UnityEngine.UI.Button;
 
 public class ChatbotController : MonoBehaviour
 {
+    [SerializeField] GameObject m_Cameras;
 
-    [SerializeField] Animator m_LadyBotAnimator;
-    [SerializeField] Animator m_GentlemanBotAnimator;
-
-    [SerializeField] Camera m_Camera1;
-    [SerializeField] Camera m_Camera2;
-    [SerializeField] Camera m_Camera3;
-    [SerializeField] Camera m_Camera4;
-    [SerializeField] Camera m_Camera5;
     [SerializeField] GameObject m_Screen;
+
+    [SerializeField] List<GameObject> m_Models;
 
     [SerializeField] Button m_ButtonCameraLeft;
     [SerializeField] Button m_ButtonCameraRight;
@@ -30,8 +25,6 @@ public class ChatbotController : MonoBehaviour
     [SerializeField] Button m_ButtonModelLeft;
     [SerializeField] Button m_ButtonModelRight;
 
-    [SerializeField] List<GameObject> m_Models;
-    
     [SerializeField] Button m_ButtonToggleChatWindow;
 
     [SerializeField] GameObject m_ChatPanel;
@@ -42,20 +35,18 @@ public class ChatbotController : MonoBehaviour
 
     [SerializeField] string m_BaseUrl;
 
-    List<Camera> m_Cameras;
 
-    int m_ScreenIdx = 0;
+    List<Camera> m_CameraList;
+    List<Object> m_ContentList;
+
     int m_CameraIdx = 0;
-
+    int m_ContentIdx = 0;
     int m_ModelIdx = 0;
 
-    List<Object> m_Pictures;
+    const int TIME_TO_WORDS = 30;
+    const int TIME_TO_SITDOWN = 1;
 
     ChatAPI m_Api;
-
-    const int TIME_TO_WORDS = 30;
-
-    const int TIME_TO_SITDOWN = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -63,12 +54,12 @@ public class ChatbotController : MonoBehaviour
         Screen.orientation = ScreenOrientation.LandscapeLeft;
 
         // Camera list
-        m_Cameras = new List<Camera>() { m_Camera1, m_Camera2, m_Camera3, m_Camera4, m_Camera5 };
+        m_CameraList = m_Cameras.GetComponentsInChildren<Camera>().ToList();
 
         // 240-degree screen panorama pictures
         var pictures = Resources.LoadAll("Panorama", typeof(Texture2D)).ToList();
-        m_Pictures = pictures.OrderBy(x => x.name).ToList();
-        Texture2D tex = (Texture2D)m_Pictures[0];
+        m_ContentList = pictures.OrderBy(x => x.name).ToList();
+        Texture2D tex = (Texture2D)m_ContentList[0];
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
 
         // Chat Window initial state
@@ -87,7 +78,7 @@ public class ChatbotController : MonoBehaviour
         m_ButtonToggleChatWindow.onClick.AddListener(() => ToggleChatWindow());
 
         // Initializing virtual showroom set up
-        SelectCamera(m_Cameras[0]);
+        SelectCamera(m_CameraList[0]);
         SelectContent();
         SelectModel();
 
@@ -113,9 +104,10 @@ public class ChatbotController : MonoBehaviour
 
     }
 
+    //*** Camera selection ***
     void SelectCamera(Camera camera)
     {
-        m_Cameras.ForEach(c =>
+        m_CameraList.ForEach(c =>
         {
             if (c == camera)
             {
@@ -131,12 +123,12 @@ public class ChatbotController : MonoBehaviour
     void CameraForward()
     {
         m_CameraIdx += 1;
-        if (m_CameraIdx >= m_Cameras.Count - 1)
+        if (m_CameraIdx >= m_CameraList.Count - 1)
         {
-            m_CameraIdx = m_Cameras.Count - 1;
+            m_CameraIdx = m_CameraList.Count - 1;
         }
 
-        SelectCamera(m_Cameras[m_CameraIdx]);
+        SelectCamera(m_CameraList[m_CameraIdx]);
     }
 
     void CameraBack()
@@ -147,45 +139,50 @@ public class ChatbotController : MonoBehaviour
             m_CameraIdx = 0;
         }
 
-        SelectCamera(m_Cameras[m_CameraIdx]);
+        SelectCamera(m_CameraList[m_CameraIdx]);
     }
 
-    void SelectContent() {
-        Texture2D tex = (Texture2D)m_Pictures[m_ScreenIdx];
-        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);        
+    //*** Content selection ***
+    void SelectContent()
+    {
+        Texture2D tex = (Texture2D)m_ContentList[m_ContentIdx];
+        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
     }
 
     void ContentForward()
     {
-        m_ScreenIdx += 1;
-        if (m_ScreenIdx >= m_Pictures.Count - 1)
+        m_ContentIdx += 1;
+        if (m_ContentIdx >= m_ContentList.Count - 1)
         {
-            m_ScreenIdx = m_Pictures.Count - 1;
+            m_ContentIdx = m_ContentList.Count - 1;
         }
         SelectContent();
     }
 
     void ContentBack()
     {
-        m_ScreenIdx -= 1;
-        if (m_ScreenIdx < 0)
+        m_ContentIdx -= 1;
+        if (m_ContentIdx < 0)
         {
-            m_ScreenIdx = 0;
+            m_ContentIdx = 0;
         }
         SelectContent();
     }
 
+    //*** Promotional model selection ***
     void SelectModel()
     {
         m_Models.ForEach(model => model.SetActive(false));
         m_Models[m_ModelIdx].SetActive(true);
         int layerIdx = Animator().GetLayerIndex("SitDownAndStandUp");
-        if (Animator().GetCurrentAnimatorStateInfo(layerIdx).IsName("Idle")) {
+        if (Animator().GetCurrentAnimatorStateInfo(layerIdx).IsName("Idle"))
+        {
             StartCoroutine(SitDown(TIME_TO_SITDOWN));
         }
     }
 
-    void ModelForward(){
+    void ModelForward()
+    {
         Animator().Rebind();
         m_ModelIdx += 1;
         if (m_ModelIdx >= m_Models.Count - 1)
@@ -195,7 +192,8 @@ public class ChatbotController : MonoBehaviour
         SelectModel();
     }
 
-    void ModelBack(){
+    void ModelBack()
+    {
         Animator().Rebind();
         m_ModelIdx -= 1;
         if (m_ModelIdx < 0)
@@ -205,6 +203,7 @@ public class ChatbotController : MonoBehaviour
         SelectModel();
     }
 
+    //*** Chat operations ***
     void ToggleChatWindow()
     {
         if (m_ChatPanel.activeSelf)
@@ -215,26 +214,6 @@ public class ChatbotController : MonoBehaviour
         {
             m_ChatPanel.SetActive(true);
         }
-    }
-
-    Animator Animator() {
-        return m_Models[m_ModelIdx].GetComponent<Animator>();
-    }
-
-    IEnumerator Speak(int period) {
-        Animator().SetTrigger("speak");
-        yield return new WaitForSecondsRealtime(period);
-        Animator().SetTrigger("stopSpeaking");
-    }
-
-    IEnumerator SitDown(int period) {
-        yield return new WaitForSecondsRealtime(period);
-        Animator().SetTrigger("sitDown");
-    }
-
-    IEnumerator StandUp(int period) {
-        yield return new WaitForSecondsRealtime(period);
-        Animator().SetTrigger("standUp");
     }
 
     public void OnEndEdit(string text)
@@ -255,6 +234,31 @@ public class ChatbotController : MonoBehaviour
                 m_InputField.text = "";
             }
         });
+    }
+
+    //*** Animations ***
+    Animator Animator()
+    {
+        return m_Models[m_ModelIdx].GetComponent<Animator>();
+    }
+
+    IEnumerator Speak(int period)
+    {
+        Animator().SetTrigger("speak");
+        yield return new WaitForSecondsRealtime(period);
+        Animator().SetTrigger("stopSpeaking");
+    }
+
+    IEnumerator SitDown(int period)
+    {
+        yield return new WaitForSecondsRealtime(period);
+        Animator().SetTrigger("sitDown");
+    }
+
+    IEnumerator StandUp(int period)
+    {
+        yield return new WaitForSecondsRealtime(period);
+        Animator().SetTrigger("standUp");
     }
 }
 
