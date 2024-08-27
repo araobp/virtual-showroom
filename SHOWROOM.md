@@ -41,3 +41,12 @@ Setting the pivot Y value to zero solves it.
 Check "Loop Time" for "Blink" and "Speak" animations to replay them in a loop.
 
 <img src="doc/unity_settings2.jpg" width=700>
+
+## Credits
+
+The plants in the scene were generated with Meshy under the CC BY 4.0 license.
+
+- https://www.meshy.ai/
+- https://docs.meshy.ai/
+- https://docs.meshy.ai/faq
+
