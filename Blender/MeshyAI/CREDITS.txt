@@ -1,0 +1,4 @@
+The 3D models in this foloder were generated with Meshy.AI under the CC BY 4.0 license.
+
+https://docs.meshy.ai/
+https://docs.meshy.ai/faq
