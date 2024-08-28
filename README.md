@@ -1,5 +1,7 @@
 # Virtual Showroom
 
+<img src="doc/sample_scene2.jpg" width=600>
+
 ## Goal
 
 The goal is to realize a virtual showroom with Digital Human as promotional models.
