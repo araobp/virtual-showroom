@@ -1,21 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.XR.ARFoundation;
 using Button = UnityEngine.UI.Button;
 
 public class ChatbotController : MonoBehaviour
 {
+    [SerializeField] Boolean m_AR_Mode = false;
     [SerializeField] GameObject m_Cameras;
 
     [SerializeField] GameObject m_Screen;
 
     [SerializeField] List<GameObject> m_Models;
 
+    [SerializeField] TMP_Text m_TextCamera;
     [SerializeField] Button m_ButtonCameraLeft;
     [SerializeField] Button m_ButtonCameraRight;
 
@@ -37,7 +42,7 @@ public class ChatbotController : MonoBehaviour
 
 
     List<Camera> m_CameraList;
-    List<Object> m_ContentList;
+    List<UnityEngine.Object> m_ContentList;
 
     int m_CameraIdx = 0;
     int m_ContentIdx = 0;
@@ -51,10 +56,24 @@ public class ChatbotController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Select either AR app mode or console app mode
+        GameObject.FindAnyObjectByType<ARSession>().gameObject.SetActive(m_AR_Mode);
+        GameObject.FindAnyObjectByType<XROrigin>().gameObject.SetActive(m_AR_Mode);
+
+        // Set screen orientation to landscape
         Screen.orientation = ScreenOrientation.LandscapeLeft;
 
         // Camera list
         m_CameraList = m_Cameras.GetComponentsInChildren<Camera>().ToList();
+
+        // Disable all the cameras and the camera selection buttons in case of AR mode is true
+        if (m_AR_Mode) {
+            m_CameraList.ForEach(c => c.gameObject.SetActive(false));
+            
+            m_TextCamera.gameObject.SetActive(false);
+            m_ButtonCameraLeft.gameObject.SetActive(false);
+            m_ButtonCameraRight.gameObject.SetActive(false);
+        }
 
         // 240-degree screen panorama pictures
         var pictures = Resources.LoadAll("Panorama", typeof(Texture2D)).ToList();
