@@ -72,7 +72,3 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 ### 3. Developing API server (LangChain/Flask/Python)
 
 => [API_SERVER.md](./API_SERVER.md)
-
-## Backlog
-- Develop AR-version of this app
-- Add other contents
