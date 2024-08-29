@@ -26,6 +26,18 @@ The background images are 240-degree panorama pictures taken with my iPhone SE.
 
 https://github.com/user-attachments/assets/60e179d1-8ad3-498e-95d9-061d237fca20
 
+## Running the app in AR mode
+
+I run the app on my iOS devices such as iPad mini or iPhone SE.
+
+Check "AR Mode" in the inspector window of "Chatbot" game object to run the app as a mobile AR app.
+
+<img src="doc/unity_settings4.jpg" width=700>
+
+Uncheck "Auto Focus" in the inspector window below to stabilize the AR camera in a dark environment.
+
+<img src="doc/unity_settings5.jpg" width=700>
+
 ## Tips
 
 ### Autscroll to bottom
