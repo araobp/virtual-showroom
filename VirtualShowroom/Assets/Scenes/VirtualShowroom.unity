@@ -858,7 +858,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -3579,7 +3579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023af6dd4a0514a019cccbdc238b6e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AR_Mode: 0
+  m_AR_Mode: 1
   m_Cameras: {fileID: 1221353524}
   m_Screen: {fileID: 1643591040}
   m_Models:
@@ -5896,7 +5896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FocusMode: -1
   m_LightEstimationMode: -1
-  m_AutoFocus: 1
+  m_AutoFocus: 0
   m_LightEstimation: 0
   m_FacingDirection: 1
   m_RenderMode: 0
