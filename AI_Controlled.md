@@ -1,6 +1,6 @@
 # AI-Controlled Virtual Showroom
 
-## Experiment: ChatGPT can be a tour guide on its own without RAG
+## Experiment: ChatGPT can be a tour guide on its own without text-only RAG
 
 <table>
   <tr>
