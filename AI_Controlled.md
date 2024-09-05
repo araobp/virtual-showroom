@@ -17,7 +17,7 @@
 
 ```
 [Unity app] --- PUT request with query and base64-encoded image ---> [API Server] <--> [OpenAI API Service]
-                 (Resized Texture2D data encoded into Base64)
+                 (Resized Texture2D data encoded into Base64)                           gpt-4o-mini model
 ```
 
 <img src="doc/image_to_text_test.png" width=700>
