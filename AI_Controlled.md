@@ -15,4 +15,9 @@
 
 ## Image-to-Text implementation
 
+```
+[Unity app] --- PUT request with query and base64-encoded image ---> [API Server] <--> [OpenAI API Service]
+                 (Resized Texture2D data encoded into Base64)
+```
+
 <img src="doc/image_to_text_test.png" width=700>
