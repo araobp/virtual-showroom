@@ -72,3 +72,7 @@ This project uses "gpt-3.5-turbo" from OpenAI with RAG.
 ### 3. Developing API server (LangChain/Flask/Python)
 
 => [API_SERVER.md](./API_SERVER.md)
+
+### 4. AI-Controlled Virtual Showroom
+
+=> [AI_Controlled.md](./AI_Controlled.md)
