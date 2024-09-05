@@ -1,4 +1,4 @@
-# AI-Controlled Virtual Showroom
+# AI-Controlled Virtual Showroom (Multimodal LLM use case)
 
 ## Experiment: ChatGPT can be a tour guide on its own without text-only RAG
 
