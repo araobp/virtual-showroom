@@ -57,7 +57,7 @@ The Flask-based API server will run on PC or Mac. I will also test if it can als
 
 ### LLM
 
-This project uses "gpt-3.5-turbo" from OpenAI with RAG.
+This project uses "gpt-4o-mini" from OpenAI with RAG.
 
 ## Development
 
