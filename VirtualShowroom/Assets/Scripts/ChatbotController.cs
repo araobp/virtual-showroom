@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,8 @@ using Button = UnityEngine.UI.Button;
 
 public class ChatbotController : MonoBehaviour
 {
+    enum ChatMode { RAG, IMAGE };
+    [SerializeField] ChatMode m_ChatMode;
     [SerializeField] Boolean m_AR_Mode = false;
     [SerializeField] GameObject m_Cameras;
 
@@ -42,7 +45,7 @@ public class ChatbotController : MonoBehaviour
 
 
     List<Camera> m_CameraList;
-    List<UnityEngine.Object> m_ContentList;
+    List<Texture2D> m_ContentList;
 
     int m_CameraIdx = 0;
     int m_ContentIdx = 0;
@@ -52,6 +55,9 @@ public class ChatbotController : MonoBehaviour
     const int TIME_TO_SITDOWN = 1;
 
     ChatAPI m_Api;
+    
+    Resizer m_Resizer;
+    const int NEW_HIGHT = 400;  // 400px
 
     // Start is called before the first frame update
     void Start()
@@ -67,19 +73,19 @@ public class ChatbotController : MonoBehaviour
         m_CameraList = m_Cameras.GetComponentsInChildren<Camera>().ToList();
 
         // Disable all the cameras and the camera selection buttons in case of AR mode is true
-        if (m_AR_Mode) {
+        if (m_AR_Mode)
+        {
             m_CameraList.ForEach(c => c.gameObject.SetActive(false));
-            
+
             m_TextCamera.gameObject.SetActive(false);
             m_ButtonCameraLeft.gameObject.SetActive(false);
             m_ButtonCameraRight.gameObject.SetActive(false);
         }
 
         // 240-degree screen panorama pictures
-        var pictures = Resources.LoadAll("Panorama", typeof(Texture2D)).ToList();
-        m_ContentList = pictures.OrderBy(x => x.name).ToList();
-        Texture2D tex = (Texture2D)m_ContentList[0];
-        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
+        List<UnityEngine.Object> pictures = Resources.LoadAll("Panorama", typeof(Texture2D)).ToList();
+        m_ContentList = pictures.OrderBy(x => x.name).ToList().ConvertAll(x => (Texture2D)x);
+        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", m_ContentList[0]);
 
         // Chat Window initial state
         m_ChatPanel.SetActive(false);
@@ -115,6 +121,8 @@ public class ChatbotController : MonoBehaviour
                 Debug.Log(text);
             }
         });
+
+        m_Resizer = GetComponent<Resizer>();
     }
 
     // Update is called once per frame
@@ -164,8 +172,7 @@ public class ChatbotController : MonoBehaviour
     //*** Content selection ***
     void SelectContent()
     {
-        Texture2D tex = (Texture2D)m_ContentList[m_ContentIdx];
-        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", tex);
+        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", m_ContentList[m_ContentIdx]);
     }
 
     void ContentForward()
@@ -237,22 +244,55 @@ public class ChatbotController : MonoBehaviour
 
     public void OnEndEdit(string text)
     {
-        m_Api.Chat(text, (err, resp) =>
+        void processResponse(ChatResponse resp)
         {
-            if (err)
+            Debug.Log(resp.answer);
+            int period = resp.answer.Length / TIME_TO_WORDS;
+            StartCoroutine(Speak(period));
+            string qa = $"Q: {text}\nA: {resp.answer}";
+            m_Text.text = m_Text.text + "\n\n" + qa;
+            m_InputField.text = "";
+        }
+
+        if (m_ChatMode == ChatMode.RAG)
+        {
+            m_Api.ChatWithRag(text, (err, resp) =>
             {
-                Debug.Log("Chat failed");
-            }
-            else
+                if (err)
+                {
+                    Debug.Log("Chat failed");
+                }
+                else
+                {
+                    processResponse(resp);
+                }
+            });
+        }
+        else if (m_ChatMode == ChatMode.IMAGE) {
+            // Resize the current texture
+            Texture2D texture2d = m_ContentList[m_ContentIdx];
+            int newHeight = NEW_HIGHT;
+            int newWidth = texture2d.width * newHeight / texture2d.height;
+            Texture2D resizedTexture = m_Resizer.Resize(texture2d, newWidth, newHeight);
+
+            // Convert it into JPEG, then into base64 string
+            byte[] bytes = ImageConversion.EncodeToJPG(resizedTexture);
+            string b64image = Convert.ToBase64String(bytes);
+
+            Debug.Log(b64image);
+
+            m_Api.ChatWithImage(text, b64image, (err, resp) =>
             {
-                Debug.Log(resp.answer);
-                int period = resp.answer.Length / TIME_TO_WORDS;
-                StartCoroutine(Speak(period));
-                string qa = $"Q: {text}\nA: {resp.answer}";
-                m_Text.text = m_Text.text + "\n\n" + qa;
-                m_InputField.text = "";
-            }
-        });
+                if (err)
+                {
+                    Debug.Log("Chat failed");
+                }
+                else
+                {
+                    processResponse(resp);
+                }
+            });
+        }
     }
 
     //*** Animations ***

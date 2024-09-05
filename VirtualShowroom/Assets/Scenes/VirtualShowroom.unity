@@ -3579,7 +3579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023af6dd4a0514a019cccbdc238b6e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AR_Mode: 0
+  m_ChatMode: 0
+  m_AR_Mode: 1
   m_Cameras: {fileID: 1221353524}
   m_Screen: {fileID: 1643591040}
   m_Models:
@@ -3844,7 +3845,7 @@ PrefabInstance:
     - target: {fileID: -2905132758753506646, guid: 45290c330424b4b66900881c2a1c7861,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -678217682645198054, guid: 45290c330424b4b66900881c2a1c7861,
         type: 3}

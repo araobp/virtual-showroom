@@ -6,7 +6,7 @@ public class ChatAPI : RestClient
 
     // Callbacks
     public delegate void HelloCallback(bool err, string text);
-    public delegate void ChatCallback(bool err, ChatQuery resp);
+    public delegate void ChatCallback(bool err, ChatResponse resp);
 
     // Start is called before the first frame update
     public void Init(string baseUrl)
@@ -25,11 +25,23 @@ public class ChatAPI : RestClient
         });
     }
 
-    public void Chat(string query, ChatCallback callback)
+    public void ChatWithRag(string query, ChatCallback callback)
     {
-        Get(m_EndPoint, $"/chat?query={query}", (err, text) =>
+        Get(m_EndPoint, $"/chat_with_rag?query={query}", (err, text) =>
         {
-            ChatQuery resp = JsonUtility.FromJson<ChatQuery>(text);
+            ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
+            callback(err, resp);
+        });
+    }
+
+    public void ChatWithImage(string query, string b64image, ChatCallback callback)
+    {
+        ChatImage chatImage = new ChatImage();
+        chatImage.b64image = b64image;
+        string jsonBody = JsonUtility.ToJson(chatImage);
+        Put(m_EndPoint, $"/chat_with_image?query={query}", jsonBody, (err, text) =>
+        {
+            ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
             callback(err, resp);
         });
     }
