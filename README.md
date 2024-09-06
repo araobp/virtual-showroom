@@ -61,6 +61,8 @@ This project uses "gpt-4o-mini" from OpenAI with RAG.
 
 ## Development
 
+(Work in progress)
+
 ***Note on Sep 7th, 2024: I have found out that I needed to improve the construction of RAG.***
 
 ### 1. Designing Models (Blender)
