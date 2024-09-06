@@ -39,7 +39,7 @@ My original design of such a virtual showroom.
 
 <img src="doc/architecture.jpg" width=600>
 
-The Flask-based API server will run on PC or Mac. I will also test if it can also run on Raspberry Pi.
+The Flask-based API server will run on PC or Mac. It can run on a virtual machine in the cloud as well.
 
 ## Development Environment
 
@@ -60,6 +60,10 @@ The Flask-based API server will run on PC or Mac. I will also test if it can als
 This project uses "gpt-4o-mini" from OpenAI with RAG.
 
 ## Development
+
+(Work in progress)
+
+***Note on Sep 7th, 2024: I have found out that I needed to improve the construction of RAG.***
 
 ### 1. Designing Models (Blender)
 
