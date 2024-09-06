@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from . import chat
+from typing_extensions import deprecated
 
 main = Blueprint("main", __name__)
 
@@ -13,6 +14,7 @@ def chat_query_with_rag():
   resp = chat.query_with_rag(query)
   return jsonify(resp)
 
+@deprecated('To be removed')
 @main.route("/chat_with_image", methods=['PUT'])
 def chat_query_with_image():
   query = request.args.get("query", default=None, type=str)
@@ -22,4 +24,15 @@ def chat_query_with_image():
     f.write(b64image)
   
   resp = chat.query_with_image(query, b64image)
+  return jsonify(resp)
+
+@main.route("/chat_with_image2", methods=['PUT'])
+def chat_query_with_image2():
+  query = request.args.get("query", default=None, type=str)
+  data = request.json
+  b64image = data["b64image"]
+  with open('./tmp/b64image.txt', 'w') as f:
+    f.write(b64image)
+  
+  resp = chat.query_with_image2(query, b64image)
   return jsonify(resp)
