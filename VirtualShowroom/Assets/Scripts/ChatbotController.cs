@@ -16,6 +16,8 @@ public class ChatbotController : MonoBehaviour
 {
     enum ChatMode { RAG, IMAGE };
     [SerializeField] ChatMode m_ChatMode;
+
+    [SerializeField] int m_ResizedImageHeight = 256;  // 256px is just for development
     [SerializeField] Boolean m_AR_Mode = false;
     [SerializeField] GameObject m_Cameras;
 
@@ -57,11 +59,18 @@ public class ChatbotController : MonoBehaviour
     ChatAPI m_Api;
     
     Resizer m_Resizer;
-    const int NEW_HIGHT = 400;  // 400px
+    
+    // In case of these panorama pictures,
+    // the max hight should be larger than 400px for ChatGPT to recognize objects in the pictures. 
+    const int MAX_RESIZED_IMAGE_HIGHT = 512;  // 512px
 
     // Start is called before the first frame update
     void Start()
     {
+        if (m_ResizedImageHeight > MAX_RESIZED_IMAGE_HIGHT) {
+            m_ResizedImageHeight = MAX_RESIZED_IMAGE_HIGHT;
+        }
+
         // Select either AR app mode or console app mode
         GameObject.FindAnyObjectByType<ARSession>().gameObject.SetActive(m_AR_Mode);
         GameObject.FindAnyObjectByType<XROrigin>().gameObject.SetActive(m_AR_Mode);
@@ -271,7 +280,7 @@ public class ChatbotController : MonoBehaviour
         else if (m_ChatMode == ChatMode.IMAGE) {
             // Resize the current texture
             Texture2D texture2d = m_ContentList[m_ContentIdx];
-            int newHeight = NEW_HIGHT;
+            int newHeight = m_ResizedImageHeight;
             int newWidth = texture2d.width * newHeight / texture2d.height;
             Texture2D resizedTexture = m_Resizer.Resize(texture2d, newWidth, newHeight);
 

@@ -3349,7 +3349,7 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: 67c47cdbf71ba49e9a01a709861450d0, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
@@ -3474,8 +3474,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Ask anything...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 67c47cdbf71ba49e9a01a709861450d0, type: 2}
+  m_sharedMaterial: {fileID: 2902257822673034103, guid: 67c47cdbf71ba49e9a01a709861450d0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3581,7 +3582,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ChatMode: 1
-  m_AR_Mode: 1
+  m_ResizedImageHeight: 300
+  m_AR_Mode: 0
   m_Cameras: {fileID: 1221353524}
   m_Screen: {fileID: 1643591040}
   m_Models:
@@ -4096,8 +4098,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 67c47cdbf71ba49e9a01a709861450d0, type: 2}
+  m_sharedMaterial: {fileID: 2902257822673034103, guid: 67c47cdbf71ba49e9a01a709861450d0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7615,8 +7618,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Let's Chat!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 67c47cdbf71ba49e9a01a709861450d0, type: 2}
+  m_sharedMaterial: {fileID: 2902257822673034103, guid: 67c47cdbf71ba49e9a01a709861450d0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
