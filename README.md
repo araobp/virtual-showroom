@@ -37,7 +37,7 @@ My original design of such a virtual showroom.
 
 ## System Architecture
 
-<img src="doc/architecture.jpg" width=700>
+<img src="doc/architecture.jpg" width=800>
 
 The Flask-based API server will run on PC or Mac. It can run on a virtual machine in the cloud as well.
 
