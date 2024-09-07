@@ -4,6 +4,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 import os
+import sqlite3
 from typing_extensions import deprecated
 
 EMBEDDINGS_MODEL = "text-embedding-ada-002"
@@ -11,8 +12,10 @@ LLM_MODEL = "gpt-4o-mini"
 
 # ChromaDB as vector store
 embeddings = OpenAIEmbeddings(model=EMBEDDINGS_MODEL)
-DB_PATH = os.path.join(os.path.dirname(__file__), "../embeddings/db")
-vector_store = Chroma(embedding_function=embeddings, persist_directory=DB_PATH)
+CHROMA_DB_PATH = os.path.join(os.path.dirname(__file__), "../embeddings/db")
+vector_store = Chroma(embedding_function=embeddings, persist_directory=CHROMA_DB_PATH)
+
+SQLITE_DB_PATH = os.path.join(os.path.dirname(__file__), "../scenarios/db/scenarios.db")
 
 # Chat model
 llm = ChatOpenAI(model=LLM_MODEL)
@@ -98,10 +101,18 @@ def query_with_image(query, b64image):
     return resp
 
 
-def query_with_image2(query, b64image):
+def query_with_image2(query, b64image, image_id = None):
+
+    if image_id is not None:
+        with sqlite3.connect(SQLITE_DB_PATH) as conn:
+            cur = conn.cursor()
+            scenario = cur.execute(f"SELECT scenario FROM scenarios WHERE image LIKE '{image_id}%'").fetchone()
+    else:
+        scenario = ''
 
     ai_message = "You are a bot that is good at anlyzing texts and images."
-    system_message = "You are a tour guide in Yokohama and Tokyo, Japan. Please respond to questions from the visitors."
+    # TODO: Protect from prompt injection attacks
+    system_message = f"You are a tour guide in Yokohama and Tokyo, Japan. Please respond to questions from the visitors. {scenario}"
 
     # Similarity search
     documents = vector_store.similarity_search(query)

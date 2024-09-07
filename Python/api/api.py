@@ -29,10 +29,11 @@ def chat_query_with_image():
 @main.route("/chat_with_image2", methods=['PUT'])
 def chat_query_with_image2():
   query = request.args.get("query", default=None, type=str)
+  image_id = request.args.get("image_id", default=None, type=str)
   data = request.json
   b64image = data["b64image"]
   with open('./tmp/b64image.txt', 'w') as f:
     f.write(b64image)
   
-  resp = chat.query_with_image2(query, b64image)
+  resp = chat.query_with_image2(query, b64image, image_id)
   return jsonify(resp)

@@ -279,9 +279,15 @@ public class ChatbotController : MonoBehaviour
             byte[] bytes = ImageConversion.EncodeToJPG(resizedTexture);
             string b64image = Convert.ToBase64String(bytes);
 
-            Debug.Log(b64image);
+            //Debug.Log(b64image);
 
-            m_Api.ChatWithImage(text, b64image, (err, resp) =>
+            string[] name_split = texture2d.name.Split('_');
+            ArraySegment<string> name_array = new ArraySegment<string>(name_split, 0, 2);
+            string imageId = String.Join('_', name_array);
+
+            Debug.Log(imageId);
+
+            m_Api.ChatWithImage(text, imageId, b64image, (err, resp) =>
             {
                 if (err)
                 {
