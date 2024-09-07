@@ -39,7 +39,7 @@ public class ChatAPI : RestClient
         ChatImage chatImage = new ChatImage();
         chatImage.b64image = b64image;
         string jsonBody = JsonUtility.ToJson(chatImage);
-        Put(m_EndPoint, $"/chat_with_image?query={query}", jsonBody, (err, text) =>
+        Put(m_EndPoint, $"/chat_with_image2?query={query}", jsonBody, (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
             callback(err, resp);
