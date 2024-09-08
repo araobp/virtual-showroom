@@ -53,5 +53,32 @@ If you are unsure, please respond with 'Unsure."
 Options: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibrant.
 ```
 
+Then I asked ChatGPT to express those words in the HTML color format.
+```
+Q: Please express "Serene" in HTML color format, such as #FFFFFF.
+A: "Serene" can be represented by the HTML color #87CEEB, which is a calm and peaceful sky blue shade.
+
+Q: Please express "Bustling" in HTML color format, such as #FFFFFF.
+A: "Bustling" can be represented by the HTML color #FFA500, which is a vibrant orange shade, symbolizing energy and activity.
+
+Q: Please express "Nostalgic" in HTML color format, such as #FFFFFF.
+A: "Nostalgic" can be represented by the HTML color #F4A460, which is a warm, earthy sandy brown, evoking a sense of sentimental reflection and memories of the past.
+
+Q: Please express "Lonely" in HTML color format, such as #FFFFFF.
+A: "Lonely" can be represented by the HTML color #708090, which is a muted slate gray, reflecting a feeling of solitude and isolation.
+
+Q: Please express "Picturesque" in HTML color format, such as #FFFFFF.
+A. "Picturesque" can be represented by the HTML color #ADD8E6, which is a light blue shade, often associated with scenic, serene landscapes.
+
+Q: Please express "Chaotic" in HTML color format, such as #FFFFFF.
+A: "Chaotic" can be represented by the HTML color #8B0000, which is a dark red, symbolizing disorder, intensity, and confusion.
+
+Q: Please express "Gloomy" in HTML color format, such as #FFFFFF.
+A: "Gloomy" can be represented by the HTML color #2F4F4F, a dark slate gray that conveys a somber, melancholic mood.
+
+Q: Please express "Vibrant" in HTML color format, such as #FFFFFF.
+A: "Vibrant" can be represented by the HTML color #FF4500, which is a bright, fiery orange-red that conveys energy and liveliness.
+```
+
 (Work in progress)
 
