@@ -80,7 +80,7 @@ Q: Please express "Vibrant" in HTML color format, such as #FFFFFF.
 A: "Vibrant" can be represented by the HTML color #FF4500, which is a bright, fiery orange-red that conveys energy and liveliness.
 ```
 
-- ![#87CEEB](https://placehold.co/15x15/87CEEB/87CEEB.png) `Vibrant`
+- ![#87CEEB](https://placehold.co/15x15/87CEEB/87CEEB.png) `Serene`
 - ![#FFA500](https://placehold.co/15x15/FFA500/FFA500.png) `Bustling`
 - ![#F4A460](https://placehold.co/15x15/F4A460/F4A460.png) `Nostalgic`
 - ![#708090](https://placehold.co/15x15/708090/708090.png) `Lonely`
