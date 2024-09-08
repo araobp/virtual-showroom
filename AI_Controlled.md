@@ -47,7 +47,8 @@ Vibrant (活気に満ちた)
 
 So the prompt will be like
 ```
-Please choose one word from the following options that best describes the mood of this photo. If you are unsure, please respond with 'Unknown."
+Please choose one word from the following options that best describes the mood of this photo.
+If you are unsure, please respond with 'Unsure."
 
 Options: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibrant.
 ```
