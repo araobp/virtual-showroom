@@ -83,7 +83,11 @@ A: "Vibrant" can be represented by the HTML color #FF4500, which is a bright, fi
 - ![#87CEEB](https://placehold.co/15x15/87CEEB/87CEEB.png) `Vibrant`
 - ![#FFA500](https://placehold.co/15x15/FFA500/FFA500.png) `Bustling`
 - ![#F4A460](https://placehold.co/15x15/F4A460/F4A460.png) `Nostalgic`
- 
+- ![#708090](https://placehold.co/15x15/708090/708090.png) `Lonely`
+- ![#ADD8E6](https://placehold.co/15x15/ADD8E6/ADD8E6.png) `Picturesque`
+- ![#8B0000](https://placehold.co/15x15/8B0000/8B0000.png) `Chaotic`
+- ![#2F4F4F](https://placehold.co/15x15/2F4F4F/2F4F4F.png) `Gloomy`
+- ![#F4500](https://placehold.co/15x15/F4500/F4500.png) `Vibrant`
 
 (Work in progress)
 
