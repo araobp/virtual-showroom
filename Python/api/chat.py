@@ -7,6 +7,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 import os
 import sqlite3
+import re
 
 EMBEDDINGS_MODEL = "text-embedding-ada-002"
 LLM_MODEL = "gpt-4o-mini"
@@ -39,8 +40,7 @@ Text:
 Query: {query}
 """
 
-
-def invoke(query, b64image=None, image_id=None):
+def invoke(query:str, b64image:str=None, image_id:str=None):
 
     if image_id is not None:
         with sqlite3.connect(SQLITE_DB_PATH) as conn:
@@ -111,6 +111,57 @@ def invoke(query, b64image=None, image_id=None):
 
     return resp
 
+PROMPT_MOOD_AI = "You are a bot that is good at anlyzing images."
+PROMPT_MOOD_SYSTEM = "You are a tour guide in Japan."
+PROMPT_MOOD_HUMAN = """Please choose one word from the following options that best describes the mood of this photo.
+If you are unsure, please respond with 'Unsure."
+
+Options: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibrant.
+"""
+
+def mood_judgement(b64image: str):
+    
+
+    user_message = [
+        {
+                "type": "text",
+                "text": PROMPT_MOOD_HUMAN,
+        },
+        {
+                "type": "image_url",
+                "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
+        },
+    ]
+
+    ai_message = PROMPT_MOOD_AI
+    system_message = PROMPT_MOOD_SYSTEM
+
+    print(">>>>>>>>>>>>>>>>>>>")
+    print(ai_message)
+    print(system_message)
+    print(user_message)
+
+    result = llm.invoke(
+        [
+            AIMessage(content=ai_message),
+            SystemMessage(content=system_message),
+            HumanMessage(content=user_message),
+        ]
+    )
+
+    print(result.content)
+
+    # Search a mood word in the result
+    match = re.search('(Serene|Bustling|Nostalgic|Lonely|Picturesque|Chaotic|Gloomy|Vibrant|Unsure)', result.content)
+    mood = match.group()
+    
+    return mood
+
+
 
 if __name__ == "__main__":
     print(invoke("What makes Yokohama attractive?"))
+    with open('../samples/b64image.txt') as f:
+        b64image = f.read()
+    print(mood_judgement(b64image))
+    
