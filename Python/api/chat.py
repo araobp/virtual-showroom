@@ -62,7 +62,6 @@ def invoke(query, b64image=None, image_id=None):
 
     ai_message = prompt_ai.format()
     system_message = prompt_system.format(scenario=scenario)
-    print(system_message)
 
     # Similarity search
     documents = vector_store.similarity_search(query)
@@ -74,7 +73,6 @@ def invoke(query, b64image=None, image_id=None):
         doc_string += f"\n---------------------\n{doc.page_content}"
 
     user_message_ = prompt_user.format(document=doc_string, query=query)
-    print(user_message_)
 
     if b64image is None:
         user_message = [
