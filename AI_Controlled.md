@@ -45,5 +45,12 @@ Gloomy (陰鬱な)
 Vibrant (活気に満ちた)
 ```
 
+So the prompt will be like
+```
+Please choose one word from the following options that best describes the mood of this photo. If you are unsure, please respond with 'Unknown."
+
+Options: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibrant.
+```
+
 (Work in progress)
 
