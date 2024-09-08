@@ -1,5 +1,7 @@
 # AI-Controlled Virtual Showroom (Multimodal LLM use case)
 
+Showrooms can be costly, but the cost-effectiveness is unclear. Therefore, companies generally aim to achieve semi-automation using AI.
+
 ## Experiment: ChatGPT can be a tour guide on its own without text-only RAG
 
 <table>
