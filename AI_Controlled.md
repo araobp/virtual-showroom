@@ -26,5 +26,32 @@ Chatting with images.
 
 ## Lighting in the showroom controlled by commands from the OpenAI's LLM (gpt-4o-mini)
 
+### Eight words describing mood
+
+I asked ChatGPT:
+
+```
+Q: "Please provide eight words in English that describe the mood of photos of the city, port, or station,
+including negative expressions."
+
+A:
+Serene (穏やか)
+Bustling (賑やか)
+Nostalgic (懐かしい)
+Lonely (寂しい)
+Picturesque (絵のように美しい)
+Chaotic (混沌とした)
+Gloomy (陰鬱な)
+Vibrant (活気に満ちた)
+```
+
+So the prompt will be like
+```
+Please choose one word from the following options that best describes the mood of this photo.
+If you are unsure, please respond with 'Unsure."
+
+Options: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibrant.
+```
+
 (Work in progress)
 
