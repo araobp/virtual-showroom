@@ -31,7 +31,8 @@ Chatting with images.
 I asked ChatGPT:
 
 ```
-Q: "Please provide eight words in English that describe the mood of photos of the city, port, or station, including negative expressions."
+Q: "Please provide eight words in English that describe the mood of photos of the city, port, or station,
+including negative expressions."
 
 A:
 Serene (穏やか)
