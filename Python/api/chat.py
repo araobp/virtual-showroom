@@ -1,27 +1,37 @@
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_core.prompts import PromptTemplate
+from langchain_core.messages.ai import AIMessage
+from langchain_core.messages.system import SystemMessage
+from langchain_core.messages.human import HumanMessage
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 import os
 import sqlite3
-from typing_extensions import deprecated
 
 EMBEDDINGS_MODEL = "text-embedding-ada-002"
 LLM_MODEL = "gpt-4o-mini"
+
+# Chat model
+llm = ChatOpenAI(model=LLM_MODEL)
 
 # ChromaDB as vector store
 embeddings = OpenAIEmbeddings(model=EMBEDDINGS_MODEL)
 CHROMA_DB_PATH = os.path.join(os.path.dirname(__file__), "../embeddings/db")
 vector_store = Chroma(embedding_function=embeddings, persist_directory=CHROMA_DB_PATH)
 
+# SQLite3 as scenario store
 SQLITE_DB_PATH = os.path.join(os.path.dirname(__file__), "../scenarios/db/scenarios.db")
 
-# Chat model
-llm = ChatOpenAI(model=LLM_MODEL)
+# Templates
+TEMPLATE_AI = "You are a bot that is good at anlyzing texts and images."
 
-# Query template for RAG
-TEMPLATE = """Please answer the questions based on the following text. If you don't know, please answer that you don't know.
+TEMPLATE_SYSTEM = """You are a tour guide in Japan.
+
+Now you are in the area as described below:
+{scenario}
+"""
+
+TEMPLATE_USER = """Please answer the questions based on the following texts and the following image if attached. If you don't know, please answer that you don't know.
 
 Text:
 {document}
@@ -29,90 +39,30 @@ Text:
 Query: {query}
 """
 
-TEMPLATE_FOR_IMAGE = """Please answer the questions based on the following texts and the image. If you don't know, please answer that you don't know.
 
-Text:
-{document}
-
-Query: {query}
-"""
-
-prompt = PromptTemplate(
-    template=TEMPLATE,
-    input_variables=["document", "query"],
-)
-
-prompt_for_image = PromptTemplate(
-    template=TEMPLATE_FOR_IMAGE,
-    input_variables=["document", "query"],
-)
-
-# Query with RAG
-def query_with_rag(query):
-
-    # Similarity search
-    documents = vector_store.similarity_search(query)
-
-    doc_string = ""
-
-    # Reference documents for RAG
-    for doc in documents:
-        doc_string += f"\n---------------------\n{doc.page_content}"
-
-    # Invoke query
-    content = prompt.format(document=doc_string, query=query)
-    # print(content)
-    result = llm.invoke(
-        [
-            SystemMessage(
-                content="You are a showroom guide. Please respond to questions from showroom visitors using honorific language."
-            ),
-            HumanMessage(content=content),
-        ]
-    )
-
-    resp = {"query": query, "answer": result.content}
-
-    return resp
-
-
-@deprecated('To be removed')
-def query_with_image(query, b64image):
-    result = llm.invoke(
-        [
-            AIMessage(content="You are a bot that is good at anlyzing images."),
-            SystemMessage(
-                content="You are a tourist guide in Yokohama, Japan. Please respond to questions from showroom visitors using honorific language in English, referring to the attached image."
-            ),
-            HumanMessage(
-                content=[
-                    {"type": "text", "text": query},
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
-                    },
-                ]
-            ),
-        ]
-    )
-
-    resp = {"query": query, "answer": result.content}
-
-    return resp
-
-
-def query_with_image2(query, b64image, image_id = None):
+def invoke(query, b64image=None, image_id=None):
 
     if image_id is not None:
         with sqlite3.connect(SQLITE_DB_PATH) as conn:
             cur = conn.cursor()
-            scenario = cur.execute(f"SELECT scenario FROM scenarios WHERE image LIKE '{image_id}%'").fetchone()
+            scenario = cur.execute(
+                f"SELECT scenario FROM scenarios WHERE image LIKE '{image_id}%'"
+            ).fetchone()
     else:
-        scenario = ''
+        scenario = ""
 
-    ai_message = "You are a bot that is good at anlyzing texts and images."
-    # TODO: Protect from prompt injection attacks
-    system_message = f"You are a tour guide in Yokohama and Tokyo, Japan. Please respond to questions from the visitors. {scenario}"
+    prompt_ai = PromptTemplate(template=TEMPLATE_AI, input_variables=[])
+    prompt_system = PromptTemplate(
+        template=TEMPLATE_SYSTEM, input_variables=["scenario"]
+    )
+    prompt_user = PromptTemplate(
+        template=TEMPLATE_USER,
+        input_variables=["document", "query"],
+    )
+
+    ai_message = prompt_ai.format()
+    system_message = prompt_system.format(scenario=scenario)
+    print(system_message)
 
     # Similarity search
     documents = vector_store.similarity_search(query)
@@ -123,28 +73,46 @@ def query_with_image2(query, b64image, image_id = None):
     for doc in documents:
         doc_string += f"\n---------------------\n{doc.page_content}"
 
-    print(prompt_for_image.format(document=doc_string, query=query))
+    user_message_ = prompt_user.format(document=doc_string, query=query)
+    print(user_message_)
+
+    if b64image is None:
+        user_message = [
+            {
+                "type": "text",
+                "text": user_message_,
+            },
+        ]
+    else:
+        user_message = [
+            {
+                "type": "text",
+                "text": user_message_,
+            },
+            {
+                "type": "image_url",
+                "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
+            },
+        ]
+
+    print(">>>>>>>>>>>>>>>>>>>")
+    print(ai_message)
+    print(system_message)
+    print(user_message)
 
     result = llm.invoke(
         [
             AIMessage(content=ai_message),
             SystemMessage(content=system_message),
-            HumanMessage(
-                content=[
-                    {"type": "text", "text": prompt_for_image.format(document=doc_string, query=query)},
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
-                    },
-                ]
-            ),
+            HumanMessage(content=user_message),
         ]
     )
 
     resp = {"query": query, "answer": result.content}
+    print(resp)
 
     return resp
 
 
 if __name__ == "__main__":
-    print(query_with_rag("What makes Yokohama attractive?"))
+    print(invoke("What makes Yokohama attractive?"))

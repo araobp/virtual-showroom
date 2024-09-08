@@ -14,8 +14,8 @@ using Button = UnityEngine.UI.Button;
 
 public class ChatbotController : MonoBehaviour
 {
-    enum ChatMode { RAG, IMAGE };
-    [SerializeField] ChatMode m_ChatMode;
+    enum RagMode { TEXT_ONLY, TEXT_AND_IMAGE };
+    [SerializeField] RagMode m_RagMode = RagMode.TEXT_AND_IMAGE;
 
     [SerializeField] int m_ResizedImageHeight = 256;  // 256px is just for development
     [SerializeField] Boolean m_AR_Mode = false;
@@ -263,9 +263,17 @@ public class ChatbotController : MonoBehaviour
             m_InputField.text = "";
         }
 
-        if (m_ChatMode == ChatMode.RAG)
+        if (m_RagMode == RagMode.TEXT_ONLY)
         {
-            m_Api.ChatWithRag(text, (err, resp) =>
+            // Get the image ID
+            Texture2D texture2d = m_ContentList[m_ContentIdx];
+            string[] name_split = texture2d.name.Split('_');
+            ArraySegment<string> name_array = new ArraySegment<string>(name_split, 0, 2);
+            string imageId = String.Join('_', name_array);
+
+            Debug.Log(imageId);
+
+            m_Api.ChatTextOnly(text, imageId, (err, resp) =>
             {
                 if (err)
                 {
@@ -277,7 +285,7 @@ public class ChatbotController : MonoBehaviour
                 }
             });
         }
-        else if (m_ChatMode == ChatMode.IMAGE) {
+        else if (m_RagMode == RagMode.TEXT_AND_IMAGE) {
             // Resize the current texture
             Texture2D texture2d = m_ContentList[m_ContentIdx];
             int newHeight = m_ResizedImageHeight;
@@ -296,7 +304,7 @@ public class ChatbotController : MonoBehaviour
 
             Debug.Log(imageId);
 
-            m_Api.ChatWithImage(text, imageId, b64image, (err, resp) =>
+            m_Api.ChatTextAndImage(text, imageId, b64image, (err, resp) =>
             {
                 if (err)
                 {

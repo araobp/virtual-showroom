@@ -25,21 +25,21 @@ public class ChatAPI : RestClient
         });
     }
 
-    public void ChatWithRag(string query, ChatCallback callback)
+    public void ChatTextOnly(string query, string imageId, ChatCallback callback)
     {
-        Get(m_EndPoint, $"/chat_with_rag?query={query}", (err, text) =>
+        Get(m_EndPoint, $"/chat_with_image?query={query}&image_id={imageId}", (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
             callback(err, resp);
         });
     }
 
-    public void ChatWithImage(string query, string imageId, string b64image, ChatCallback callback)
+    public void ChatTextAndImage(string query, string imageId, string b64image, ChatCallback callback)
     {
         ChatImage chatImage = new ChatImage();
         chatImage.b64image = b64image;
         string jsonBody = JsonUtility.ToJson(chatImage);
-        Put(m_EndPoint, $"/chat_with_image2?query={query}&image_id={imageId}", jsonBody, (err, text) =>
+        Put(m_EndPoint, $"/chat_with_image?query={query}&image_id={imageId}", jsonBody, (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
             callback(err, resp);
