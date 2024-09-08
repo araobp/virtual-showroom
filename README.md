@@ -57,13 +57,11 @@ The Flask-based API server will run on PC or Mac. It can run on a virtual machin
 
 ### LLM
 
-This project uses "gpt-4o-mini" from OpenAI with RAG.
+This project uses "gpt-4o-mini" from OpenAI with Multimodal RAG (text and image).
 
 ## Development
 
 (Work in progress)
-
-***Note on Sep 7th, 2024: I have found out that I needed to improve the construction of RAG.***
 
 ### 1. Designing Models (Blender)
 
