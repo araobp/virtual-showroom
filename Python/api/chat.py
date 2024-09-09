@@ -155,7 +155,8 @@ def mood_judgement(b64image: str):
     match = re.search('(Serene|Bustling|Nostalgic|Lonely|Picturesque|Chaotic|Gloomy|Vibrant|Unsure)', result.content)
     mood = match.group()
     
-    return mood
+    resp = {'mood': mood}
+    return resp
 
 
 

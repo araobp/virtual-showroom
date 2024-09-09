@@ -11,3 +11,7 @@ public class ChatResponse
 public class ChatImage{
     public string b64image;
 }
+
+public class MoodResponse {
+    public string mood;
+}

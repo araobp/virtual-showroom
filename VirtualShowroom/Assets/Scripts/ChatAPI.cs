@@ -7,6 +7,7 @@ public class ChatAPI : RestClient
     // Callbacks
     public delegate void HelloCallback(bool err, string text);
     public delegate void ChatCallback(bool err, ChatResponse resp);
+    public delegate void MoodCallback(bool err, MoodResponse resp);
 
     // Start is called before the first frame update
     public void Init(string baseUrl)
@@ -42,6 +43,17 @@ public class ChatAPI : RestClient
         Put(m_EndPoint, $"/chat_with_image?query={query}&image_id={imageId}", jsonBody, (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
+            callback(err, resp);
+        });
+    }
+
+    public void MoodJudgement(string b64image, MoodCallback callback) {
+        ChatImage chatImage = new ChatImage();
+        chatImage.b64image = b64image;
+        string jsonBody = JsonUtility.ToJson(chatImage);
+        Put(m_EndPoint, $"/mood_judgement", jsonBody, (err, text) =>
+        {
+            MoodResponse resp = JsonUtility.FromJson<MoodResponse>(text);
             callback(err, resp);
         });
     }

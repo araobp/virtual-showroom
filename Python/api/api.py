@@ -26,12 +26,12 @@ def chat_with_image():
     return jsonify(resp)
 
 
-@main.route("/mood_judgement", method=["PUT"])
+@main.route("/mood_judgement", methods=["PUT"])
 def mood_judgement():
     data = request.json
     b64image = data["b64image"]
     with open("./tmp/b64image.txt", "w") as f:
         f.write(b64image)
 
-    resp = chat.mood(b64image)
+    resp = chat.mood_judgement(b64image)
     return jsonify(resp)

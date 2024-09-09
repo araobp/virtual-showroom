@@ -14,10 +14,11 @@ using Button = UnityEngine.UI.Button;
 
 public class ChatbotController : MonoBehaviour
 {
-    enum RagMode { TEXT_ONLY, TEXT_AND_IMAGE };
+    enum RagMode { TEXT_ONLY, TEXT_AND_IMAGE, TEXT_AND_IMAGE_AND_MOOD };
     [SerializeField] RagMode m_RagMode = RagMode.TEXT_AND_IMAGE;
 
     [SerializeField] int m_ResizedImageHeight = 256;  // 256px is just for development
+    [SerializeField] bool m_LightControlByChatGPT = true;
     [SerializeField] Boolean m_AR_Mode = false;
     [SerializeField] GameObject m_Cameras;
 
@@ -57,9 +58,11 @@ public class ChatbotController : MonoBehaviour
     const int TIME_TO_SITDOWN = 1;
 
     ChatAPI m_Api;
-    
+
     Resizer m_Resizer;
-    
+
+    LightController m_LightController;
+
     // In case of these panorama pictures,
     // the max hight should be larger than 400px for ChatGPT to recognize objects in the pictures. 
     const int MAX_RESIZED_IMAGE_HIGHT = 512;  // 512px
@@ -67,7 +70,8 @@ public class ChatbotController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (m_ResizedImageHeight > MAX_RESIZED_IMAGE_HIGHT) {
+        if (m_ResizedImageHeight > MAX_RESIZED_IMAGE_HIGHT)
+        {
             m_ResizedImageHeight = MAX_RESIZED_IMAGE_HIGHT;
         }
 
@@ -132,6 +136,7 @@ public class ChatbotController : MonoBehaviour
         });
 
         m_Resizer = GetComponent<Resizer>();
+        m_LightController = GetComponent<LightController>();
     }
 
     // Update is called once per frame
@@ -253,7 +258,7 @@ public class ChatbotController : MonoBehaviour
 
     public void OnEndEdit(string text)
     {
-        void processResponse(ChatResponse resp)
+        void ProcessChatResponse(ChatResponse resp)
         {
             Debug.Log(resp.answer);
             int period = resp.answer.Length / TIME_TO_WORDS;
@@ -261,6 +266,11 @@ public class ChatbotController : MonoBehaviour
             string qa = $"Q: {text}\nA: {resp.answer}";
             m_Text.text = m_Text.text + "\n\n" + qa;
             m_InputField.text = "";
+        }
+
+        void ProcessMoodResponse(MoodResponse resp)
+        {
+            m_LightController.SetMood(resp.mood);
         }
 
         if (m_RagMode == RagMode.TEXT_ONLY)
@@ -281,11 +291,12 @@ public class ChatbotController : MonoBehaviour
                 }
                 else
                 {
-                    processResponse(resp);
+                    ProcessChatResponse(resp);
                 }
             });
         }
-        else if (m_RagMode == RagMode.TEXT_AND_IMAGE) {
+        else if (m_RagMode == RagMode.TEXT_AND_IMAGE || m_RagMode == RagMode.TEXT_AND_IMAGE_AND_MOOD)
+        {
             // Resize the current texture
             Texture2D texture2d = m_ContentList[m_ContentIdx];
             int newHeight = m_ResizedImageHeight;
@@ -312,9 +323,24 @@ public class ChatbotController : MonoBehaviour
                 }
                 else
                 {
-                    processResponse(resp);
+                    ProcessChatResponse(resp);
                 }
             });
+
+            if (m_RagMode == RagMode.TEXT_AND_IMAGE_AND_MOOD)
+            {
+                m_Api.MoodJudgement(b64image, (err, resp) =>
+                {
+                    if (err)
+                    {
+                        Debug.Log("Mood failed");
+                    }
+                    else
+                    {
+                        ProcessMoodResponse(resp);
+                    }
+                });
+            }
         }
     }
 
