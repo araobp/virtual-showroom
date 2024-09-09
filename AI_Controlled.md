@@ -93,6 +93,12 @@ A: "Vibrant" can be represented by the HTML color #FF4500, which is a bright, fi
 
 The result is very good. I respect ChatGPT!
 
+The following is the implementation of lighting control by ChatGPT. It works very well!
+
+<img src="doc/LightControlByChatGPT_1.jpg" width=700>
+
+<img src="doc/LightControlByChatGPT_2.jpg" width=700>
+
 ## 240-degree panorama pictures cut out from HDRI pictures from PolyHaven
 
 The resolution of the panorama pictures taken with iPhone SE: 16010 × 4100 pixels
