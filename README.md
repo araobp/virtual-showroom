@@ -4,7 +4,7 @@
 
 ## Background
 
-Showrooms can be costly, but the cost-effectiveness is unclear. Therefore, companies generally aim to achieve semi-automation using Multimodal AI.
+Showrooms can be costly, but their ROI is unclear. Therefore, companies generally aim to achieve semi-automation using Multimodal AI.
 
 ## Virtual Showroom Concept
 
