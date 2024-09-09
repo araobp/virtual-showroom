@@ -93,5 +93,14 @@ A: "Vibrant" can be represented by the HTML color #FF4500, which is a bright, fi
 
 The result is very good. I respect ChatGPT!
 
+## 240-degree panorama pictures cut out from HDRI pictures from PolyHaven
+
+The resolution of the panorama pictures taken with iPhone SE: 16010 px × 4100 px
+
+The resolution of HDRI pictures from PolyHaven: 16384 px × 8192 px
+
+Target width: 16384 * 240 / 360 pixels = 10923 px
+Target height: Target width * 4100 / 16010 pixels = 10923 * 4100 / 16010 = 2797 px
+
 (Work in progress)
 
