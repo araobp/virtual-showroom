@@ -110,5 +110,5 @@ The resolution of HDRI pictures from PolyHaven: 16384 × 8192 pixels
 
 I used GIMP to cut out 240-degree panorama.
 
-<img src="doc/CutOutFromExr.png" width=700>
+<img src="doc/CutOutPanoramaFromExr.png" width=700>
 
