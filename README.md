@@ -4,7 +4,7 @@
 
 ## Goal
 
-Showrooms can be costly, but the cost-effectiveness is unclear. Therefore, companies generally aim to achieve semi-automation using AI.
+Showrooms can be costly, but the cost-effectiveness is unclear. Therefore, companies generally aim to achieve semi-automation using Multimodal AI.
 
 The goal of this project is to realize a virtual showroom with Digital Human as promotional models.
 
