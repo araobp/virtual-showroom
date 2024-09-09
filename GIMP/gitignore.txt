@@ -1,0 +1,3 @@
+The following HDRI images from PolyHaven are ignored for archiving in github.com
+
+https://polyhaven.com/a/hansaplatz

@@ -12,6 +12,8 @@ import re
 EMBEDDINGS_MODEL = "text-embedding-ada-002"
 LLM_MODEL = "gpt-4o-mini"
 
+last_b64image = None
+
 # Chat model
 llm = ChatOpenAI(model=LLM_MODEL)
 
@@ -41,14 +43,16 @@ Query: {query}
 """
 
 def invoke(query:str, b64image:str=None, image_id:str=None):
+    global last_b64image
 
     if image_id is not None:
         with sqlite3.connect(SQLITE_DB_PATH) as conn:
             cur = conn.cursor()
-            scenario = cur.execute(
-                f"SELECT scenario FROM scenarios WHERE image LIKE '{image_id}%'"
+            scene_id, scenario = cur.execute(
+                f"SELECT scene_id, scenario FROM scenarios WHERE image LIKE '{image_id}%'"
             ).fetchone()
     else:
+        scene_id = None
         scenario = ""
 
     prompt_ai = PromptTemplate(template=TEMPLATE_AI, input_variables=[])
@@ -64,7 +68,10 @@ def invoke(query:str, b64image:str=None, image_id:str=None):
     system_message = prompt_system.format(scenario=scenario)
 
     # Similarity search
-    documents = vector_store.similarity_search(query)
+    if scene_id is None:
+        documents = vector_store.similarity_search(query)
+    else:  # Query with filter (metadata)
+        documents = vector_store.similarity_search(query, filter={'scene_id': scene_id})
 
     doc_string = ""
 
@@ -81,6 +88,7 @@ def invoke(query:str, b64image:str=None, image_id:str=None):
                 "text": user_message_,
             },
         ]
+        last_b64image = None
     else:
         user_message = [
             {
@@ -92,6 +100,7 @@ def invoke(query:str, b64image:str=None, image_id:str=None):
                 "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
             },
         ]
+        last_64image = b64image
 
     print(">>>>>>>>>>>>>>>>>>>")
     print(ai_message)
@@ -113,25 +122,40 @@ def invoke(query:str, b64image:str=None, image_id:str=None):
 
 PROMPT_MOOD_AI = "You are a bot that is good at anlyzing images."
 PROMPT_MOOD_SYSTEM = "You are a tour guide in Japan."
+
 PROMPT_MOOD_HUMAN = """Please choose one word from the following options that best describes the mood of this photo.
 If you are unsure, please respond with 'Unsure."
 
 Options: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibrant.
 """
 
+PROMPT_MOOD_HUMAN_JUST_AFTER_INVOKE = """Please choose one word from the following options that best describes the mood of the photo a moment ago.
+If you are unsure, please respond with 'Unsure."
+
+Options: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibrant.
+"""
+
+
 def mood_judgement(b64image: str):
     
-
-    user_message = [
-        {
-                "type": "text",
-                "text": PROMPT_MOOD_HUMAN,
-        },
-        {
-                "type": "image_url",
-                "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
-        },
-    ]
+    if last_b64image is not None and last_b64image == b64image:
+        user_message = [
+            {
+                    "type": "text",
+                    "text": PROMPT_MOOD_HUMAN_JUST_AFTER_INVOKE
+            }
+        ]
+    else:
+        user_message = [
+            {
+                    "type": "text",
+                    "text": PROMPT_MOOD_HUMAN,
+            },
+            {
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
+            },
+        ]
 
     ai_message = PROMPT_MOOD_AI
     system_message = PROMPT_MOOD_SYSTEM
