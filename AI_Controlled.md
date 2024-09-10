@@ -114,6 +114,13 @@ I used GIMP to cut out 240-degree panorama.
 
 ### Image correction
 
-Reference: https://paulbourke.net/panorama/sphere2pano/
+It is necessary to convert an Equirectangular projection image from PolyHaven to an cylindlical projection image.
+
+Reference: 
+- [(1) sphere2pano](https://paulbourke.net/panorama/sphere2pano/)
+- [(2) image remap with OpenCV](https://github.com/araobp/blender-science/blob/main/Mathematics/opencv/remap.ipynb)
+
+Unfortunately, the sphere2pano's source code is not free (1), so I develop my own version based on my previous work (2).
+
 
 (Work in progress)
