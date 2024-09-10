@@ -12,6 +12,8 @@ Virtual Showroom is a very cost-effective. It only requires a 240-degree panoram
 
 https://github.com/user-attachments/assets/a55178b7-909f-4702-ad78-8f9438cf234d
 
+Althugh the video shows Japanese chat, ChatGPT is multilingual.
+
 ## Reference Showroom
 
 I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl/Z5GTQqjRTFXAtd3D8) in Yokohama in May 2024. This was for a driving experience in harsh environments.
