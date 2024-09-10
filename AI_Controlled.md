@@ -114,4 +114,6 @@ I used GIMP to cut out 240-degree panorama.
 
 ### Image correction
 
+Reference: https://paulbourke.net/panorama/sphere2pano/
+
 (Work in progress)
