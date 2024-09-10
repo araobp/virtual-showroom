@@ -112,3 +112,6 @@ I used GIMP to cut out 240-degree panorama.
 
 <img src="doc/CutOutPanoramaFromExr.png" width=700>
 
+### Image correction
+
+(Work in progress)
