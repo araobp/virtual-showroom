@@ -18,6 +18,10 @@ Let's set them to 16k resolution for better photo quality.
 
 <img src="doc/unity_settings3.jpg" width=700>
 
+Or set it to NPOT(non power of 2) if the GPU is powerful enough for rendering high-resolution images.
+
+<img src="doc/unity_settings6.jpg" width=700>
+
 ## Testing Chatbot animation on Unity 
 
 I think 240-degree panorama screen is ideal for VR experiences with naked eyes at a showroom or an exhibition.
@@ -38,7 +42,7 @@ Uncheck "Auto Focus" in the inspector window below to stabilize the AR camera in
 
 <img src="doc/unity_settings5.jpg" width=700>
 
-## 240-degree panorama pictures cut out from HDRI pictures from PolyHaven
+## 240-degree panorama pictures cut out from HDRI pictures from PolyHave
 
 The resolution of the panorama pictures taken with iPhone SE: 16010 × 4100 pixels
 
@@ -66,6 +70,8 @@ Unfortunately, the sphere2pano's source code is not free (1), so I have develope
 <img src="doc/Sphere2Pano.jpg" width=600>
 
 => [Sphere2Pano.ipynb](./Python/sphere2pano/Sphere2Pano.ipynb)
+
+The tool is also applicable to any sphere images in the Equirectangular format taken by 360 degree cameras.
 
 
 ## Tips
