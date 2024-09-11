@@ -35,6 +35,10 @@ My original design of such a virtual showroom.
 
 <img src="doc/schematic.jpg" width=500>
 
+The screen in this project also provides perspective drawing.
+
+<img src="doc/PerspectiveView.jpg" width=700>
+
 ## System Architecture
 
 <img src="doc/architecture.jpg" width=800>
