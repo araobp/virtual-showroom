@@ -35,7 +35,7 @@ My original design of such a virtual showroom.
 
 <img src="doc/schematic.jpg" width=500>
 
-The 240-degree panorama screen in this project also supports perspective drawing.
+The 240-degree panorama screen in this project also supports perspective drawing like a driving experience in NISSAN GARELLY above.
 
 <img src="doc/PerspectiveView.jpg" width=700>
 
