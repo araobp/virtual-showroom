@@ -61,7 +61,11 @@ Reference:
 - [(1) sphere2pano](https://paulbourke.net/panorama/sphere2pano/)
 - [(2) image remap with OpenCV](https://github.com/araobp/blender-science/blob/main/Mathematics/opencv/remap.ipynb)
 
-Unfortunately, the sphere2pano's source code is not free (1), so I develop my own version based on my previous work (2).
+Unfortunately, the sphere2pano's source code is not free (1), so I have developed my own version based on my previous work (2) with the OpenCV's remap function.
+
+<img src="doc/Sphere2Pano.jpg" width=600>
+
+=> [Sphere2Pano.ipynb](./Python/sphere2pano/Sphere2Pano.ipynb)
 
 
 ## Tips
