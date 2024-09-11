@@ -18,6 +18,10 @@ Let's set them to 16k resolution for better photo quality.
 
 <img src="doc/unity_settings3.jpg" width=700>
 
+Or set it to NPOT(non power of 2) if the GPU is powerful enough for rendering high-resolution images.
+
+<img src="doc/unity_settings6.jpg" width=700>
+
 ## Testing Chatbot animation on Unity 
 
 I think 240-degree panorama screen is ideal for VR experiences with naked eyes at a showroom or an exhibition.
