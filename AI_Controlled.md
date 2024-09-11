@@ -108,7 +108,21 @@ The resolution of HDRI pictures from PolyHaven: 16384 × 8192 pixels
 - Target width: 16384 * 240 / 360 pixels = 10923 pixels
 - Target height: Target width * 4100 / 16010 pixels = 10923 * 4100 / 16010 = 2797 pixels
 
-I used GIMP to cut out 240-degree panorama.
+### Tentative solution
+
+I used GIMP to cut out 240-degree panorama. The cut out image is distorted to some degree.
 
 <img src="doc/CutOutPanoramaFromExr.png" width=700>
 
+### Image correction
+
+It is necessary to convert an Equirectangular projection image from PolyHaven to an cylindlical projection image.
+
+Reference: 
+- [(1) sphere2pano](https://paulbourke.net/panorama/sphere2pano/)
+- [(2) image remap with OpenCV](https://github.com/araobp/blender-science/blob/main/Mathematics/opencv/remap.ipynb)
+
+Unfortunately, the sphere2pano's source code is not free (1), so I develop my own version based on my previous work (2).
+
+
+(Work in progress)
