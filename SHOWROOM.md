@@ -53,7 +53,7 @@ I used GIMP to cut out 240-degree panorama. The cut out image is distorted to so
 
 <img src="doc/CutOutPanoramaFromExr.png" width=700>
 
-### Image correction
+### Image correction with trigonometric functions and OpenCV
 
 It is necessary to convert an Equirectangular projection image from PolyHaven to an cylindlical projection image.
 
