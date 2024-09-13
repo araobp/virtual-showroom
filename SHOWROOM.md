@@ -69,7 +69,7 @@ Unfortunately, the sphere2pano's source code is not free (1), so I have develope
 
 <img src="doc/Sphere2Pano.jpg" width=600>
 
-=> [Sphere2Pano.ipynb](./Python/sphere2pano/Sphere2Pano.ipynb)
+=> [Sphere2Pano.ipynb](./Python/images/Sphere2Pano.ipynb)
 
 The tool is also applicable to any sphere images in the Equirectangular format taken by 360 degree cameras.
 
