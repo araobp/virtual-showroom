@@ -53,4 +53,6 @@ This API server also accepts base64-encoded image data from the client to add ad
 
 This API server with the OpenAI's TTS service provides Text-to-Speech API to the client: [samples I generated with TTS](doc/tts).
 
+This capability is tentative, because OpenAI will include TTS in GPT-4o-mini in near future.
+
 Reference: https://platform.openai.com/docs/guides/text-to-speech/overview
