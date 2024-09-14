@@ -47,3 +47,8 @@ Run [this Jupyter Notebook](./Python/scenarios/Scenarios.ipynb)
 
 This API server also accepts base64-encoded image data from the client to add additional info in a request to the OpenAI's LLM.
 
+## Text-to-Speech
+
+The OpenAI's API service provides TTS APIs. [I tested the APIs](doc/tts).
+
+Reference: https://platform.openai.com/docs/guides/text-to-speech/overview
