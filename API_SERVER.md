@@ -47,3 +47,12 @@ Run [this Jupyter Notebook](./Python/scenarios/Scenarios.ipynb)
 
 This API server also accepts base64-encoded image data from the client to add additional info in a request to the OpenAI's LLM.
 
+=> [Details](https://github.com/araobp/virtual-showroom/blob/main/AI_Controlled.md)
+
+## Text-to-Speech
+
+This API server with the OpenAI's TTS service provides Text-to-Speech API to the client: [samples I generated with TTS](doc/tts).
+
+This capability is tentative, because OpenAI will include TTS in GPT-4o-mini in near future.
+
+Reference: https://platform.openai.com/docs/guides/text-to-speech/overview
