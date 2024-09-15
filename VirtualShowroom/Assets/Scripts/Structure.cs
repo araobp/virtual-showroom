@@ -6,6 +6,7 @@ public class ChatResponse
 {
     public string query;
     public string answer;
+    public string b64audio;
 }
 
 public class ChatImage{

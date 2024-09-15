@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.Windows.Speech;
 using UnityEngine.XR.ARFoundation;
 using Button = UnityEngine.UI.Button;
 
@@ -16,6 +17,7 @@ public class ChatbotController : MonoBehaviour
 {
     enum RagMode { TEXT_ONLY, TEXT_AND_IMAGE, TEXT_AND_IMAGE_AND_MOOD };
     [SerializeField] RagMode m_RagMode = RagMode.TEXT_AND_IMAGE;
+    [SerializeField] bool m_TTSEnabled = false;
 
     [SerializeField] int m_ResizedImageHeight = 256;  // 256px is just for development
     [SerializeField] bool m_LightControlByChatGPT = true;
@@ -62,6 +64,9 @@ public class ChatbotController : MonoBehaviour
     Resizer m_Resizer;
 
     LightController m_LightController;
+
+    AudioSource m_AudioSource;
+    enum Voices { alloy, nova };  // OpenAI's Text-to-Speech voices
 
     // In case of these panorama pictures,
     // the max hight should be larger than 400px for ChatGPT to recognize objects in the pictures. 
@@ -137,6 +142,7 @@ public class ChatbotController : MonoBehaviour
 
         m_Resizer = GetComponent<Resizer>();
         m_LightController = GetComponent<LightController>();
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -258,11 +264,14 @@ public class ChatbotController : MonoBehaviour
 
     public void OnEndEdit(string text)
     {
-        void ProcessChatResponse(ChatResponse resp)
+        void ProcessChatResponse(ChatResponse resp, string voice)
         {
             Debug.Log(resp.answer);
+
+            // Text data
             int period = resp.answer.Length / TIME_TO_WORDS;
-            StartCoroutine(Speak(period));
+            StartCoroutine(Speak(period, voice, resp.answer));
+
             string qa = $"Q: {text}\nA: {resp.answer}";
             m_Text.text = m_Text.text + "\n\n" + qa;
             m_InputField.text = "";
@@ -271,6 +280,20 @@ public class ChatbotController : MonoBehaviour
         void ProcessMoodResponse(MoodResponse resp)
         {
             m_LightController.SetMood(resp.mood);
+        }
+
+        // Choose voice of the model
+        string voice = null;
+        if (m_TTSEnabled)
+        {
+            if (m_Models[m_ModelIdx].name.StartsWith("Lady"))
+            {
+                voice = Voices.nova.ToString();
+            }
+            else if (m_Models[m_ModelIdx].name.StartsWith("Gentleman"))
+            {
+                voice = Voices.alloy.ToString();
+            }
         }
 
         if (m_RagMode == RagMode.TEXT_ONLY)
@@ -283,7 +306,7 @@ public class ChatbotController : MonoBehaviour
 
             Debug.Log(imageId);
 
-            m_Api.ChatTextOnly(text, imageId, (err, resp) =>
+            m_Api.ChatTextOnly(text, imageId, voice, (err, resp) =>
             {
                 if (err)
                 {
@@ -291,7 +314,7 @@ public class ChatbotController : MonoBehaviour
                 }
                 else
                 {
-                    ProcessChatResponse(resp);
+                    ProcessChatResponse(resp, voice);
                 }
             });
         }
@@ -315,7 +338,7 @@ public class ChatbotController : MonoBehaviour
 
             Debug.Log(imageId);
 
-            m_Api.ChatTextAndImage(text, imageId, b64image, (err, resp) =>
+            m_Api.ChatTextAndImage(text, imageId, b64image, voice, (err, resp) =>
             {
                 if (err)
                 {
@@ -323,7 +346,7 @@ public class ChatbotController : MonoBehaviour
                 }
                 else
                 {
-                    ProcessChatResponse(resp);
+                    ProcessChatResponse(resp, voice);
                 }
             });
 
@@ -350,8 +373,13 @@ public class ChatbotController : MonoBehaviour
         return m_Models[m_ModelIdx].GetComponent<Animator>();
     }
 
-    IEnumerator Speak(int period)
+    IEnumerator Speak(int period, string voice, string text)
     {
+        if (voice != null && text != null)
+        {
+            StartCoroutine(m_Api.TextToSpeech(m_AudioSource, voice, text));
+        }
+
         Animator().SetTrigger("speak");
         yield return new WaitForSecondsRealtime(period);
         Animator().SetTrigger("stopSpeaking");

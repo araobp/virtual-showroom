@@ -1,4 +1,8 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Networking;
+using static System.Web.HttpUtility;
 
 public class ChatAPI : RestClient
 {
@@ -26,21 +30,25 @@ public class ChatAPI : RestClient
         });
     }
 
-    public void ChatTextOnly(string query, string imageId, ChatCallback callback)
+    public void ChatTextOnly(string query, string imageId, string voice, ChatCallback callback)
     {
-        Get(m_EndPoint, $"/chat_with_image?query={query}&image_id={imageId}", (err, text) =>
+        string voiceUrlParam = voice == null ? "" : $"&voice={voice}";
+
+        Get(m_EndPoint, $"/chat_with_image?query={query}&image_id={imageId}{voiceUrlParam}", (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
             callback(err, resp);
         });
     }
 
-    public void ChatTextAndImage(string query, string imageId, string b64image, ChatCallback callback)
+    public void ChatTextAndImage(string query, string imageId, string b64image, string voice, ChatCallback callback)
     {
+        string voiceUrlParam = voice == null ? "" : $"&voice={voice}";
+
         ChatImage chatImage = new ChatImage();
         chatImage.b64image = b64image;
         string jsonBody = JsonUtility.ToJson(chatImage);
-        Put(m_EndPoint, $"/chat_with_image?query={query}&image_id={imageId}", jsonBody, (err, text) =>
+        Put(m_EndPoint, $"/chat_with_image?query={query}&image_id={imageId}{voiceUrlParam}", jsonBody, (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
             callback(err, resp);
@@ -56,6 +64,30 @@ public class ChatAPI : RestClient
             MoodResponse resp = JsonUtility.FromJson<MoodResponse>(text);
             callback(err, resp);
         });
+    }
+
+    // OpenAI's TTS Service
+    public IEnumerator TextToSpeech(AudioSource audioSource, string voice, string text)
+    {
+        string urlParam = $"voice={voice}&text={UrlEncode(text)}";
+        string url = $"{m_EndPoint.baseUrl}{"/tts"}?{urlParam}";
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
+        {
+            Debug.Log("tts");
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+        }
     }
 
 }
