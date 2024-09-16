@@ -23,7 +23,6 @@ I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl
     <td>
       <img src="doc/nissan_showroom1.jpg" width=400>      
     </td>
-  <tr>
     <td>
       <img src="doc/nissan_showroom2.jpg" width=400>
     </td>    
