@@ -97,7 +97,7 @@ I am going to add other scenes.
 
 #### AI Robot
 
-I was moved by [the demo video fo Figure 01](https://www.figure.ai/).
+I was moved by [the demo video fo Figure 01](https://www.figure.ai/). If such a robot existed, human guides might no longer be needed in the showroom.
 
 I modified the robot included in [the Unity's Starter Assets](https://assetstore.unity.com/packages/essentials/starter-assets-thirdperson-updates-in-new-charactercontroller-pa-196526?srsltid=AfmBOorNEgguMafoHDJOo979IJvgntvA-M-28pK6o9Jrkv7cI-6tt2P9), and use it to see what Generative AI can do.
 
