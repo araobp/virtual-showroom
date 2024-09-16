@@ -4,6 +4,8 @@
 
 <img src="doc/sample_scene2.jpg" width=600>
 
+Note: I am not very good at English. This README.md was proofread by ChatGPT.
+
 ## Background
 
 Showrooms can be costly, but their ROI is unclear. Therefore, companies generally aim to achieve semi-automation using Multimodal AI.
