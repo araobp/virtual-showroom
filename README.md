@@ -56,6 +56,14 @@ I modify the robot included in the Unity's Starter Assets and use it to see what
   </tr>
 </table>
 
+## Scenes
+
+This project currently has two Unity secenes:
+- Virtual Showroom (Nearly completed)
+- Objec Detection (Work in progress)
+
+I am going to add other scenes.
+
 ## System Architecture
 
 <img src="doc/architecture.jpg" width=800>
