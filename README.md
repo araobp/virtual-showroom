@@ -41,6 +41,10 @@ The 240-degree panorama screen in this project also supports perspective drawing
 
 ## AI Robot
 
+I was moved by [the demo video fo Figure 01](https://www.figure.ai/).
+
+I modify the robot included in the Unity's Starter Assets and use it to see what Generative AI can do.
+
 <img src="doc/robot_1.jpg" width=300>
 
 ## System Architecture
