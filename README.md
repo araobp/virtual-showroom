@@ -39,6 +39,10 @@ The 240-degree panorama screen in this project also supports perspective drawing
 
 <img src="doc/PerspectiveView.jpg" width=700>
 
+## AI Robot
+
+<img src="doc/robot_1.jpg" width=300>
+
 ## System Architecture
 
 <img src="doc/architecture.jpg" width=800>
