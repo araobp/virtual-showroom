@@ -111,3 +111,12 @@ I modify the robot included in the Unity's Starter Assets and use it to see what
     </td>
   </tr>
 </table>
+
+#### Image Recognition test
+
+
+
+```
+Received: {"answer":"I see an image of a cat grooming itself. The cat appears to be licking its paw while resting on a red surface.","query":"What can you see in this image?"}
+
+```
