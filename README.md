@@ -104,6 +104,9 @@ I modify the robot included in the Unity's Starter Assets and use it to see what
 <table>
   <tr>
     <td>
+      <img src="doc/robot_3.jpg" width=300>      
+    </td>
+    <td>
       <img src="doc/robot_1.jpg" width=300>      
     </td>
     <td>
