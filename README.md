@@ -99,7 +99,7 @@ I am going to add other scenes.
 
 I was moved by [the demo video fo Figure 01](https://www.figure.ai/).
 
-I modify the robot included in the Unity's Starter Assets and use it to see what Generative AI can do.
+I modified the robot included in [the Unity's Starter Assets](https://assetstore.unity.com/packages/essentials/starter-assets-thirdperson-updates-in-new-charactercontroller-pa-196526?srsltid=AfmBOorNEgguMafoHDJOo979IJvgntvA-M-28pK6o9Jrkv7cI-6tt2P9), and use it to see what Generative AI can do.
 
 <table>
   <tr>
