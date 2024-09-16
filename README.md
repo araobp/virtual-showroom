@@ -115,13 +115,19 @@ I modified the robot included in [the Unity's Starter Assets](https://assetstore
   </tr>
 </table>
 
-#### Image Recognition test (gpt-4o-mini)
+#### Tests
+
+A few years ago, I used to create many image recognition and object detection apps utilizing TensorFlow.
+
+This time, I use OpenAI's multimodal AI for image recognition and object detection.
+
+***Image Recognition test (gpt-4o-mini)***
 
 ```
 Received: {"answer":"I see an image of a cat grooming itself. The cat appears to be licking its paw while resting on a red surface.","query":"What can you see in this image?"}
 
 ```
 
-#### Object Recognition test (gpt-4o-mini)
+***Object Recognition test (gpt-4o-mini)***
 
 (Coming soon)
