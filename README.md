@@ -39,28 +39,11 @@ The 240-degree panorama screen in this project also supports perspective drawing
 
 <img src="doc/PerspectiveView.jpg" width=700>
 
-## AI Robot
-
-I was moved by [the demo video fo Figure 01](https://www.figure.ai/).
-
-I modify the robot included in the Unity's Starter Assets and use it to see what Generative AI can do.
-
-<table>
-  <tr>
-    <td>
-      <img src="doc/robot_1.jpg" width=300>      
-    </td>
-    <td>
-      <img src="doc/robot_2.jpg" width=300>
-    </td>
-  </tr>
-</table>
-
 ## Scenes
 
 This project currently has two Unity secenes:
 - Virtual Showroom (Nearly completed)
-- Objec Detection (Work in progress)
+- Objec Detection (Work in progress) 
 
 I am going to add other scenes.
 
