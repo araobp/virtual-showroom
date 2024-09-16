@@ -123,6 +123,8 @@ This time, I use OpenAI's multimodal AI for image recognition and object detecti
 
 ***Image Recognition test (gpt-4o-mini)***
 
+After trying various experiments, I found that an image size of at least 512px x 512px seems to work best.
+
 ```
 Received: {"answer":"I see an image of a cat grooming itself. The cat appears to be licking its paw while resting on a red surface.","query":"What can you see in this image?"}
 
