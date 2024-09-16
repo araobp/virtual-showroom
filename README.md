@@ -1,5 +1,7 @@
 # Virtual Showroom
 
+(Work in progress)
+
 <img src="doc/sample_scene2.jpg" width=600>
 
 ## Background
