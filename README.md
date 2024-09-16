@@ -115,11 +115,13 @@ I modified the robot included in [the Unity's Starter Assets](https://assetstore
   </tr>
 </table>
 
-#### Image Recognition test (gpt-40-mini)
-
-
+#### Image Recognition test (gpt-4o-mini)
 
 ```
 Received: {"answer":"I see an image of a cat grooming itself. The cat appears to be licking its paw while resting on a red surface.","query":"What can you see in this image?"}
 
 ```
+
+#### Object Recognition test (gpt-4o-mini)
+
+(Coming soon)
