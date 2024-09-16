@@ -10,11 +10,11 @@ Showrooms can be costly, but their ROI is unclear. Therefore, companies generall
 
 ## Virtual Showroom Concept
 
-Virtual Showroom is a very cost-effective. It only requires a 240-degree panorama screen for VR experiences with naked-eyes. I want to realize a **"real"** virtual showroom someday at work, but this project develops a **"virtual"** virtual showroom running on Unity in the form of an AR app or a console app, as my hobby project.
+The Virtual Showroom is highly cost-effective. It only requires a 240-degree panoramic screen to provide VR experiences without the need for headsets. I aspire to create a "real" virtual showroom at work someday, but for now, this project is focused on developing a "virtual" virtual showroom using Unity, either as an AR app or a console app, as part of my hobby project.
 
 https://github.com/user-attachments/assets/a55178b7-909f-4702-ad78-8f9438cf234d
 
-Althugh the video shows Japanese chat, ChatGPT is multilingual.
+Although the video showcases Japanese chat, ChatGPT is multilingual.
 
 ## Reference Showroom
 
@@ -33,11 +33,11 @@ I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl
 
 ## Schematic
 
-My original design of such a virtual showroom.
+My original design for a virtual showroom.
 
 <img src="doc/schematic.jpg" width=500>
 
-The 240-degree panorama screen in this project also supports perspective drawing like a driving experience in NISSAN GARELLY above.
+The 240-degree panoramic screen in this project also supports perspective drawing, similar to the driving experience at the NISSAN GALLERY mentioned above.
 
 <img src="doc/PerspectiveView.jpg" width=700>
 
@@ -45,7 +45,7 @@ The 240-degree panorama screen in this project also supports perspective drawing
 
 <img src="doc/architecture.jpg" width=800>
 
-The Flask-based API server will run on PC or Mac. It can run on a virtual machine in the cloud as well.
+The Flask-based API server will run on a PC or Mac. It can also be deployed on a virtual machine in the cloud.
 
 ## Development Environment
 
@@ -63,7 +63,7 @@ The Flask-based API server will run on PC or Mac. It can run on a virtual machin
 
 ### LLM
 
-This project uses "gpt-4o-mini" from OpenAI with Multimodal RAG (text and image).
+This project utilizes OpenAI's "gpt-4o-mini" with Multimodal RAG (text and image).
 
 ## Scenes
 
@@ -73,7 +73,7 @@ This project currently has two secenes:
 - Virtual Showroom (Nearly completed)
 - Objec Detection (Work in progress) 
 
-I am going to add other scenes.
+More scenes will be added in the future.
 
 ### Virtual Showroom scene
 
@@ -81,11 +81,11 @@ I am going to add other scenes.
 
 => [MODELS.md](./MODELS.md)
 
-#### 2. Creating Virtual Showroom (Unity)
+#### 2. Creating the Virtual Showroom (Unity)
 
 => [SHOWROOM.md](./SHOWROOM.md)
 
-#### 3. Developing API server (LangChain/Flask/Python)
+#### 3. Developing the API server (LangChain/Flask/Python)
 
 => [API_SERVER.md](./API_SERVER.md)
 
@@ -97,9 +97,9 @@ I am going to add other scenes.
 
 #### AI Robot
 
-I was moved by [the demo video fo Figure 01](https://www.figure.ai/). If such a robot existed, human guides might no longer be needed in the showroom.
+I was impressed by [the demo video for Figure 01](https://www.figure.ai/). If such a robot were to exist, human guides in showrooms might no longer be necessary.
 
-I modified the robot included in [the Unity's Starter Assets](https://assetstore.unity.com/packages/essentials/starter-assets-thirdperson-updates-in-new-charactercontroller-pa-196526?srsltid=AfmBOorNEgguMafoHDJOo979IJvgntvA-M-28pK6o9Jrkv7cI-6tt2P9), and use it to see what Generative AI can do.
+I modified the robot included in Unity's Starter Assets to experiment with what Generative AI can achieve.
 
 <table>
   <tr>
@@ -117,9 +117,9 @@ I modified the robot included in [the Unity's Starter Assets](https://assetstore
 
 #### Tests
 
-A few years ago, I used to create many image recognition and object detection apps utilizing TensorFlow.
+A few years ago, I developed several image recognition and object detection apps using TensorFlow.
 
-This time, I use OpenAI's multimodal AI for image recognition and object detection.
+This time, I’m utilizing OpenAI's multimodal AI for image recognition and object detection.
 
 ***Image Recognition test (gpt-4o-mini)***
 
