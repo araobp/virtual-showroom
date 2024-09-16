@@ -2,6 +2,10 @@
 
 Showrooms can be costly, but the cost-effectiveness is unclear. Therefore, companies generally aim to achieve semi-automation using AI.
 
+## Important Note
+
+https://platform.openai.com/docs/guides/vision
+
 ## Experiment: ChatGPT can be a tour guide on its own without text-only RAG
 
 <table>

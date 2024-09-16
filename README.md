@@ -1,5 +1,7 @@
 # Virtual Showroom
 
+(Work in progress)
+
 <img src="doc/sample_scene2.jpg" width=600>
 
 ## Background
@@ -25,7 +27,7 @@ I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl
     </td>
     <td>
       <img src="doc/nissan_showroom2.jpg" width=400>
-    </td>
+    </td>    
   </tr>
 </table>
 
@@ -63,22 +65,58 @@ The Flask-based API server will run on PC or Mac. It can run on a virtual machin
 
 This project uses "gpt-4o-mini" from OpenAI with Multimodal RAG (text and image).
 
-## Development
+## Scenes
 
 (Work in progress)
 
-### 1. Designing Models (Blender)
+This project currently has two secenes:
+- Virtual Showroom (Nearly completed)
+- Objec Detection (Work in progress) 
+
+I am going to add other scenes.
+
+### Virtual Showroom scene
+
+#### 1. Designing Models (Blender)
 
 => [MODELS.md](./MODELS.md)
 
-### 2. Creating Virtual Showroom (Unity)
+#### 2. Creating Virtual Showroom (Unity)
 
 => [SHOWROOM.md](./SHOWROOM.md)
 
-### 3. Developing API server (LangChain/Flask/Python)
+#### 3. Developing API server (LangChain/Flask/Python)
 
 => [API_SERVER.md](./API_SERVER.md)
 
-### 4. AI-Controlled Virtual Showroom
+#### 4. AI-Controlled Virtual Showroom
 
 => [AI_Controlled.md](./AI_Controlled.md)
+
+### Object Detection scene
+
+#### AI Robot
+
+I was moved by [the demo video fo Figure 01](https://www.figure.ai/).
+
+I modify the robot included in the Unity's Starter Assets and use it to see what Generative AI can do.
+
+<table>
+  <tr>
+    <td>
+      <img src="doc/robot_1.jpg" width=300>      
+    </td>
+    <td>
+      <img src="doc/robot_2.jpg" width=300>
+    </td>
+  </tr>
+</table>
+
+#### Image Recognition test
+
+
+
+```
+Received: {"answer":"I see an image of a cat grooming itself. The cat appears to be licking its paw while resting on a red surface.","query":"What can you see in this image?"}
+
+```
