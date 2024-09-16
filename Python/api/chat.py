@@ -28,13 +28,13 @@ SQLITE_DB_PATH = os.path.join(os.path.dirname(__file__), "../scenarios/db/scenar
 # Templates
 TEMPLATE_AI = "You are a bot that is good at anlyzing texts and images."
 
-TEMPLATE_SYSTEM = """You are a tour guide in Japan.
+TEMPLATE_SYSTEM_VIRTUAL_SHOWROOM = """You are a tour guide in Japan.
 
 Now you are in the area as described below:
 {scenario}
 """
 
-TEMPLATE_USER = """Please answer the questions based on the following texts and the following image if attached. If you don't know, please answer that you don't know.
+TEMPLATE_USER_VIRTUAL_SHOWROOM = """Please answer the questions based on these texts and this image if attached. If you don't know, please answer that you don't know.
 
 Text:
 {document}
@@ -42,7 +42,7 @@ Text:
 Query: {query}
 """
 
-def invoke(query:str, b64image:str=None, image_id:str=None):
+def chat_for_virtual_showroom(query: str, b64image: str = None, image_id: str = None):
     global last_b64image
 
     if image_id is not None:
@@ -57,10 +57,10 @@ def invoke(query:str, b64image:str=None, image_id:str=None):
 
     prompt_ai = PromptTemplate(template=TEMPLATE_AI, input_variables=[])
     prompt_system = PromptTemplate(
-        template=TEMPLATE_SYSTEM, input_variables=["scenario"]
+        template=TEMPLATE_SYSTEM_VIRTUAL_SHOWROOM, input_variables=["scenario"]
     )
     prompt_user = PromptTemplate(
-        template=TEMPLATE_USER,
+        template=TEMPLATE_USER_VIRTUAL_SHOWROOM,
         input_variables=["document", "query"],
     )
 
@@ -71,7 +71,7 @@ def invoke(query:str, b64image:str=None, image_id:str=None):
     if scene_id is None:
         documents = vector_store.similarity_search(query)
     else:  # Query with filter (metadata)
-        documents = vector_store.similarity_search(query, filter={'scene_id': scene_id})
+        documents = vector_store.similarity_search(query, filter={"scene_id": scene_id})
 
     doc_string = ""
 
@@ -120,6 +120,59 @@ def invoke(query:str, b64image:str=None, image_id:str=None):
 
     return resp
 
+
+TEMPLATE_SYSTEM_OBJECT_DETECTION = "You are a humanoid obedient to your master."
+
+TEMPLATE_USER_OBJECT_DETECTION = """Please answer the questions based on the image. If you don't know, please answer that you don't know.
+
+Query: {query}
+"""
+
+def chat_for_object_detection(query: str, b64image: str = None):
+
+    prompt_ai = PromptTemplate(template=TEMPLATE_AI, input_variables=[])
+    prompt_system = PromptTemplate(
+        template=TEMPLATE_SYSTEM_OBJECT_DETECTION, input_variables=[]
+    )
+    prompt_user = PromptTemplate(
+        template=TEMPLATE_USER_OBJECT_DETECTION,
+        input_variables=["query"],
+    )
+
+    ai_message = prompt_ai.format()
+    system_message = prompt_system.format()
+    user_message_ = prompt_user.format(query=query)
+
+    user_message = [
+        {
+            "type": "text",
+            "text": user_message_,
+        },
+        {
+            "type": "image_url",
+            "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
+        },
+    ]
+
+    print(">>>>>>>>>>>>>>>>>>>")
+    print(ai_message)
+    print(system_message)
+    print(user_message)
+
+    result = llm.invoke(
+        [
+            AIMessage(content=ai_message),
+            SystemMessage(content=system_message),
+            HumanMessage(content=user_message),
+        ]
+    )
+
+    resp = {"query": query, "answer": result.content}
+    print(resp)
+
+    return resp
+
+
 PROMPT_MOOD_AI = "You are a bot that is good at anlyzing images."
 PROMPT_MOOD_SYSTEM = "You are a tour guide in Japan."
 
@@ -137,23 +190,18 @@ Options: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibr
 
 
 def mood_judgement(b64image: str):
-    
+
     if last_b64image is not None and last_b64image == b64image:
-        user_message = [
-            {
-                    "type": "text",
-                    "text": PROMPT_MOOD_HUMAN_JUST_AFTER_INVOKE
-            }
-        ]
+        user_message = [{"type": "text", "text": PROMPT_MOOD_HUMAN_JUST_AFTER_INVOKE}]
     else:
         user_message = [
             {
-                    "type": "text",
-                    "text": PROMPT_MOOD_HUMAN,
+                "type": "text",
+                "text": PROMPT_MOOD_HUMAN,
             },
             {
-                    "type": "image_url",
-                    "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
+                "type": "image_url",
+                "image_url": {"url": f"data:image/jpeg;base64,{b64image}"},
             },
         ]
 
@@ -176,17 +224,18 @@ def mood_judgement(b64image: str):
     print(result.content)
 
     # Search a mood word in the result
-    match = re.search('(Serene|Bustling|Nostalgic|Lonely|Picturesque|Chaotic|Gloomy|Vibrant|Unsure)', result.content)
+    match = re.search(
+        "(Serene|Bustling|Nostalgic|Lonely|Picturesque|Chaotic|Gloomy|Vibrant|Unsure)",
+        result.content,
+    )
     mood = match.group()
-    
-    resp = {'mood': mood}
+
+    resp = {"mood": mood}
     return resp
 
 
-
 if __name__ == "__main__":
-    print(invoke("What makes Yokohama attractive?"))
-    with open('../samples/b64image.txt') as f:
+    print(chat_for_virtual_showroom("What makes Yokohama attractive?"))
+    with open("../samples/b64image.txt") as f:
         b64image = f.read()
     print(mood_judgement(b64image))
-    

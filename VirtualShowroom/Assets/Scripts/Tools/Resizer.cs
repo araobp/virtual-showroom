@@ -14,23 +14,4 @@ public class Resizer : MonoBehaviour
         result.Apply();
         return result;
     }
-
-    // Reference: https://stackoverflow.com/questions/65023000/how-to-convert-16bit-byte-array-to-audio-clip-data-correctly
-    public float[] Convert16BitByteArrayToAudioClipData(byte[] source)
-    {
-        int s = sizeof(short);  // 2 bytes
-        int convertedSize = source.Length / s;
-        float[] data = new float[convertedSize];  // 4 bytes
-        short maxValue = short.MaxValue;  // 32767
-
-        for (int i = 0; i < convertedSize; i++)
-        {
-            int offset = i * s;
-            data[i] = (float)BitConverter.ToInt16(source, offset) / maxValue;
-
-            ++i;
-        }
-
-        return data;
-    }
 }

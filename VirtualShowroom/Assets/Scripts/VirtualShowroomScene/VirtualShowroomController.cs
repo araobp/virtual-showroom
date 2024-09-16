@@ -20,7 +20,6 @@ public class VirtualShowroomController : MonoBehaviour
     [SerializeField] bool m_TTSEnabled = false;
 
     [SerializeField] int m_ResizedImageHeight = 256;  // 256px is just for development
-    [SerializeField] bool m_LightControlByChatGPT = true;
     [SerializeField] Boolean m_AR_Mode = false;
     [SerializeField] GameObject m_Cameras;
 
@@ -306,7 +305,7 @@ public class VirtualShowroomController : MonoBehaviour
 
             Debug.Log(imageId);
 
-            m_Api.ChatTextOnly(text, imageId, voice, (err, resp) =>
+            m_Api.VirtualShowroomChatTextOnly(text, imageId, (err, resp) =>
             {
                 if (err)
                 {
@@ -338,7 +337,7 @@ public class VirtualShowroomController : MonoBehaviour
 
             Debug.Log(imageId);
 
-            m_Api.ChatTextAndImage(text, imageId, b64image, voice, (err, resp) =>
+            m_Api.VirtualShowroomChatTextAndImage(text, imageId, b64image, (err, resp) =>
             {
                 if (err)
                 {

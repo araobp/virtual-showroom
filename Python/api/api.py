@@ -12,27 +12,7 @@ voices = {"alloy": tts_alloy, "nova": tts_nova}
 
 @main.route("/")
 def hello_world():
-    return "Hello, Virtual Showroom!"
-
-
-@main.route("/chat_with_image", methods=["GET", "PUT"])
-def chat_with_image():
-    query = request.args.get("query", default=None, type=str)
-    image_id = request.args.get("image_id", default=None, type=str)
-    voice = request.args.get("voice", default=None, type=str)
-
-    if request.method == "PUT":
-        data = request.json
-        b64image = data["b64image"]
-        with open("./tmp/b64image.txt", "w") as f:
-            f.write(b64image)
-    else:
-        b64image = None
-
-    # Use LangChain with OpenAI's APIs for chat completions
-    resp = chat.invoke(query, b64image, image_id)
-
-    return jsonify(resp)
+    return "Hello!"
 
 
 @main.route("/mood_judgement", methods=["PUT"])
@@ -62,3 +42,45 @@ def text_to_speech():
     response.mimetype = "audio/mpeg"
 
     return response
+
+
+### Virtual Showroom ###
+
+@main.route("/virtual_showroom/chat_with_image", methods=["GET", "PUT"])
+def virtual_showroom_chat_with_image():
+    query = request.args.get("query", default=None, type=str)
+    image_id = request.args.get("image_id", default=None, type=str)
+
+    if request.method == "PUT":
+        data = request.json
+        b64image = data["b64image"]
+        #with open("./tmp/b64image.txt", "w") as f:
+        #    f.write(b64image)
+    else:
+        b64image = None
+
+    # Use LangChain with OpenAI's APIs for chat completions
+    resp = chat.chat_for_virtual_showroom(query, b64image, image_id)
+
+    return jsonify(resp)
+
+
+### Object Detection ###
+
+@main.route("/object_detection/chat_with_image", methods=["GET", "PUT"])
+def object_detection_chat_with_image():
+    query = request.args.get("query", default=None, type=str)
+
+    if request.method == "PUT":
+        data = request.json
+        b64image = data["b64image"]
+        with open("./tmp/b64image.txt", "w") as f:
+            f.write(b64image)
+    else:
+        b64image = None
+
+    # Use LangChain with OpenAI's APIs for chat completions
+    resp = chat.chat_for_object_detection(query, b64image)
+
+    return jsonify(resp)
+

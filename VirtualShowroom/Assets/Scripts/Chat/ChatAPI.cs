@@ -30,31 +30,6 @@ public class ChatAPI : RestClient
         });
     }
 
-    public void ChatTextOnly(string query, string imageId, string voice, ChatCallback callback)
-    {
-        string voiceUrlParam = voice == null ? "" : $"&voice={voice}";
-
-        Get(m_EndPoint, $"/chat_with_image?query={query}&image_id={imageId}{voiceUrlParam}", (err, text) =>
-        {
-            ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
-            callback(err, resp);
-        });
-    }
-
-    public void ChatTextAndImage(string query, string imageId, string b64image, string voice, ChatCallback callback)
-    {
-        string voiceUrlParam = voice == null ? "" : $"&voice={voice}";
-
-        ChatImage chatImage = new ChatImage();
-        chatImage.b64image = b64image;
-        string jsonBody = JsonUtility.ToJson(chatImage);
-        Put(m_EndPoint, $"/chat_with_image?query={query}&image_id={imageId}{voiceUrlParam}", jsonBody, (err, text) =>
-        {
-            ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
-            callback(err, resp);
-        });
-    }
-
     public void MoodJudgement(string b64image, MoodCallback callback) {
         ChatImage chatImage = new ChatImage();
         chatImage.b64image = b64image;
@@ -89,5 +64,41 @@ public class ChatAPI : RestClient
             }
         }
     }
+
+    //*** Virtual Showroom ***
+    public void VirtualShowroomChatTextOnly(string query, string imageId, ChatCallback callback)
+    {
+        Get(m_EndPoint, $"/virtual_showroom/chat_with_image?/query={query}&image_id={imageId}", (err, text) =>
+        {
+            ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
+            callback(err, resp);
+        });
+    }
+
+    public void VirtualShowroomChatTextAndImage(string query, string imageId, string b64image, ChatCallback callback)
+    {
+        ChatImage chatImage = new ChatImage();
+        chatImage.b64image = b64image;
+        string jsonBody = JsonUtility.ToJson(chatImage);
+        Put(m_EndPoint, $"/virtual_showroom/chat_with_image?query={query}&image_id={imageId}", jsonBody, (err, text) =>
+        {
+            ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
+            callback(err, resp);
+        });
+    }
+
+    //*** Object Detection ***
+    public void ObjectDetectionChatTextAndImage(string query, string b64image, ChatCallback callback)
+    {
+        ChatImage chatImage = new ChatImage();
+        chatImage.b64image = b64image;
+        string jsonBody = JsonUtility.ToJson(chatImage);
+        Put(m_EndPoint, $"/object_detection/chat_with_image?query={query}", jsonBody, (err, text) =>
+        {
+            ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
+            callback(err, resp);
+        });
+    }
+
 
 }
