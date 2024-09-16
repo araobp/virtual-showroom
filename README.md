@@ -104,18 +104,18 @@ I modify the robot included in the Unity's Starter Assets and use it to see what
 <table>
   <tr>
     <td>
-      <img src="doc/robot_3.jpg" width=300>      
+      <img src="doc/robot_3.jpg" height=300>      
     </td>
     <td>
-      <img src="doc/robot_1.jpg" width=300>      
+      <img src="doc/robot_1.jpg" height=300>      
     </td>
     <td>
-      <img src="doc/robot_2.jpg" width=300>
+      <img src="doc/robot_2.jpg" height=300>
     </td>
   </tr>
 </table>
 
-#### Image Recognition test
+#### Image Recognition test (gpt-40-mini)
 
 
 
