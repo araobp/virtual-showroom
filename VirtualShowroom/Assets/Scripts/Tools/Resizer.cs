@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 // Reference: https://stackoverflow.com/questions/56949217/how-to-resize-a-texture2d-using-height-and-width
-public class Resizer : MonoBehaviour
+public class Resizer
 {
     public Texture2D Resize(Texture2D texture2D, int newWidth, int newHeight)
     {

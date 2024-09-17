@@ -6,6 +6,7 @@ using static System.Web.HttpUtility;
 
 public class ChatAPI : RestClient
 {
+    [SerializeField] string m_BaseUrl;
     EndPoint m_EndPoint;
 
     // Callbacks
@@ -13,12 +14,11 @@ public class ChatAPI : RestClient
     public delegate void ChatCallback(bool err, ChatResponse resp);
     public delegate void MoodCallback(bool err, MoodResponse resp);
 
-    // Start is called before the first frame update
-    public void Init(string baseUrl)
+    public void OnEnable()
     {
         // REST API client init
         m_EndPoint = new EndPoint();
-        m_EndPoint.baseUrl = baseUrl;
+        m_EndPoint.baseUrl = m_BaseUrl;
     }
 
     // API server
@@ -48,8 +48,6 @@ public class ChatAPI : RestClient
         string url = $"{m_EndPoint.baseUrl}{"/tts"}?{urlParam}";
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
         {
-            Debug.Log("tts");
-
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.ConnectionError)

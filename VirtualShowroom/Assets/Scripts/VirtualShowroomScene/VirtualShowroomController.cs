@@ -45,8 +45,6 @@ public class VirtualShowroomController : MonoBehaviour
 
     [SerializeField] TMP_InputField m_InputField;
 
-    [SerializeField] string m_BaseUrl;
-
 
     List<Camera> m_CameraList;
     List<Texture2D> m_ContentList;
@@ -67,16 +65,12 @@ public class VirtualShowroomController : MonoBehaviour
     AudioSource m_AudioSource;
     enum Voices { alloy, nova };  // OpenAI's Text-to-Speech voices
 
-    // In case of these panorama pictures,
-    // the max hight should be larger than 400px for ChatGPT to recognize objects in the pictures. 
-    const int MAX_RESIZED_IMAGE_HIGHT = 512;  // 512px
-
     // Start is called before the first frame update
     void Start()
     {
-        if (m_ResizedImageHeight > MAX_RESIZED_IMAGE_HIGHT)
+        if (m_ResizedImageHeight > Constants.MAX_RESIZED_IMAGE_HIGHT)
         {
-            m_ResizedImageHeight = MAX_RESIZED_IMAGE_HIGHT;
+            m_ResizedImageHeight = Constants.MAX_RESIZED_IMAGE_HIGHT;
         }
 
         // Select either AR app mode or console app mode
@@ -126,7 +120,7 @@ public class VirtualShowroomController : MonoBehaviour
 
         // Initializing API
         m_Api = GetComponent<ChatAPI>();
-        m_Api.Init(m_BaseUrl);
+
         m_Api.Hello((err, text) =>
         {
             if (err)
@@ -139,7 +133,7 @@ public class VirtualShowroomController : MonoBehaviour
             }
         });
 
-        m_Resizer = GetComponent<Resizer>();
+        m_Resizer = new Resizer();
         m_LightController = GetComponent<LightController>();
         m_AudioSource = GetComponent<AudioSource>();
     }

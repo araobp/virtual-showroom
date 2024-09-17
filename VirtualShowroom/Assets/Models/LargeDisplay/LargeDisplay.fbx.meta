@@ -12,8 +12,43 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: 6beb2908017b743a7875ce59ffabb1fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Letter
+    second: {fileID: 2100000, guid: 29b88c3301a67413a8920333fe4cc2a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pillor
+    second: {fileID: 2100000, guid: bfcb3625bad8143dcaafc4d6056e9382, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Screen
     second: {fileID: 2100000, guid: f30d3c61a9dd04fec886a97f84c3cb95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Speaker
+    second: {fileID: 2100000, guid: 9a3e83f9161fb40da973184878a9fce0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SpeakerBody
+    second: {fileID: 2100000, guid: eaca0d20e002a4625b436a7dca04232e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SpeakerPole
+    second: {fileID: 2100000, guid: 489a90b6f5ddc410ba53618aa89940e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall
+    second: {fileID: 2100000, guid: e91cbf97795fb443a983356c87677b32, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
