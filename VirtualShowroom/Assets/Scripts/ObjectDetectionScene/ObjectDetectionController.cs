@@ -11,6 +11,10 @@ public class ObjectDetectionController : MonoBehaviour
 {
     [SerializeField] bool m_TTSEnabled = false;
 
+    [SerializeField] GameObject m_Cameras;
+
+    [SerializeField] AudioSource m_AudioSource;
+
     [SerializeField] GameObject m_Screen;
 
     [SerializeField] RenderTexture m_RobotCameraRenderTexture;
@@ -20,9 +24,6 @@ public class ObjectDetectionController : MonoBehaviour
 
     [SerializeField] Button m_ButtonContentLeft;
     [SerializeField] Button m_ButtonContentRight;
-
-    [SerializeField] Button m_ButtonModelLeft;
-    [SerializeField] Button m_ButtonModelRight;
 
     [SerializeField] Button m_ButtonToggleChatWindow;
 
@@ -34,13 +35,16 @@ public class ObjectDetectionController : MonoBehaviour
 
     [SerializeField] Voices m_Voice = Voices.alloy;
 
-    AudioSource m_AudioSource;
     enum Voices { alloy, nova };  // OpenAI's Text-to-Speech voices
 
     ChatAPI m_Api;
 
+    List<Camera> m_CameraList;
     List<Texture2D> m_ContentList;
+
+    int m_CameraIdx = 0;
     int m_ContentIdx = 0;
+    int m_ModelIdx = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -49,20 +53,22 @@ public class ObjectDetectionController : MonoBehaviour
         m_ContentList = pictures.OrderBy(x => x.name).ToList().ConvertAll(x => (Texture2D)x);
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", m_ContentList[0]);
 
+        // Set screen orientation to landscape
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+
+        // Camera list
+        m_CameraList = m_Cameras.GetComponentsInChildren<Camera>().ToList();
+
         // Chat Window initial state
         m_ChatPanel.SetActive(false);
 
         // Operation buttons
-        /*
         m_ButtonCameraLeft.onClick.AddListener(() => CameraBack());
         m_ButtonCameraRight.onClick.AddListener(() => CameraForward());
 
-        m_ButtonContentLeft.onClick.AddListener(() => ContentBack());
-        m_ButtonContentRight.onClick.AddListener(() => ContentForward());
+        //m_ButtonContentLeft.onClick.AddListener(() => ContentBack());
+        //m_ButtonContentRight.onClick.AddListener(() => ContentForward());
 
-        m_ButtonModelLeft.onClick.AddListener(() => ModelBack());
-        m_ButtonModelRight.onClick.AddListener(() => ModelForward());
-        */
         m_ButtonToggleChatWindow.onClick.AddListener(() => ToggleChatWindow());
         
 
@@ -82,6 +88,10 @@ public class ObjectDetectionController : MonoBehaviour
         });
 
         m_AudioSource = GetComponent<AudioSource>();
+
+        // Initializing virtual showroom set up
+        SelectCamera(m_CameraList[0]);
+        //SelectContent();
     }
 
     // Update is called once per frame
@@ -148,5 +158,44 @@ public class ObjectDetectionController : MonoBehaviour
                 }
             });
     }
+
+    //*** Camera selection ***
+    void SelectCamera(Camera camera)
+    {
+        m_CameraList.ForEach(c =>
+        {
+            if (c == camera)
+            {
+                c.gameObject.SetActive(true);
+            }
+            else
+            {
+                c.gameObject.SetActive(false);
+            }
+        });
+    }
+
+        void CameraForward()
+    {
+        m_CameraIdx += 1;
+        if (m_CameraIdx >= m_CameraList.Count - 1)
+        {
+            m_CameraIdx = m_CameraList.Count - 1;
+        }
+
+        SelectCamera(m_CameraList[m_CameraIdx]);
+    }
+
+    void CameraBack()
+    {
+        m_CameraIdx -= 1;
+        if (m_CameraIdx < 0)
+        {
+            m_CameraIdx = 0;
+        }
+
+        SelectCamera(m_CameraList[m_CameraIdx]);
+    }
+
 
 }
