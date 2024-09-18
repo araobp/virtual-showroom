@@ -904,7 +904,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 8c5c83730dab84a809589b763437ff0b,
         type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1079,13 +1079,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761749967}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.14840059, z: -0, w: 0.98892736}
-  m_LocalPosition: {x: -1270.22, y: -517.29, z: -1.56}
+  m_LocalRotation: {x: -0, y: -0.0986106, z: -0, w: 0.9951261}
+  m_LocalPosition: {x: -1268.22, y: -517.35, z: -1.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2121943305}
-  m_LocalEulerAnglesHint: {x: 0, y: 17.069, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -11.318, z: 0}
 --- !u!114 &761749969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,8 +1698,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TTSEnabled: 1
+  m_Voice: 0
   m_Cameras: {fileID: 2121943304}
-  m_AudioSource: {fileID: 1207293904}
+  m_Robot: {fileID: 1207293901}
   m_Screen: {fileID: 237867688}
   m_RobotCameraRenderTexture: {fileID: 8400000, guid: d2c4615b928764c148f8395dee4c9199,
     type: 2}
@@ -1711,7 +1712,6 @@ MonoBehaviour:
   m_ChatPanel: {fileID: 3382774495891002806}
   m_Text: {fileID: 977076857241188779}
   m_InputField: {fileID: 8258015831995606133}
-  m_Voice: 0
 --- !u!81 &1009304302
 AudioListener:
   m_ObjectHideFlags: 0
