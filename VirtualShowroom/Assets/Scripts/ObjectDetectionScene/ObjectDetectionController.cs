@@ -44,7 +44,6 @@ public class ObjectDetectionController : MonoBehaviour
 
     int m_CameraIdx = 0;
     int m_ContentIdx = 0;
-    int m_ModelIdx = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -66,8 +65,8 @@ public class ObjectDetectionController : MonoBehaviour
         m_ButtonCameraLeft.onClick.AddListener(() => CameraBack());
         m_ButtonCameraRight.onClick.AddListener(() => CameraForward());
 
-        //m_ButtonContentLeft.onClick.AddListener(() => ContentBack());
-        //m_ButtonContentRight.onClick.AddListener(() => ContentForward());
+        m_ButtonContentLeft.onClick.AddListener(() => ContentBack());
+        m_ButtonContentRight.onClick.AddListener(() => ContentForward());
 
         m_ButtonToggleChatWindow.onClick.AddListener(() => ToggleChatWindow());
         
@@ -87,11 +86,9 @@ public class ObjectDetectionController : MonoBehaviour
             }
         });
 
-        m_AudioSource = GetComponent<AudioSource>();
-
         // Initializing virtual showroom set up
         SelectCamera(m_CameraList[0]);
-        //SelectContent();
+        SelectContent();
     }
 
     // Update is called once per frame
@@ -197,5 +194,30 @@ public class ObjectDetectionController : MonoBehaviour
         SelectCamera(m_CameraList[m_CameraIdx]);
     }
 
+        //*** Content selection ***
+    void SelectContent()
+    {
+        m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", m_ContentList[m_ContentIdx]);
+    }
+
+    void ContentForward()
+    {
+        m_ContentIdx += 1;
+        if (m_ContentIdx >= m_ContentList.Count - 1)
+        {
+            m_ContentIdx = m_ContentList.Count - 1;
+        }
+        SelectContent();
+    }
+
+    void ContentBack()
+    {
+        m_ContentIdx -= 1;
+        if (m_ContentIdx < 0)
+        {
+            m_ContentIdx = 0;
+        }
+        SelectContent();
+    }
 
 }
