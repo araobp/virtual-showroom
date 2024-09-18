@@ -11,9 +11,11 @@ public class ObjectDetectionController : MonoBehaviour
 {
     [SerializeField] bool m_TTSEnabled = false;
 
+    [SerializeField] Voices m_Voice = Voices.alloy;
+
     [SerializeField] GameObject m_Cameras;
 
-    [SerializeField] AudioSource m_AudioSource;
+    [SerializeField] GameObject m_Robot;
 
     [SerializeField] GameObject m_Screen;
 
@@ -32,8 +34,6 @@ public class ObjectDetectionController : MonoBehaviour
     [SerializeField] TMP_Text m_Text;
 
     [SerializeField] TMP_InputField m_InputField;
-
-    [SerializeField] Voices m_Voice = Voices.alloy;
 
     enum Voices { alloy, nova };  // OpenAI's Text-to-Speech voices
 
@@ -122,9 +122,16 @@ public class ObjectDetectionController : MonoBehaviour
             m_Text.text = m_Text.text + "\n\n" + qa;
             m_InputField.text = "";
 
+            if (resp.answer.ToLower().Contains("i don't know")) {
+                m_Robot.GetComponent<Animator>().SetTrigger("I_dont_know");
+            } else {
+                m_Robot.GetComponent<Animator>().SetTrigger("I_know");
+            }
+
             if (m_TTSEnabled)
             {
-                StartCoroutine(m_Api.TextToSpeech(m_AudioSource, m_Voice.ToString(), resp.answer));
+                AudioSource audioSource = m_Robot.GetComponent<AudioSource>();
+                StartCoroutine(m_Api.TextToSpeech(audioSource, m_Voice.ToString(), resp.answer));
             }
         }
 
