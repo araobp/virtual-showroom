@@ -122,7 +122,7 @@ public class ObjectDetectionController : MonoBehaviour
             m_Text.text = m_Text.text + "\n\n" + qa;
             m_InputField.text = "";
 
-            if (resp.answer.ToLower().Contains("i don't know")) {
+            if (resp.answer.ToLower().Contains("i don't know")||resp.answer.ToLower().Contains("良く分かりません")) {
                 m_Robot.GetComponent<Animator>().SetTrigger("I_dont_know");
             } else {
                 m_Robot.GetComponent<Animator>().SetTrigger("I_know");

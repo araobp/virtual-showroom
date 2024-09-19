@@ -123,7 +123,12 @@ def chat_for_virtual_showroom(query: str, b64image: str = None, image_id: str = 
 
 TEMPLATE_SYSTEM_OBJECT_DETECTION = "You are a humanoid obedient to your master."
 
-TEMPLATE_USER_OBJECT_DETECTION = """Please answer the questions based on the image. If you don't know, please answer that you don't know.
+#TEMPLATE_USER_OBJECT_DETECTION = """Please answer the questions based on the image you see. If you don't know at all, please respond with "I don't know." if the query is in English or "良く分かりません。" if the query is in Japanese.
+#
+#Query: {query}
+#"""
+
+TEMPLATE_USER_OBJECT_DETECTION = """Please answer the questions based on the image.
 
 Query: {query}
 """
