@@ -91,6 +91,14 @@ More scenes will be added in the future.
 
 => [API_SERVER.md](./API_SERVER.md)
 
+#### 3b. Developing RAG with an in-memory vector database
+
+(Work in progress)
+
+The data size for this project is small, so I am starting to consider whether it can be handled with an in-memory vector database.
+
+=> [RAG_IN_MEMORY.md](./RAG_IN_MEMORY.md)
+
 #### 4. AI-Controlled Virtual Showroom
 
 => [AI_Controlled.md](./AI_Controlled.md)
