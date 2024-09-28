@@ -89,6 +89,9 @@ More scenes will be added in the future.
 
 #### 3. Developing the API server (LangChain/Flask/Python)
 
+Note1: I am considering to stop using LangChain, because it is easier for me to use the OpenAI's API instead.
+Note2: I have found that [sqlite-vec](https://github.com/asg017/sqlite-vec) works very well for a small dataset, so I am going to replace ChromaDB with sqlite-vec.
+
 => [API_SERVER.md](./API_SERVER.md)
 
 #### 4. AI-Controlled Virtual Showroom
