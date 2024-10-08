@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Networking;
@@ -12,7 +13,6 @@ public class ChatAPI : RestClient
     // Callbacks
     public delegate void HelloCallback(bool err, string text);
     public delegate void ChatCallback(bool err, ChatResponse resp);
-    public delegate void MoodCallback(bool err, MoodResponse resp);
 
     public void OnEnable()
     {
@@ -27,17 +27,6 @@ public class ChatAPI : RestClient
         Get(m_EndPoint, "/", (err, text) =>
         {
             callback(err, text);
-        });
-    }
-
-    public void MoodJudgement(string b64image, MoodCallback callback) {
-        ChatImage chatImage = new ChatImage();
-        chatImage.b64image = b64image;
-        string jsonBody = JsonUtility.ToJson(chatImage);
-        Put(m_EndPoint, $"/mood_judgement", jsonBody, (err, text) =>
-        {
-            MoodResponse resp = JsonUtility.FromJson<MoodResponse>(text);
-            callback(err, resp);
         });
     }
 
@@ -64,23 +53,50 @@ public class ChatAPI : RestClient
     }
 
     //*** Virtual Showroom ***
-    public void VirtualShowroomChatTextOnly(string query, string imageId, ChatCallback callback)
+    const string VIRTUAL_SHOWROOM_SYSTEM_MESSAGE = "You are a tour guide. You are also good at analyzing images.";
+
+    public void VirtualShowroomChatTextOnly(string query, string context, ChatCallback callback)
     {
-        Get(m_EndPoint, $"/virtual_showroom/chat_with_image?/query={query}&image_id={imageId}", (err, text) =>
+        Get(m_EndPoint, $"/chat?system_message={VIRTUAL_SHOWROOM_SYSTEM_MESSAGE}&user_message={query}&context={context}", (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
             callback(err, resp);
         });
     }
 
-    public void VirtualShowroomChatTextAndImage(string query, string imageId, string b64image, ChatCallback callback)
+    public void VirtualShowroomChatTextAndImage(string query, string context, string b64image, ChatCallback callback)
     {
-        ChatImage chatImage = new ChatImage();
+        ChatWithImage chatImage = new ChatWithImage();
         chatImage.b64image = b64image;
         string jsonBody = JsonUtility.ToJson(chatImage);
-        Put(m_EndPoint, $"/virtual_showroom/chat_with_image?query={query}&image_id={imageId}", jsonBody, (err, text) =>
+        Put(m_EndPoint, $"/chat?system_message={VIRTUAL_SHOWROOM_SYSTEM_MESSAGE}&user_message={query}&context={context}", jsonBody, (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
+            callback(err, resp);
+        });
+    }
+
+    const string USER_MESSAGE_MOOD = "Please choose one word from the following options that best describes the mood of this image. If you are unsure, please respond with 'Unsure.\n\nOptions: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibrant.";
+    
+    readonly List<string> MOODS = new List<string>{"serene", "bustling", "nostalgic", "lonely", "picturesque", "chaotic", "gloomy", "vibrant", "unsure"};
+
+    public void MoodJudgement(string b64image, ChatCallback callback)
+    {
+        ChatWithImage chatImage = new ChatWithImage();
+        chatImage.b64image = b64image;
+        string jsonBody = JsonUtility.ToJson(chatImage);
+        Put(m_EndPoint, $"/chat?system_message={VIRTUAL_SHOWROOM_SYSTEM_MESSAGE}&user_message={USER_MESSAGE_MOOD}", jsonBody, (err, text) =>
+        {
+            ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
+            if (!err) {
+                string answer = resp.answer;
+                resp.answer = "unsure";
+                MOODS.ForEach(m => {
+                    if (answer.ToLower().Contains(m)) {
+                        resp.answer = m;
+                    }
+                });
+            }
             callback(err, resp);
         });
     }
@@ -88,10 +104,10 @@ public class ChatAPI : RestClient
     //*** Object Detection ***
     public void ObjectDetectionChatTextAndImage(string query, string b64image, ChatCallback callback)
     {
-        ChatImage chatImage = new ChatImage();
+        ChatWithImage chatImage = new ChatWithImage();
         chatImage.b64image = b64image;
         string jsonBody = JsonUtility.ToJson(chatImage);
-        Put(m_EndPoint, $"/object_detection/chat_with_image?query={query}", jsonBody, (err, text) =>
+        Put(m_EndPoint, $"/chat?user_message={query}", jsonBody, (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
             callback(err, resp);

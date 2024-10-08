@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -65,9 +66,11 @@ public class VirtualShowroomController : MonoBehaviour
     AudioSource m_AudioSource;
     enum Voices { alloy, nova };  // OpenAI's Text-to-Speech voices
 
-    // Start is called before the first frame update
     void Start()
     {
+        // Allow insecure HTTP (not HTTPS), since this app uses a HTTP server on LAN.
+        PlayerSettings.insecureHttpOption = InsecureHttpOption.DevelopmentOnly;
+
         if (m_ResizedImageHeight > Constants.MAX_RESIZED_IMAGE_HIGHT)
         {
             m_ResizedImageHeight = Constants.MAX_RESIZED_IMAGE_HIGHT;
@@ -254,7 +257,6 @@ public class VirtualShowroomController : MonoBehaviour
             m_ChatPanel.SetActive(true);
         }
     }
-
     public void OnEndEdit(string text)
     {
         void ProcessChatResponse(ChatResponse resp, string voice)
@@ -270,9 +272,9 @@ public class VirtualShowroomController : MonoBehaviour
             m_InputField.text = "";
         }
 
-        void ProcessMoodResponse(MoodResponse resp)
+        void ProcessMoodResponse(ChatResponse resp)
         {
-            m_LightController.SetMood(resp.mood);
+            m_LightController.SetMood(resp.answer);
         }
 
         // Choose voice of the model
@@ -299,7 +301,7 @@ public class VirtualShowroomController : MonoBehaviour
 
             Debug.Log(imageId);
 
-            m_Api.VirtualShowroomChatTextOnly(text, imageId, (err, resp) =>
+            m_Api.VirtualShowroomChatTextOnly(text, Contexts.CONTEXTS[imageId], (err, resp) =>
             {
                 if (err)
                 {
@@ -331,7 +333,7 @@ public class VirtualShowroomController : MonoBehaviour
 
             Debug.Log(imageId);
 
-            m_Api.VirtualShowroomChatTextAndImage(text, imageId, b64image, (err, resp) =>
+            m_Api.VirtualShowroomChatTextAndImage(text, Contexts.CONTEXTS[imageId], b64image, (err, resp) =>
             {
                 if (err)
                 {

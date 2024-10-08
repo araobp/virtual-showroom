@@ -1648,8 +1648,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1009304298}
   - component: {fileID: 1009304301}
-  - component: {fileID: 1009304300}
   - component: {fileID: 1009304302}
+  - component: {fileID: 1009304303}
   m_Layer: 0
   m_Name: ObjectDetection
   m_TagString: Untagged
@@ -1672,19 +1672,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1009304300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009304297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd33c36b7a7944c4b1f3750e5f45d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BaseUrl: http://127.0.0.1:5000
 --- !u!114 &1009304301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1720,6 +1707,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009304297}
   m_Enabled: 1
+--- !u!114 &1009304303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009304297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260aca56c1c404726b7f62cdb34d6189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BaseUrl: http://192.168.0.196:5050
 --- !u!1 &1017762005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7487441478180679629, guid: f75d38bd280da445a9a0fde57c645bcb,

@@ -14,15 +14,15 @@ public class LightController : MonoBehaviour
     GameObject[] m_Lights;
 
     static Dictionary<string, string> MOOD_COLORS = new Dictionary<String, string>{
-        {"Serene", "#87CEEB"},
-        {"Bustling", "#FFA500"},
-        {"Nostalgic", "#F4A460"},
-        {"Lonely", "#708090"},
-        {"Picturesque", "#ADD8E6"},
-        {"Chaotic", "#8B0000"},
-        {"Gloomy", "#2F4F4F"},
-        {"Vibrant", "#FF4500"},
-        {"Unsure", "#AAAAAA"}
+        {"serene", "#87CEEB"},
+        {"bustling", "#FFA500"},
+        {"nostalgic", "#F4A460"},
+        {"lonely", "#708090"},
+        {"picturesque", "#ADD8E6"},
+        {"chaotic", "#8B0000"},
+        {"gloomy", "#2F4F4F"},
+        {"vibrant", "#FF4500"},
+        {"unsure", "#AAAAAA"}
     };
 
     // Start is called before the first frame update

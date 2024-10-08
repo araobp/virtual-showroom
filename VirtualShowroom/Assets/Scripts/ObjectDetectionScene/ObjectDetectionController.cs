@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,6 +49,9 @@ public class ObjectDetectionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Allow insecure HTTP (not HTTPS), since this app uses a HTTP server on LAN.
+        PlayerSettings.insecureHttpOption = InsecureHttpOption.DevelopmentOnly;
+        
         List<UnityEngine.Object> pictures = Resources.LoadAll("LargeDisplay", typeof(Texture2D)).ToList();
         m_ContentList = pictures.OrderBy(x => x.name).ToList().ConvertAll(x => (Texture2D)x);
         m_Screen.GetComponent<Renderer>().material.SetTexture("_Texture2D", m_ContentList[0]);
