@@ -53,15 +53,9 @@ The Flask-based API server will run on a PC or Mac. It can also be deployed on a
 
 ### Tools
 
-- Blender
+- Blender with [MPFB2](https://static.makehumancommunity.org/mpfb.html) (Blender)
 - Unity
 - VS Code
-
-### Libraries
-
-- [MPFB2](https://static.makehumancommunity.org/mpfb.html) (Blender)
-- [LangChain](https://python.langchain.com/v0.2/docs/introduction/) and [OpenAI API](https://openai.com/index/openai-api/) (Python)
-- [Flask](https://flask.palletsprojects.com/en/3.0.x/) (Python)
 
 ### LLM
 
@@ -89,7 +83,9 @@ More scenes will be added in the future.
 
 #### 3. Developing the API server (LangChain/Flask/Python)
 
-=> [API_SERVER.md](./API_SERVER.md)
+Note: I am migrating to my original compact RAG implementation that runs on Raspberry Pi.
+
+=> [Compact RAG](https://github.com/araobp/compact-rag)
 
 #### 4. AI-Controlled Virtual Showroom
 
