@@ -45,7 +45,7 @@ The 240-degree panoramic screen in this project also supports perspective drawin
 
 ## System Architecture
 
-<img src="doc/architecture.jpg" width=800>
+<img src="doc/api_server.jpg" width=800>
 
 The Flask-based API server will run on a PC or Mac. It can also be deployed on a virtual machine in the cloud.
 
