@@ -83,7 +83,7 @@ More scenes will be added in the future.
 
 #### 3. Developing the API server (LangChain/Flask/Python)
 
-Note: I am migrating to my original compact RAG implementation.
+Note: I am migrating to my original compact RAG implementation that runs on Raspberry Pi.
 
 => [Compact RAG](https://github.com/araobp/compact-rag)
 
