@@ -81,11 +81,11 @@ More scenes will be added in the future.
 
 => [SHOWROOM.md](./SHOWROOM.md)
 
-#### 3. Developing the API server (LangChain/Flask/Python)
+#### 3. Developing the API server
 
-Note: I am migrating to my original compact RAG implementation that runs on Raspberry Pi.
+The API server runs on Raspberry Pi.
 
-=> [Compact RAG](https://github.com/araobp/compact-rag)
+Run the "app.py" that is in my another repo: [Compact RAG](https://github.com/araobp/compact-rag)
 
 #### 4. AI-Controlled Virtual Showroom
 
