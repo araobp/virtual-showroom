@@ -24,7 +24,7 @@ public class ChatAPI : RestClient
     // API server
     public void Hello(HelloCallback callback)
     {
-        Get(m_EndPoint, "/", (err, text) =>
+        Get(m_EndPoint, "/hello", (err, text) =>
         {
             callback(err, text);
         });
