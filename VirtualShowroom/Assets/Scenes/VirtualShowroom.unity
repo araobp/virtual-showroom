@@ -1873,8 +1873,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023af6dd4a0514a019cccbdc238b6e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RagMode: 1
-  m_TTSEnabled: 0
+  m_RagMode: 2
+  m_TTSEnabled: 1
   m_ResizedImageHeight: 256
   m_AR_Mode: 0
   m_Cameras: {fileID: 1221353524}

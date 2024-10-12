@@ -10,7 +10,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-using UnityEngine.Windows.Speech;
 using UnityEngine.XR.ARFoundation;
 using Button = UnityEngine.UI.Button;
 
@@ -68,9 +67,6 @@ public class VirtualShowroomController : MonoBehaviour
 
     void Start()
     {
-        // Allow insecure HTTP (not HTTPS), since this app uses a HTTP server on LAN.
-        PlayerSettings.insecureHttpOption = InsecureHttpOption.DevelopmentOnly;
-
         if (m_ResizedImageHeight > Constants.MAX_RESIZED_IMAGE_HIGHT)
         {
             m_ResizedImageHeight = Constants.MAX_RESIZED_IMAGE_HIGHT;
