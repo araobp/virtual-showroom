@@ -119,6 +119,6 @@ A few years ago, I developed several image recognition and object detection apps
 
 This time, I’m utilizing OpenAI's multimodal AI for image recognition and object detection.
 
-I uploaded the experiment result to YouTube: [YouTube](https://youtu.be/1yXJCsx69_0)
+I uploaded the experiment result to YouTube: [The experiment of multimodal AI with Unity](https://youtu.be/1yXJCsx69_0)
 
 After trying various experiments, I found that an image size of at least 512px x 512px seems to work best.
