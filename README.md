@@ -65,8 +65,8 @@ This project utilizes OpenAI's "gpt-4o-mini" with Multimodal RAG (text and image
 
 (Work in progress)
 
-This project currently has two secenes:
-- Virtual Showroom (Nearly completed)
+This project currently has two scenes:
+- Virtual Showroom (Nearly completed, also runs as an AR app on a mobile phone)
 - Objec Detection (Work in progress) 
 
 More scenes will be added in the future.
@@ -91,7 +91,7 @@ Run the "app.py" that is in my another repo: [Compact RAG](https://github.com/ar
 
 => [AI_Controlled.md](./AI_Controlled.md)
 
-### Object Detection scene
+### Object Detection / image recognition scene
 
 #### AI Robot
 
@@ -113,23 +113,12 @@ I modified the robot included in Unity's Starter Assets to experiment with what 
   </tr>
 </table>
 
-#### Tests
+#### Experiments
 
 A few years ago, I developed several image recognition and object detection apps using TensorFlow.
 
 This time, I’m utilizing OpenAI's multimodal AI for image recognition and object detection.
 
-***Image Recognition test (gpt-4o-mini)***
+I uploaded the experiment result to YouTube: [YouTube](https://youtu.be/1yXJCsx69_0)
 
 After trying various experiments, I found that an image size of at least 512px x 512px seems to work best.
-
-```
-Received: {"answer":"I see an image of a cat grooming itself.
-The cat appears to be licking its paw while resting on a red surface.",
-"query":"What can you see in this image?"}
-
-```
-
-***Object Recognition test (gpt-4o-mini)***
-
-(Coming soon)
