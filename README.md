@@ -1,7 +1,5 @@
 # Virtual Showroom
 
-(Work in progress)
-
 <img src="doc/sample_scene2.jpg" width=600>
 
 Note: I am not very good at English. This README.md was proofread by ChatGPT.
@@ -63,11 +61,9 @@ This project utilizes OpenAI's "gpt-4o-mini" with Multimodal RAG (text and image
 
 ## Scenes
 
-(Work in progress)
-
 This project currently has two scenes:
-- Virtual Showroom (Nearly completed, also runs as an AR app on a mobile phone)
-- Objec Detection (Work in progress) 
+- Virtual Showroom (it also runs as an AR app on a mobile phone)
+- Object Detection
 
 More scenes will be added in the future.
 
