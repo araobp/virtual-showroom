@@ -102,5 +102,3 @@ The following is the implementation of lighting control by ChatGPT. It works ver
 <img src="doc/LightControlByChatGPT_1.jpg" width=700>
 
 <img src="doc/LightControlByChatGPT_2.jpg" width=700>
-
-(Work in progress)
