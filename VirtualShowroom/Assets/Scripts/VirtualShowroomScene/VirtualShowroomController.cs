@@ -3,13 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using UnityEngine.XR.ARFoundation;
 using Button = UnityEngine.UI.Button;
 
@@ -65,6 +60,7 @@ public class VirtualShowroomController : MonoBehaviour
     AudioSource m_AudioSource;
     enum Voices { alloy, nova };  // OpenAI's Text-to-Speech voices
 
+
     void Start()
     {
         if (m_ResizedImageHeight > Constants.MAX_RESIZED_IMAGE_HIGHT)
@@ -78,20 +74,7 @@ public class VirtualShowroomController : MonoBehaviour
 
         // Set screen orientation to landscape
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-
-        // Camera list
-        m_CameraList = m_Cameras.GetComponentsInChildren<Camera>().ToList();
-
-        // Disable all the cameras and the camera selection buttons in case of AR mode is true
-        if (m_AR_Mode)
-        {
-            m_CameraList.ForEach(c => c.gameObject.SetActive(false));
-
-            m_TextCamera.gameObject.SetActive(false);
-            m_ButtonCameraLeft.gameObject.SetActive(false);
-            m_ButtonCameraRight.gameObject.SetActive(false);
-        }
-
+        
         // 240-degree screen panorama pictures
         List<UnityEngine.Object> pictures = Resources.LoadAll("Panorama", typeof(Texture2D)).ToList();
         m_ContentList = pictures.OrderBy(x => x.name).ToList().ConvertAll(x => (Texture2D)x);
@@ -112,8 +95,22 @@ public class VirtualShowroomController : MonoBehaviour
 
         m_ButtonToggleChatWindow.onClick.AddListener(() => ToggleChatWindow());
 
+        // Camera list
+        m_CameraList = m_Cameras.GetComponentsInChildren<Camera>().ToList();
+
+        // Disable all the cameras and the camera selection buttons in case of AR mode is true
+        if (m_AR_Mode)
+        {
+            m_CameraList.ForEach(c => c.gameObject.SetActive(false));
+
+            m_TextCamera.gameObject.SetActive(false);
+            m_ButtonCameraLeft.gameObject.SetActive(false);
+            m_ButtonCameraRight.gameObject.SetActive(false);
+        } else {
+            SelectCamera(m_CameraList[0]);
+        }
+
         // Initializing virtual showroom set up
-        SelectCamera(m_CameraList[0]);
         SelectContent();
         SelectModel();
 
@@ -140,7 +137,6 @@ public class VirtualShowroomController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     //*** Camera selection ***
@@ -263,15 +259,16 @@ public class VirtualShowroomController : MonoBehaviour
             int period = resp.answer.Length / TIME_TO_WORDS;
             StartCoroutine(Speak(period, voice, resp.answer));
 
-            string qa = $"Q: {text}\nA: {resp.answer}";
-            m_Text.text = m_Text.text + "\n\n" + qa;
-            m_InputField.text = "";
+            m_Text.text = m_Text.text + $"A: {resp.answer}";
         }
 
         void ProcessMoodResponse(ChatResponse resp)
         {
             m_LightController.SetMood(resp.answer);
         }
+
+        m_Text.text = m_Text.text + $"\n\nQ: {text}\n";
+        m_InputField.text = "";
 
         // Choose voice of the model
         string voice = null;

@@ -118,9 +118,7 @@ public class ObjectDetectionController : MonoBehaviour
         {
             Debug.Log(resp.answer);
 
-            string qa = $"Q: {text}\nA: {resp.answer}";
-            m_Text.text = m_Text.text + "\n\n" + qa;
-            m_InputField.text = "";
+            m_Text.text = m_Text.text + $"A: {resp.answer}";
 
             if (resp.answer.ToLower().Contains("i don't know")||resp.answer.ToLower().Contains("良く分かりません")) {
                 m_Robot.GetComponent<Animator>().SetTrigger("I_dont_know");
@@ -135,6 +133,8 @@ public class ObjectDetectionController : MonoBehaviour
             }
         }
 
+        m_Text.text = m_Text.text + $"\n\nQ: {text}\n";
+        m_InputField.text = "";
 
         // Read texture data from RenderTexture
         RenderTexture rt = m_RobotCameraRenderTexture;
