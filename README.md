@@ -93,6 +93,8 @@ Run the "app.py" that is in my another repo: [Compact RAG](https://github.com/ar
 
 ### Object Detection / image recognition scene
 
+Although this scence has nothing to do with RAG, I use the Flask-based API server for simplicity.
+
 #### AI Robot
 
 I was impressed by [the demo video for Figure 01](https://www.figure.ai/). If such a robot were to exist, human guides in showrooms might no longer be necessary.
