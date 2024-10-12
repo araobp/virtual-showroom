@@ -65,7 +65,7 @@ This project utilizes OpenAI's "gpt-4o-mini" with Multimodal RAG (text and image
 
 (Work in progress)
 
-This project currently has two secenes:
+This project currently has two scenes:
 - Virtual Showroom (Nearly completed, also runs as an AR app on a mobile phone)
 - Objec Detection (Work in progress) 
 
