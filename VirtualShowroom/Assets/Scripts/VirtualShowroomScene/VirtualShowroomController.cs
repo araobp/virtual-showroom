@@ -269,7 +269,7 @@ public class VirtualShowroomController : MonoBehaviour
 
         m_Text.text = m_Text.text + $"\n\nQ: {text}\n";
         m_InputField.text = "";
-
+        
         // Choose voice of the model
         string voice = null;
         if (m_TTSEnabled)
