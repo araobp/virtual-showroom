@@ -113,7 +113,7 @@ I modified the robot included in Unity's Starter Assets to experiment with what 
 
 #### Experiments
 
-A few years ago, I developed several image recognition and object detection apps using TensorFlow like (this one)[https://github.com/araobp/tower].
+A few years ago, I developed several image recognition and object detection apps using TensorFlow like [this one](https://github.com/araobp/tower).
 
 This time, I’m utilizing OpenAI's multimodal AI for image recognition and object detection.
 
