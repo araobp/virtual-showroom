@@ -53,10 +53,12 @@ public class ChatAPI : RestClient
     }
 
     //*** Virtual Showroom ***
-    const string VIRTUAL_SHOWROOM_SYSTEM_MESSAGE = "You are a tour guide. You are also good at analyzing images.";
+    const string VIRTUAL_SHOWROOM_SYSTEM_MESSAGE = "You are a tour guide. You are also good at analyzing images. Please do not claim that you are referring to the attached information or images when you respond to the query.";
 
-    public void VirtualShowroomChatTextOnly(string query, string context, ChatCallback callback)
+    public void VirtualShowroomChatTextOnly(string query, string context, string place, ChatCallback callback)
     {
+        query = $"We are in {place}. {query}";
+
         Get(m_EndPoint, $"/chat?system_message={VIRTUAL_SHOWROOM_SYSTEM_MESSAGE}&user_message={query}&context={context}", (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
@@ -64,11 +66,14 @@ public class ChatAPI : RestClient
         });
     }
 
-    public void VirtualShowroomChatTextAndImage(string query, string context, string b64image, ChatCallback callback)
+    public void VirtualShowroomChatTextAndImage(string query, string context, string place, string b64image, ChatCallback callback)
     {
         ChatWithImage chatImage = new ChatWithImage();
         chatImage.b64image = b64image;
         string jsonBody = JsonUtility.ToJson(chatImage);
+        
+        query = $"We are in {place}. {query}";
+
         Put(m_EndPoint, $"/chat?system_message={VIRTUAL_SHOWROOM_SYSTEM_MESSAGE}&user_message={query}&context={context}", jsonBody, (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);

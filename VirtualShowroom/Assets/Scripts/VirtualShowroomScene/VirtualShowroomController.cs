@@ -269,7 +269,7 @@ public class VirtualShowroomController : MonoBehaviour
 
         m_Text.text = m_Text.text + $"\n\nQ: {text}\n";
         m_InputField.text = "";
-        
+
         // Choose voice of the model
         string voice = null;
         if (m_TTSEnabled)
@@ -294,7 +294,8 @@ public class VirtualShowroomController : MonoBehaviour
 
             Debug.Log(imageId);
 
-            m_Api.VirtualShowroomChatTextOnly(text, Contexts.CONTEXTS[imageId], (err, resp) =>
+            var metadata = Metadata.METADATA[imageId];
+            m_Api.VirtualShowroomChatTextOnly(text, metadata[0], metadata[1], (err, resp) =>
             {
                 if (err)
                 {
@@ -326,7 +327,8 @@ public class VirtualShowroomController : MonoBehaviour
 
             Debug.Log(imageId);
 
-            m_Api.VirtualShowroomChatTextAndImage(text, Contexts.CONTEXTS[imageId], b64image, (err, resp) =>
+            var metadata = Metadata.METADATA[imageId];
+            m_Api.VirtualShowroomChatTextAndImage(text, metadata[0], metadata[1], b64image, (err, resp) =>
             {
                 if (err)
                 {
