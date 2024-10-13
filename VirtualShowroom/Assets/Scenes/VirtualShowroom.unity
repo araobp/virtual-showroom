@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_RagMode: 2
   m_TTSEnabled: 1
   m_ResizedImageHeight: 512
-  m_AR_Mode: 1
+  m_AR_Mode: 0
   m_Cameras: {fileID: 1221353524}
   m_Screen: {fileID: 1643591040}
   m_Models:
@@ -3520,7 +3520,7 @@ Transform:
   m_GameObject: {fileID: 1593376174}
   serializedVersion: 2
   m_LocalRotation: {x: 0.04738641, y: -0.58199584, z: 0.034001693, w: 0.81109756}
-  m_LocalPosition: {x: 3.22, y: 1.47, z: -1.44}
+  m_LocalPosition: {x: 2.638, y: 1.794, z: -1.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
