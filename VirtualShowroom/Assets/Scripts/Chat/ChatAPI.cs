@@ -31,7 +31,7 @@ public class ChatAPI : RestClient
     }
 
     // OpenAI's TTS Service
-    public IEnumerator TextToSpeech(AudioSource audioSource, string voice, string text)
+    public IEnumerator TextToSpeech(AudioSource audioSource, string voice, string text, Animator animator = null)
     {
         string urlParam = $"voice={voice}&text={UrlEncode(text)}";
         string url = $"{m_EndPoint.baseUrl}{"/tts"}?{urlParam}";
@@ -48,12 +48,19 @@ public class ChatAPI : RestClient
                 AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
                 audioSource.clip = clip;
                 audioSource.Play();
+
+                if (animator != null)
+                {
+                    animator.SetTrigger("speak");
+                    yield return new WaitForSecondsRealtime(clip.length);
+                    animator.SetTrigger("stopSpeaking");
+                }
             }
         }
     }
 
     //*** Virtual Showroom ***
-    const string VIRTUAL_SHOWROOM_SYSTEM_MESSAGE = "You are a tour guide. You are also good at analyzing images. Please do not claim that you are referring to the attached information or images when you respond to the query.";
+    const string VIRTUAL_SHOWROOM_SYSTEM_MESSAGE = "You are a tour guide. You are also good at analyzing images. Do not claim that you are referring to the attached information or images when you respond to the query. And do not use speculative expressions like \"likely\". Respond the query in shorter than three sentences always.";
 
     public void VirtualShowroomChatTextOnly(string query, string context, string place, ChatCallback callback)
     {
@@ -71,7 +78,7 @@ public class ChatAPI : RestClient
         ChatWithImage chatImage = new ChatWithImage();
         chatImage.b64image = b64image;
         string jsonBody = JsonUtility.ToJson(chatImage);
-        
+
         query = $"We are in {place}. {query}";
 
         Put(m_EndPoint, $"/chat?system_message={VIRTUAL_SHOWROOM_SYSTEM_MESSAGE}&user_message={query}&context={context}", jsonBody, (err, text) =>
@@ -82,8 +89,8 @@ public class ChatAPI : RestClient
     }
 
     const string USER_MESSAGE_MOOD = "Please choose one word from the following options that best describes the mood of this image. If you are unsure, please respond with 'Unsure.\n\nOptions: Serene, Bustling, Nostalgic, Lonely, Picturesque, Chaotic, Gloomy, Vibrant.";
-    
-    readonly List<string> MOODS = new List<string>{"serene", "bustling", "nostalgic", "lonely", "picturesque", "chaotic", "gloomy", "vibrant", "unsure"};
+
+    readonly List<string> MOODS = new List<string> { "serene", "bustling", "nostalgic", "lonely", "picturesque", "chaotic", "gloomy", "vibrant", "unsure" };
 
     public void MoodJudgement(string b64image, ChatCallback callback)
     {
@@ -93,11 +100,14 @@ public class ChatAPI : RestClient
         Put(m_EndPoint, $"/chat?system_message={VIRTUAL_SHOWROOM_SYSTEM_MESSAGE}&user_message={USER_MESSAGE_MOOD}", jsonBody, (err, text) =>
         {
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(text);
-            if (!err) {
+            if (!err)
+            {
                 string answer = resp.answer;
                 resp.answer = "unsure";
-                MOODS.ForEach(m => {
-                    if (answer.ToLower().Contains(m)) {
+                MOODS.ForEach(m =>
+                {
+                    if (answer.ToLower().Contains(m))
+                    {
                         resp.answer = m;
                     }
                 });

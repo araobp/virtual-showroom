@@ -74,7 +74,7 @@ public class VirtualShowroomController : MonoBehaviour
 
         // Set screen orientation to landscape
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-        
+
         // 240-degree screen panorama pictures
         List<UnityEngine.Object> pictures = Resources.LoadAll("Panorama", typeof(Texture2D)).ToList();
         m_ContentList = pictures.OrderBy(x => x.name).ToList().ConvertAll(x => (Texture2D)x);
@@ -106,7 +106,9 @@ public class VirtualShowroomController : MonoBehaviour
             m_TextCamera.gameObject.SetActive(false);
             m_ButtonCameraLeft.gameObject.SetActive(false);
             m_ButtonCameraRight.gameObject.SetActive(false);
-        } else {
+        }
+        else
+        {
             SelectCamera(m_CameraList[0]);
         }
 
@@ -367,12 +369,14 @@ public class VirtualShowroomController : MonoBehaviour
     {
         if (voice != null && text != null)
         {
-            StartCoroutine(m_Api.TextToSpeech(m_AudioSource, voice, text));
+            StartCoroutine(m_Api.TextToSpeech(m_AudioSource, voice, text, Animator()));
         }
-
-        Animator().SetTrigger("speak");
-        yield return new WaitForSecondsRealtime(period);
-        Animator().SetTrigger("stopSpeaking");
+        else
+        {
+            Animator().SetTrigger("speak");
+            yield return new WaitForSecondsRealtime(period);
+            Animator().SetTrigger("stopSpeaking");
+        }
     }
 
     IEnumerator SitDown(int period)
