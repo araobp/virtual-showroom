@@ -12,9 +12,7 @@ Showrooms can be costly, but their ROI is unclear. Therefore, companies generall
 
 The Virtual Showroom is highly cost-effective. It only requires a 240-degree panoramic screen to provide VR experiences without the need for headsets. I aspire to create a "real" virtual showroom at work someday, but for now, this project is focused on developing a "virtual" virtual showroom using Unity, either as an AR app or a console app, as part of my hobby project.
 
-https://github.com/user-attachments/assets/a55178b7-909f-4702-ad78-8f9438cf234d
-
-Although the video showcases Japanese chat, ChatGPT is multilingual.
+[Demo video on YouTube](https://youtu.be/bjNSUi2Oawk)
 
 ## Reference Showroom
 
