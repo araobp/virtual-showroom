@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_RagMode: 2
   m_TTSEnabled: 1
   m_ResizedImageHeight: 512
-  m_AR_Mode: 0
+  m_AR_Mode: 1
   m_Cameras: {fileID: 1221353524}
   m_Screen: {fileID: 1643591040}
   m_Models:
