@@ -16,7 +16,7 @@ The Virtual Showroom is highly cost-effective. It only requires a 240-degree pan
 
 ## Reference Showroom
 
-I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl/Z5GTQqjRTFXAtd3D8) in Yokohama in May 2024. This was for a driving experience in harsh environments.
+I visited NISSAN GALLERY at [Nissan global headquarters](https://maps.app.goo.gl/Z5GTQqjRTFXAtd3D8) in Yokohama in March 2024. This was for a driving experience in harsh environments.
 
 <table>
   <tr>
