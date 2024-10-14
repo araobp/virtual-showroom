@@ -79,7 +79,7 @@ More scenes will be added in the future.
 
 The API server runs on Raspberry Pi.
 
-Run the "app.py" that is in my another repo: [Compact RAG](https://github.com/araobp/compact-rag)
+Run the "app.py" that is in my another repo: [Compact RAG](https://github.com/araobp/showroom-controller)
 
 #### 4. AI-Controlled Virtual Showroom
 
